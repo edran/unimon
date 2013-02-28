@@ -1,2 +1,6 @@
-"name","type","hp","description","attacks",,,
+"name","type","hp","description","attack","attack","attack","attack" #can have any number of attacks but must have at atleast 
+"luke","nerd",100,"some description goes here","attack name one","attack name two"
+"bob","prof",299,"another description goes here","attakcs..."
+"don","types",500,"he's a best","attacks","attacks","attacks"
 "luke","nerd",130,"The greatest,, unimon ever", beware","punch","kick","thrill ","karate chop"
+
