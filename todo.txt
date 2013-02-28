@@ -1,0 +1,6 @@
+* parser for unimon.
+* write the type class.
+* decided on the types.
+* write some attacks.
+* write the battle routine.
+*
