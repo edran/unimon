@@ -186,6 +186,12 @@ public class Unimon{
 		return getStatus() %5 == 0;
 	}
 
+	/*
+	 *returns true if unimon is alive
+	 */
+	public boolean isAlive(){
+		return getStatus()!=-1;
+	}
 
 	/*
 	 * does damage from attacks which effect unimon every turn.
