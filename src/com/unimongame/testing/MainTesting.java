@@ -89,10 +89,10 @@ public class MainTesting {
 
 	}
 	public static void addUnimon(){
-		unimons.add(new Unimon("ScumBag Steve",new Type(),"will cheat up, mess troll you and generally fuck you over.",100));
-		unimons.add(new Unimon("Luke McAuley",new Type(),"A beast",100));
-		unimons.add(new Unimon("Soho", new Type(), "Ninjaa",150));
-		unimons.add(new Unimon("Don", new Type(),"lolololol",90));
+		unimons.add(new Unimon("ScumBag Steve",new Type(),"hes not very nice.",100,50));
+		unimons.add(new Unimon("Luke McAuley",new Type(),"A beast",100,49));
+		unimons.add(new Unimon("Soho", new Type(), "Ninjaa",150,39));
+		unimons.add(new Unimon("Don", new Type(),"lolololol",90,49));
 
 	}
 }

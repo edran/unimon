@@ -28,14 +28,16 @@ public class Unimon{
 
 
 
-	public Unimon(String name, Type type, String des,int startHp){
+	public Unimon(String name, Type type, String des,int startHp, int cost){
 		this.name = name;
 		this.type = type;
 		this.status =1;
 		this.hp = startHp;
 		this.description = des;
+		this.cost = cost;
 		attacks = new ArrayList<Attack>();
 		rand = new Random();
+
 	}
 	
 	/*
@@ -152,6 +154,14 @@ public class Unimon{
 	 */
 	public Type getType(){
 		return type;
+	}
+
+	/*
+	 * returns the cost of the unimon.
+	 * cost is only used when selected unimon at the start.
+	 */
+	public int getCost(){
+		return cost;
 	}
 
 
