@@ -3,11 +3,16 @@ package com.unimongame;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Random;
+
+import com.unimongame.attack.Attack;
 
 public class Battle{
 	private Player[] players;
 	private Random rand = new Random();
+	private HashMap<String ,Unimon> unimon;
+	
 	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	private boolean isFinished = false;
 	
@@ -17,13 +22,28 @@ public class Battle{
 	}
 	
 	public void run(){
+		pickTeam(players[0]);
+		pickTeam(players[1]);
+		
 		for(int i = 0;isFinished==false;i++){
 			int playerNumber = i%2;
 			turn(playerNumber);
 		}
-
+	}
+	
+	public void loadTypes(){
+		
 		
 	}
+	public void loadAttacks(){
+		
+	}
+	public void loadUnimon(){
+		
+	}
+	
+	
+	
 	private void flipCoin(Player a, Player b){
 		
 		if(rand.nextBoolean())
@@ -64,6 +84,11 @@ public class Battle{
 		
 	}
 	
+	
+	private void pickTeam(Player p){
+		
+		
+	}
 	private void getAction(){
 		switch(turnMenu()){
 		case 1: doAttack(players[0]);
@@ -83,6 +108,7 @@ public class Battle{
 	}
 	
 	private void end(Player winner){
+		isFinished = true;
 		System.out.println(winner.getName() + "is the winner");
 	}
 	
