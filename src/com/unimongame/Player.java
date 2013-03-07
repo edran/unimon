@@ -56,4 +56,9 @@ public class Player {
 		return getAliveUnimon().size();
 	}
 	
+	public void startOfTurnUpdate(){
+		for(Unimon uni: getAliveUnimon()){
+			uni.startOfTurn();
+		}
+	}
 }
