@@ -3,7 +3,7 @@ package com.unimongame.attack;
 import java.util.ArrayList;
 
 public class MulitpleTurnAttackList {
-	private ArrayList<MultipleTurnAttack> attacks;
+	private ArrayList<MultipleTurnAttack> attacks =new ArrayList<MultipleTurnAttack>();
 	
 	
 	private void cleanUp(){ 

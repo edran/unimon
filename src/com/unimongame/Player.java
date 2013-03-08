@@ -6,6 +6,7 @@ public class Player {
 	private ArrayList<Unimon> unimonList;
 	private String name;
 	private Unimon activeUnimon;
+	private int money = 100;
 	
 	//constructor
 	public Player(String name){
@@ -17,6 +18,9 @@ public class Player {
 		return name;
 	}
 	
+	public void addUnimon(Unimon uni){
+		unimonList.add(uni);
+	}
 	//returns all unimon, alive or dead
 	public ArrayList<Unimon> getUnimon(){
 		return unimonList;
@@ -25,7 +29,7 @@ public class Player {
 	/*
 	 * returns the unimon on the field
 	 */
-	public Unimon getAcitveUnimon(){
+	public Unimon getActiveUnimon(){
 		return activeUnimon;
 	}
 
@@ -33,7 +37,7 @@ public class Player {
 	 * withdraws current unimon if there is one
 	 * and sets the give unimon as the active one.
 	 */
-	public void setAciveUnimon(Unimon uni){
+	public void setActiveUnimon(Unimon uni){
 		this.activeUnimon = uni;
 	}
 	/*
@@ -60,5 +64,13 @@ public class Player {
 		for(Unimon uni: getAliveUnimon()){
 			uni.startOfTurn();
 		}
+	}
+	
+	public int getMoney(){
+		return money;
+	}
+	
+	public void spendMoney(int x){
+		money-=x;
 	}
 }

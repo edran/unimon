@@ -3,7 +3,7 @@ import com.unimongame.attack.*;
 
 import java.util.*;
 
-public class Unimon{
+public class Unimon implements Cloneable{
 
 	/*
 	 * MAX_*_TURNS  refers to the max turns a signal attack can 
@@ -37,6 +37,7 @@ public class Unimon{
 		this.cost = cost;
 		attacks = new ArrayList<Attack>();
 		rand = new Random();
+		multipleTurnAttacks = new MulitpleTurnAttackList();
 
 	}
 	
@@ -234,4 +235,13 @@ public class Unimon{
 		return name+" has "+hp+"hp and has a status of "+getStatus()+" their attacks are : "+Arrays.toString(attacks.toArray());
 		
 	}
+	
+	
+	public Object clone() {
+		try
+		{
+		return super.clone();
+		}
+		catch(Exception e){ return null; }
+		}
 }
