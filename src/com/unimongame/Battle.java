@@ -25,8 +25,10 @@ public class Battle {
 
 	public void run() {
 		pickTeam(players[0]);
+		System.out.println();
 		pickTeam(players[1]);
 		selectUnimon(players[0]);
+		System.out.println();
 		selectUnimon(players[1]);
 
 		for (int i = 0; isFinished == false; i++) {
