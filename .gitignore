@@ -4,6 +4,9 @@
 #netbeans ignore personal stuff 
 nbproject/private/
 
+#Eclipse project and classpath
+.classpath
+.project
 
 ## generic files to ignore
 *~
@@ -12,3 +15,4 @@ nbproject/private/
 *.swp
 *.out
 
+/bin
