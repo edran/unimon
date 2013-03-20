@@ -8,10 +8,9 @@ public class FightGUI  implements ActionListener {
 
 	//Declaring a few variables
 
-	JPanel enemyPanel, playerPanel, menuPanel, textPanel, attackPanel, bagPanel, unimonsPanel;
-
-	JLabel enemyUniName, playerUniName, textLabel;
-	JButton attack1, attack2, attack3, attack4, attack, bag, unimons, abandon;
+	public JPanel totalGUI, enemyPanel, playerPanel, menuPanel, textPanel, attackPanel, bagPanel, unimonsPanel, abandonPanel;
+	public JLabel enemyUniName, playerUniName, textLabel, givenUp;
+	public JButton attack1, attack2, attack3, attack4, attack, bag, unimons, abandon;
 
 	String story = "<html>Welcome to the game.<br>Prepare for battle!</html>";
 
@@ -19,7 +18,7 @@ public class FightGUI  implements ActionListener {
 	public JPanel createFightPanel() {
 
 	//Bottom JPanel to place everything on.
-	JPanel totalGUI = new JPanel();
+	totalGUI = new JPanel();
 	totalGUI.setLayout(null);
 
 	//Panels
@@ -72,6 +71,13 @@ public class FightGUI  implements ActionListener {
 	unimonsPanel.setVisible(false);
 	totalGUI.add(unimonsPanel);
 
+	abandonPanel = new JPanel();
+	abandonPanel.setLayout(null);
+	abandonPanel.setLocation(0,400);
+	abandonPanel.setSize(300,100);
+	abandonPanel.setVisible(false);
+	totalGUI.add(abandonPanel);
+
 	//Labels
 	enemyUniName = new JLabel("<insert Unimon name for enemy>");
 	enemyUniName.setLocation(0,0);
@@ -90,6 +96,12 @@ public class FightGUI  implements ActionListener {
 	textLabel.setLocation(0,0);
 	textLabel.setSize(300,100);
 	textPanel.add(textLabel);
+
+	givenUp = new JLabel("You've given up! You're weak...");
+	givenUp.setHorizontalAlignment(0);
+	givenUp.setLocation(0,0);
+	givenUp.setSize(300,100);
+	abandonPanel.add(givenUp);
 
 	//Buttons
 	attack1 = new JButton("attack 1");
@@ -157,6 +169,7 @@ public class FightGUI  implements ActionListener {
 		attackPanel.setVisible(true);
 		bagPanel.setVisible(false);
 		unimonsPanel.setVisible(false);
+		abandonPanel.setVisible(false);
 
 		} else if (e.getSource() == bag) {
 
@@ -164,6 +177,7 @@ public class FightGUI  implements ActionListener {
 		attackPanel.setVisible(false);
 		bagPanel.setVisible(true);
 		unimonsPanel.setVisible(false);
+		abandonPanel.setVisible(false);
 
 		} else if (e.getSource() == unimons) {
 
@@ -171,6 +185,15 @@ public class FightGUI  implements ActionListener {
 		attackPanel.setVisible(false);
 		bagPanel.setVisible(false);
 		unimonsPanel.setVisible(true);
+		abandonPanel.setVisible(false);
+
+		} else if (e.getSource() == abandon) {
+
+		textPanel.setVisible(false);
+		attackPanel.setVisible(false);
+		bagPanel.setVisible(false);
+		unimonsPanel.setVisible(false);
+		abandonPanel.setVisible(true);
 
 		}
 	}
