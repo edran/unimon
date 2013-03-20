@@ -10,12 +10,10 @@ public class FightGUI  implements ActionListener {
 
 	JPanel enemyPanel, playerPanel, menuPanel, textPanel, attackPanel, bagPanel, unimonsPanel;
 
-	JPanel tempPanel = new JPanel();
-
 	JLabel enemyUniName, playerUniName, textLabel;
 	JButton attack1, attack2, attack3, attack4, attack, bag, unimons, abandon;
 
-	String story = "Welcome to the game.\nPrepare for battle!";
+	String story = "<html>Welcome to the game.<br>Prepare for battle!</html>";
 
 
 	public JPanel createFightPanel() {
@@ -45,27 +43,34 @@ public class FightGUI  implements ActionListener {
 	menuPanel.setSize(200,100);
 	totalGUI.add(menuPanel);
 
-	totalGUI.add(tempPanel);
-
+	//The changing Panel
 	textPanel = new JPanel();
 	textPanel.setLayout(null);
 	textPanel.setLocation(0,400);
 	textPanel.setSize(300,100);
+	textPanel.setVisible(true);
+	totalGUI.add(textPanel);
 
 	attackPanel = new JPanel();
 	attackPanel.setLayout(null);
 	attackPanel.setLocation(0,400);
 	attackPanel.setSize(300,100);
+	attackPanel.setVisible(false);
+	totalGUI.add(attackPanel);
 
 	bagPanel = new JPanel();
 	bagPanel.setLayout(null);
 	bagPanel.setLocation(0,400);
 	bagPanel.setSize(300,100);
+	bagPanel.setVisible(false);
+	totalGUI.add(bagPanel);
 
 	unimonsPanel = new JPanel();
 	unimonsPanel.setLayout(null);
 	unimonsPanel.setLocation(0,400);
 	unimonsPanel.setSize(300,100);
+	unimonsPanel.setVisible(false);
+	totalGUI.add(unimonsPanel);
 
 	//Labels
 	enemyUniName = new JLabel("<insert Unimon name for enemy>");
@@ -147,11 +152,26 @@ public class FightGUI  implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == attack) {
-		tempPanel = attackPanel;
+
+		textPanel.setVisible(false);
+		attackPanel.setVisible(true);
+		bagPanel.setVisible(false);
+		unimonsPanel.setVisible(false);
+
 		} else if (e.getSource() == bag) {
-		tempPanel = bagPanel;
+
+		textPanel.setVisible(false);
+		attackPanel.setVisible(false);
+		bagPanel.setVisible(true);
+		unimonsPanel.setVisible(false);
+
 		} else if (e.getSource() == unimons) {
-		tempPanel = unimonsPanel;
+
+		textPanel.setVisible(false);
+		attackPanel.setVisible(false);
+		bagPanel.setVisible(false);
+		unimonsPanel.setVisible(true);
+
 		}
 	}
 
