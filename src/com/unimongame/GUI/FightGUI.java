@@ -1,4 +1,5 @@
 package com.unimongame.GUI;
+
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
@@ -22,20 +23,28 @@ public class FightGUI  implements ActionListener {
 	totalGUI = new JPanel();
 	totalGUI.setLayout(null);
 
-	//Panels
+	//Panels and separators
 	enemyPanel = new JPanel();
 	enemyPanel.setLayout(null);
 	enemyPanel.setLocation(0,0);
 	enemyPanel.setSize(500,200);
-	enemyPanel.setBackground(Color.RED);
 	totalGUI.add(enemyPanel);
 
+	JSeparator sep1 = new JSeparator();
+	totalGUI.add(sep1);
+	sep1.setSize(500,2);
+	sep1.setLocation(0, 200);
+	
 	playerPanel = new JPanel();
 	playerPanel.setLayout(null);
 	playerPanel.setLocation(0,200);
 	playerPanel.setSize(500,200);
-	playerPanel.setBackground(Color.BLUE);
 	totalGUI.add(playerPanel);
+	
+	JSeparator sep2 = new JSeparator();
+	totalGUI.add(sep2);
+	sep2.setSize(500,2);
+	sep2.setLocation(0, 400);
 
 	menuPanel = new JPanel();
 	menuPanel.setLayout(null);
@@ -78,6 +87,15 @@ public class FightGUI  implements ActionListener {
 	abandonPanel.setSize(300,100);
 	abandonPanel.setVisible(false);
 	totalGUI.add(abandonPanel);
+
+	//LifeBar
+	LifeBar lifeEnemy = new LifeBar(150,140);
+	lifeEnemy.setLocation(330,20);
+	enemyPanel.add(lifeEnemy);
+	
+	LifeBar lifePlayer = new LifeBar(150,30);
+	lifePlayer.setLocation(50,20);
+	playerPanel.add(lifePlayer);
 
 	//Labels
 	enemyUniName = new JLabel("<insert Unimon name for enemy>");
