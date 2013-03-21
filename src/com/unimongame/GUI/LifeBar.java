@@ -1,18 +1,38 @@
-package com.unimongame.GUI;
+import javax.swing.*;
+import javax.swing.event.*;
+import javax.swing.plaf.basic.BasicProgressBarUI;
+import java.awt.*;
+import java.awt.event.*;
 
-import java.awt.Color;
+public class LifeBar extends JProgressBar {
 
-import javax.swing.JProgressBar;
-
-
-@SuppressWarnings("serial")
-public class LifeBar extends JProgressBar{
+	public LifeBar (int max, int value) {
 	
-	public LifeBar (int max){
-		super(0,max);
-		setSize(100,20);
-		this.setBackground(Color.BLUE);
-		this.setForeground(Color.green);
+	super(0,max);
+	double ratio = (double) value / (double) max;
+
+    setUI(new BasicProgressBarUI() {
+        protected Color getSelectionBackground() { return Color.darkGray; }
+        protected Color getSelectionForeground() { return Color.darkGray; }
+      });
+	
+	if (ratio<0.33) {
+	this.setForeground(Color.RED);
+	} else if (ratio<0.66) {
+	this.setForeground(Color.ORANGE);
+	} else {
+	this.setForeground(Color.GREEN);
 	}
-	
+	this.setValue(value);
+	this.setString(value +"");
+	this.setStringPainted(true);
+	this.setSize(120,15);
+
+	}
+
+
+
+
+
 }
+>>>>>>> 74390e34157fe415aff62ca5dbe23f2f3b94cf8a
