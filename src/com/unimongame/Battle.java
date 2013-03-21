@@ -28,7 +28,7 @@ public class Battle {
 		System.out.println();
 		pickTeam(players[1]);
 		selectUnimon(players[0]);
-		System.out.println();
+		//System.out.println();
 		selectUnimon(players[1]);
 
 		for (int i = 0; isFinished == false; i++) {
@@ -89,9 +89,10 @@ public class Battle {
 			}
 			if (available.size() == 0)
 				break;
-			System.out.println(p.getName() + " select a unimon, you have $"
+			System.out.println("## " + p.getName() + " select a unimon, you have $"
 					+ p.getMoney()
-					+ " credits left. Type END to finish selection early");
+					+ " credits left.");
+			System.out.println("## Type END to finish selection early.");
 			if (available.size() == 0)
 				break;
 			for (Unimon u : available) {
@@ -140,6 +141,7 @@ public class Battle {
 
 	private void selectUnimon(Player p) {
 		while (true) {
+			System.out.println("##########");
 			System.out.println("Select Unimon to put out on to field");
 			for (int i = 0; i < p.numAlive(); i++) {
 				System.out.println(i + ")"

@@ -20,6 +20,7 @@ public class Unimon implements Cloneable{
 	private MulitpleTurnAttackList multipleTurnAttacks;
 	private int hp;
 	private Random rand;
+	private String id;
 	private String name;
 	private Type type;
 	private String description;
@@ -28,7 +29,8 @@ public class Unimon implements Cloneable{
 
 
 
-	public Unimon(String name, Type type, String des,int startHp, int cost){
+	public Unimon(String id, String name, Type type, String des,int startHp, int cost){
+		this.id = id;
 		this.name = name;
 		this.type = type;
 		this.status =1;
@@ -39,6 +41,13 @@ public class Unimon implements Cloneable{
 		rand = new Random();
 		multipleTurnAttacks = new MulitpleTurnAttackList();
 
+	}
+	
+	/*
+	 * Returns the id of the unimon.
+	 */
+	public String getId(){
+		return id;
 	}
 	
 	/*

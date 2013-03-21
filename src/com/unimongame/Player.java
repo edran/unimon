@@ -6,7 +6,7 @@ public class Player {
 	private ArrayList<Unimon> unimonList;
 	private String name;
 	private Unimon activeUnimon;
-	private int money = 100;
+	private int money = 100; //Let's start with this, shall we?
 	
 	//constructor
 	public Player(String name){

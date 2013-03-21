@@ -4,8 +4,8 @@ import com.unimongame.Unimon;
 
 public class Recusion extends Attack {
 
-	public Recusion(String name, String description) {
-		super(name, description);
+	public Recusion(String name, String description, String power) {
+		super(name, description, power);
 	}
 
 	@Override

@@ -1,10 +1,21 @@
-package com.unimongame;
+/**
+ * 
+ */
+package com.unimongame.attack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import com.unimongame.*;
 import com.unimongame.attack.Attack;
 
-public class UnimonLoader {
+/**
+ * TO DO, copied from UnimonLoader
+ * WE NEED A PARSER.
+ */
+
+public class AttackLoader {
+
 	public static void load(HashMap<String,Unimon> map){
 		//while we have no parser.. dummy Unimon.
 		ArrayList<Unimon> unimons = new ArrayList<Unimon>();
@@ -17,8 +28,6 @@ public class UnimonLoader {
 		}
 		
 	}
-	
-
-
 
 }
+
