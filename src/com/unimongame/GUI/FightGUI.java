@@ -1,10 +1,14 @@
 package com.unimongame.GUI;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
-import java.awt.Color;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+import java.io.IOException;
 
 public class FightGUI  implements ActionListener {
 
@@ -13,7 +17,8 @@ public class FightGUI  implements ActionListener {
 	public JPanel totalGUI, enemyPanel, playerPanel, menuPanel, textPanel, attackPanel, bagPanel, unimonsPanel, abandonPanel;
 	public JLabel enemyUniName, playerUniName, textLabel, givenUp;
 	public JButton attack1, attack2, attack3, attack4, attack, bag, unimons, abandon;
-
+	public ImagePanel backgroundPanel;
+	
 	String story = "<html>Welcome to the game.<br>Prepare for battle!</html>";
 
 
@@ -21,30 +26,40 @@ public class FightGUI  implements ActionListener {
 
 	//Bottom JPanel to place everything on.
 	totalGUI = new JPanel();
+	totalGUI.setLocation(0, 0);
+	totalGUI.setSize(500, 500);
 	totalGUI.setLayout(null);
+	
+	//Separators
+	JSeparator sep1 = new JSeparator();
+	totalGUI.add(sep1);
+	sep1.setSize(500,2);
+	sep1.setLocation(0, 200);
+	
+	JSeparator sep2 = new JSeparator();
+	totalGUI.add(sep2);
+	sep2.setSize(500,2);
+	sep2.setLocation(0, 400);
+
+	//Background
+	backgroundPanel = new ImagePanel(new ImageIcon("Background1.png").getImage());
+	backgroundPanel.setSize(500, 400);
+	backgroundPanel.setLocation(0,0);
+	totalGUI.add(backgroundPanel);
+	
 
 	//Panels and separators
 	enemyPanel = new JPanel();
 	enemyPanel.setLayout(null);
 	enemyPanel.setLocation(0,0);
 	enemyPanel.setSize(500,200);
-	totalGUI.add(enemyPanel);
-
-	JSeparator sep1 = new JSeparator();
-	totalGUI.add(sep1);
-	sep1.setSize(500,2);
-	sep1.setLocation(0, 200);
+	backgroundPanel.add(enemyPanel);
 	
 	playerPanel = new JPanel();
 	playerPanel.setLayout(null);
 	playerPanel.setLocation(0,200);
 	playerPanel.setSize(500,200);
-	totalGUI.add(playerPanel);
-	
-	JSeparator sep2 = new JSeparator();
-	totalGUI.add(sep2);
-	sep2.setSize(500,2);
-	sep2.setLocation(0, 400);
+	backgroundPanel.add(playerPanel);
 
 	menuPanel = new JPanel();
 	menuPanel.setLayout(null);
@@ -89,11 +104,11 @@ public class FightGUI  implements ActionListener {
 	totalGUI.add(abandonPanel);
 
 	//LifeBar
-	LifeBar lifeEnemy = new LifeBar(150,140);
+	LifeBar lifeEnemy = new LifeBar(150,70);
 	lifeEnemy.setLocation(330,20);
 	enemyPanel.add(lifeEnemy);
 	
-	LifeBar lifePlayer = new LifeBar(150,30);
+	LifeBar lifePlayer = new LifeBar(150,120);
 	lifePlayer.setLocation(50,20);
 	playerPanel.add(lifePlayer);
 
@@ -227,7 +242,7 @@ public class FightGUI  implements ActionListener {
 	frame.setContentPane(setup.createFightPanel());
 
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	frame.setSize(500, 530);
+	frame.setSize(510, 533);
 	frame.setResizable(false); //Only one size!
 	frame.setVisible(true);
 	}
