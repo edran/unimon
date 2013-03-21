@@ -89,7 +89,7 @@ public class Battle {
 			}
 			if (available.size() == 0)
 				break;
-			System.out.println("## "p.getName() + " select a unimon, you have $"
+			System.out.println("## " + p.getName() + " select a unimon, you have $"
 					+ p.getMoney()
 					+ " credits left.");
 			System.out.println("## Type END to finish selection early.");
