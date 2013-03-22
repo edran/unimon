@@ -1,8 +1,7 @@
 package com.unimongame.GUI;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.event.*;
 
 import com.unimongame.*;
 import com.unimongame.attack.Attack;
@@ -11,7 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class ChooseUnimon extends JPanel implements ListSelectionListener{
+public class ChooseUnimon extends JPanel implements ListSelectionListener, ActionListener{
 	
 
 		private JList<String> listUnimons, listAttacks;
@@ -19,7 +18,9 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener{
 		private JTextArea description, descriptionAttack;
 		private LifeBar lifeBar;
 		private JLabel hp, type;
+		private JButton button;
 		private Unimon selected;
+		private int selectedNumber;
 		private Attack selectedAttack;
 		private ArrayList<Unimon> aliveUnimons;
 		private ArrayList<Attack> unimonAttacks;
@@ -93,6 +94,12 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener{
 		type.setSize(120, 15);
 		type.setLocation(190,330);
 		
+		button = new JButton("Select");
+		button.setSize(150,20);
+		button.setLocation(330, 365);
+		button.addActionListener(this);
+		this.add(button);
+		
 		
 		
 		
@@ -108,6 +115,7 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener{
                     if (i == listUnimons.getSelectedIndex())
                     {
                     selected = aliveUnimons.get(i);
+                    selectedNumber = i;
                     area2.setVisible(true);
                     area3.setVisible(false);
                     }
@@ -134,6 +142,15 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener{
             }
         }
     }
+
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == button) {
+			
+		}
+		
+	}
 
 
 
