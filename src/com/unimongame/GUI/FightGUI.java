@@ -33,6 +33,8 @@ public class FightGUI  implements ActionListener {
 	//Separators
 	JSeparator sep1 = new JSeparator();
 	totalGUI.add(sep1);
+	sep1.setBackground(Color.BLACK);
+	sep1.setForeground(Color.BLACK);
 	sep1.setSize(500,2);
 	sep1.setLocation(0, 200);
 	
@@ -53,12 +55,14 @@ public class FightGUI  implements ActionListener {
 	enemyPanel.setLayout(null);
 	enemyPanel.setLocation(0,0);
 	enemyPanel.setSize(500,200);
+	enemyPanel.setBackground(new Color(0,0,0,64));
 	backgroundPanel.add(enemyPanel);
 	
 	playerPanel = new JPanel();
 	playerPanel.setLayout(null);
 	playerPanel.setLocation(0,200);
 	playerPanel.setSize(500,200);
+	playerPanel.setBackground(new Color(0,0,0,64));
 	backgroundPanel.add(playerPanel);
 
 	menuPanel = new JPanel();
@@ -105,26 +109,16 @@ public class FightGUI  implements ActionListener {
 
 	//LifeBar
 	LifeBar lifeEnemy = new LifeBar(150,70);
-	lifeEnemy.setLocation(330,20);
-	enemyPanel.add(lifeEnemy);
+	InfoPanel infoEnemy = new InfoPanel("Name", "Type", 150, lifeEnemy);
+	infoEnemy.setLocation(20, 20);
+	enemyPanel.add(infoEnemy);
 	
-	LifeBar lifePlayer = new LifeBar(150,120);
-	lifePlayer.setLocation(50,20);
-	playerPanel.add(lifePlayer);
+	LifeBar lifePlayer = new LifeBar(110,23);
+	InfoPanel infoPlayer = new InfoPanel("Name", "Type", 110, lifePlayer);
+	infoPlayer.setLocation(280, 20);
+	playerPanel.add(infoPlayer);
 
 	//Labels
-	enemyUniName = new JLabel("<insert Unimon name for enemy>");
-	enemyUniName.setLocation(0,0);
-	enemyUniName.setSize(250,30);
-	enemyUniName.setHorizontalAlignment(0);
-	enemyPanel.add(enemyUniName);
-
-	playerUniName = new JLabel("<insert Unimon name for player>");
-	playerUniName.setLocation(250,0);
-	playerUniName.setSize(250,30);
-	playerUniName.setHorizontalAlignment(0);
-	playerPanel.add(playerUniName);
-
 	textLabel = new JLabel(story);
 	textLabel.setHorizontalAlignment(0);
 	textLabel.setLocation(0,0);
