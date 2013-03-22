@@ -7,7 +7,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import javax.imageio.ImageIO;
 import java.io.IOException;
 
 public class FightGUI  implements ActionListener {
@@ -18,7 +17,10 @@ public class FightGUI  implements ActionListener {
 	public JLabel enemyUniName, playerUniName, textLabel, givenUp;
 	public JButton attack1, attack2, attack3, attack4, attack, bag, unimons, abandon;
 	public ImagePanel backgroundPanel;
+	public Image backgroundImage;
 	
+	private int rnd = 1 + (int)(Math.random() * 4);
+
 	String story = "<html>Welcome to the game.<br>Prepare for battle!</html>";
 
 
@@ -44,7 +46,17 @@ public class FightGUI  implements ActionListener {
 	sep2.setLocation(0, 400);
 
 	//Background
-	backgroundPanel = new ImagePanel(new ImageIcon("Background1.png").getImage());
+	if (rnd == 1) {
+		backgroundImage = new ImageIcon("Background1.png").getImage();
+	} else if (rnd == 2) {
+		backgroundImage = new ImageIcon("Background2.png").getImage();
+	} else if (rnd == 3) {
+		backgroundImage = new ImageIcon("Background3.png").getImage();
+	} else {
+		backgroundImage = new ImageIcon("Background4.png").getImage();
+	}
+	
+	backgroundPanel = new ImagePanel(backgroundImage);
 	backgroundPanel.setSize(500, 400);
 	backgroundPanel.setLocation(0,0);
 	totalGUI.add(backgroundPanel);

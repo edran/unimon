@@ -1,3 +1,5 @@
+package com.unimongame.GUI;
+
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.plaf.basic.BasicProgressBarUI;
@@ -35,4 +37,3 @@ public class LifeBar extends JProgressBar {
 
 
 }
->>>>>>> 74390e34157fe415aff62ca5dbe23f2f3b94cf8a
