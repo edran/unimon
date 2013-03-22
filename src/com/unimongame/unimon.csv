@@ -1,6 +1,5 @@
-"name","type","hp","cost","description", "number_of_attacks","attack","attack","attack","attack" #can have any number of attacks but must have at atleast 
-"luke","nerd",100,10,"some description goes here","2","attack name one","attack name two"
-"bob","prof",299,34,"another description goes here","1","attacks..."
-"don","types",500,10,"he's a best","3","attacks","attacks","attacks"
-"john","nerd",130,10,"The greatest unimon ever","5", "beware","punch","kick","thrill ","karate chop"
-
+"name","type","hp","cost","description","attack","attack","attack","attack" 
+"luke","nerd",100,10,"some description goes here","attack","attack","attack","attack" 
+"bob","prof",299,34,"another description goes here","attack","attack","attack","attack" 
+"don","types",500,10,"he's a beast","attack","attack","attack","attack" 
+"john","nerd",130,10,"The greatest unimon ever","attack","attack","attack","attack" 
