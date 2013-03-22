@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import com.unimongame.GUI.FightGUI;
 import com.unimongame.attack.Attack;
 
 public class Battle {
@@ -21,15 +22,16 @@ public class Battle {
 		flipCoin(playerA, playerB);
 		unimonList = new HashMap<String, Unimon>();
 		loadUnimon();
-	}
+	} 
 
 	public void run() {
 		pickTeam(players[0]);
 		System.out.println();
 		pickTeam(players[1]);
 		selectUnimon(players[0]);
-		//System.out.println();
 		selectUnimon(players[1]);
+		FightGUI.main(new String[0]);
+		
 
 		for (int i = 0; isFinished == false; i++) {
 			int playerNumber = i % 2;
@@ -58,7 +60,9 @@ public class Battle {
 	 */
 	private int turn(int playerNumber) {
 		players[playerNumber].startOfTurnUpdate();
-		System.out.println(players[playerNumber].getActiveUnimon().getName()+":"+players[playerNumber].getActiveUnimon().getHp()+"/"+players[playerNumber].getActiveUnimon().getMaxHp());
+		System.out.println(players[playerNumber].getActiveUnimon().getName()
+				+ ":" + players[playerNumber].getActiveUnimon().getHp() + "/"
+				+ players[playerNumber].getActiveUnimon().getMaxHp());
 		if (players[playerNumber].getActiveUnimon() == null) {
 			// first round, no unimon on field
 			selectUnimon(players[playerNumber]);
@@ -90,8 +94,8 @@ public class Battle {
 			}
 			if (available.size() == 0)
 				break;
-			System.out.println("## " + p.getName() + " select a unimon, you have $"
-					+ p.getMoney()
+			System.out.println("## " + p.getName()
+					+ " select a unimon, you have $" + p.getMoney()
 					+ " credits left.");
 			System.out.println("## Type END to finish selection early.");
 			if (available.size() == 0)
@@ -125,14 +129,14 @@ public class Battle {
 
 	private void getAction(int p) {
 		switch (turnMenu()) {
-		case 1:
+		case 0:
 			doAttack(p);
 			checkForWin();
 			break;
-		case 2:
+		case 1:
 			selectUnimon(players[p]);
 			break;
-		case 3: // items aren't implemented yet
+		case 2: // items aren't implemented yet
 			break;
 		default:
 			System.out.println("error in turnMenu");
@@ -177,7 +181,8 @@ public class Battle {
 			System.out.println(players[p].getName() + "Select an attack!");
 			Unimon actUni = players[p].getActiveUnimon();
 			for (int i = 0; i < actUni.getAttacks().size(); i++) {
-				System.out.println(i+")"+actUni.getAttacks().get(i).toString());
+				System.out.println(i + ")"
+						+ actUni.getAttacks().get(i).toString());
 			}
 			try {
 				int choice = Integer.parseInt(in.readLine());
@@ -196,10 +201,10 @@ public class Battle {
 	}
 
 	private int turnMenu() {
-		System.out.println("1)Attack 2)Change Unimon 3)Use Item");
+		System.out.println("0)Attack 1)Change Unimon 2)Use Item");
 		try {
 			int choice = Integer.parseInt(in.readLine());
-			if (choice > 3 || choice < 1) {
+			if (choice > 2 || choice < 0) {
 				System.out.println("invalid choice");
 				choice = turnMenu();
 			} else {

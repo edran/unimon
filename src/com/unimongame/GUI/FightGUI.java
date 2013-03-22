@@ -3,6 +3,9 @@ package com.unimongame.GUI;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.*;
+
+import com.unimongame.Player;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -18,6 +21,8 @@ public class FightGUI  implements ActionListener {
 	public JButton attack1, attack2, attack3, attack4, attack, bag, unimons, abandon;
 	public ImagePanel backgroundPanel, enemyImagePanel, playerImagePanel;
 	public Image backgroundImage;
+	Player self;
+	Player enemy;
 	
 	private int rnd = 1 + (int)(Math.random() * 4);
 
