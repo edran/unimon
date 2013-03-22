@@ -5,7 +5,7 @@ import com.unimongame.Unimon;
 public class Monads extends Attack {
 
 	public Monads() {
-		super("Monads", "Adds complexity and makes the unimon feeling like a boss", null);
+		super("Monads", "Adds complexity and makes the unimon feeling like a boss");
 	}
 
 	@Override

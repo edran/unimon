@@ -5,7 +5,7 @@ import com.unimongame.Unimon;
 public class Recursion extends Attack {
 
 	public Recursion() {
-		super("Recursion", "confuses all players", null);
+		super("Recursion", "It confuses all players!");
 	}
 
 	@Override

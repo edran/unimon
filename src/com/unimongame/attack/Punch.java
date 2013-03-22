@@ -5,8 +5,7 @@ import com.unimongame.Unimon;
 public class Punch extends Attack {
 
 	public Punch() {
-		super("Punch", "knuckle sandwich", null);
-		// TODO Auto-generated constructor stub
+		super("Punch", "It's a knuckle sandwich!");
 	}
 
 	@Override

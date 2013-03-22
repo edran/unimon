@@ -10,7 +10,9 @@ public class UnimonLoader {
 	
 	public static void load(HashMap<String,Unimon> UnimonMap, HashMap<String,Attack>attackMap){
 		//while we have no parser.. dummy Unimon.
-		boolean DEBUG = true;
+		
+		boolean DEBUG = false;
+		
 		ArrayList<Unimon> unimons = new ArrayList<Unimon>();
 		String[][] d = unimonParser.getData();
 		for (int i = 0; i < d.length; i++){

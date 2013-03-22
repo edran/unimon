@@ -5,12 +5,10 @@ import com.unimongame.*;
 public abstract class Attack{
 	private String name;
 	private String description;
-	private String power;
 	
-	public Attack(String name, String description, String power){
+	public Attack(String name, String description){
 		this.name = name;
 		this.description = description;
-		this.power = power;
 	}
 	
 	/*
@@ -27,11 +25,8 @@ public abstract class Attack{
 		return description;
 	}
 		
-	public String power(){
-		return power;
-	}
 	
 	public String toString(){
-		return name + " : " + power + " : " + description;
+		return name + " : " + description;
 	}
 }

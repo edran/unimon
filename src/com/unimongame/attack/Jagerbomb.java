@@ -5,8 +5,7 @@ import com.unimongame.Unimon;
 public class Jagerbomb extends Attack {
 
 	public Jagerbomb() {
-		super("Jagerbomb", "drruunnnk",null);
-		// TODO Auto-generated constructor stub
+		super("Jagerbomb", "Drruunnnk");
 	}
 
 	@Override
