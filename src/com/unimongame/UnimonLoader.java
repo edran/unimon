@@ -13,8 +13,12 @@ public class UnimonLoader {
 		String[][] d = unimonParser.getData();
 		for (int i = 0; i < d.length; i++){
 			Unimon uni = new Unimon(d[i][0],d[i][1],null,d[i][5],Integer.parseInt(d[i][3]),Integer.parseInt(d[i][4]));
-			uni.addAttack(attackMap.get("Punch"));
-			System.out.println(uni.getAttacks().get(0));
+			uni.addAttack(attackMap.get(d[i][6]));
+			uni.addAttack(attackMap.get(d[i][7]));
+			uni.addAttack(attackMap.get(d[i][8]));
+			uni.addAttack(attackMap.get(d[i][9]));
+
+			System.out.println("LOL" + uni.getAttacks().get(0));
 			UnimonMap.put(d[i][1],uni);	
 		}
 		/*
