@@ -6,8 +6,7 @@ package com.unimongame.attack;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.unimongame.*;
-import com.unimongame.attack.Attack;
+import com.unimongame.attack.*;
 
 /**
  * TO DO, copied from UnimonLoader
@@ -22,6 +21,8 @@ public class AttackLoader {
 		map.put("Jagerbomb", new Jagerbomb());
 		map.put("Recursion", new Recursion());
 		map.put("Monads", new Monads());
+		map.put("Time Distortion", new TimeDistortion());
+		map.put("Feline Scratch", new FelineScratch());
 		
 	}
 
