@@ -20,6 +20,7 @@ public class AttackLoader {
 		//while we have no parser.. dummy Unimon.
 		map.put("Punch",new Punch());
 		map.put("Jagerbomb", new Jagerbomb());
+		map.put("Recursion", new Recursion());
 		
 		
 	}

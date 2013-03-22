@@ -7,8 +7,10 @@ import com.unimongame.parser.*;
 import com.unimongame.attack.*;
 
 public class UnimonLoader {
+	
 	public static void load(HashMap<String,Unimon> UnimonMap, HashMap<String,Attack>attackMap){
 		//while we have no parser.. dummy Unimon.
+		boolean DEBUG = true;
 		ArrayList<Unimon> unimons = new ArrayList<Unimon>();
 		String[][] d = unimonParser.getData();
 		for (int i = 0; i < d.length; i++){
@@ -18,7 +20,16 @@ public class UnimonLoader {
 			uni.addAttack(attackMap.get(d[i][8]));
 			uni.addAttack(attackMap.get(d[i][9]));
 
-			System.out.println("LOL" + uni.getAttacks().get(0));
+			if(DEBUG){
+				System.out.println("##");
+				System.out.println(uni.getAttacks().get(0));
+				System.out.println(uni.getAttacks().get(1));
+				System.out.println(uni.getAttacks().get(2));
+				System.out.println(uni.getAttacks().get(3));
+				System.out.println("##");
+
+			}
+			
 			UnimonMap.put(d[i][1],uni);	
 		}
 		/*
