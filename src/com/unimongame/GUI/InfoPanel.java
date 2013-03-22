@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class InfoPanel extends JPanel{
+
+	//The rounded corner layout comes from http://www.codeproject.com/Articles/114959/Rounded-Border-JPanel-JPanel-graphics-improvements
 	
     /** Stroke size. it is recommended to set it to 1 for better view */
     protected int strokeSize = 1;
@@ -26,29 +28,29 @@ public class InfoPanel extends JPanel{
         super();
         setLayout(null);
         setOpaque(false);
-        setSize(200,70);
+        setSize(180,70);
         setBackground(Color.lightGray);
         setForeground(Color.black);
         
         JLabel label1 = new JLabel(name);
-        label1.setSize(150, 20);
+        label1.setSize(130, 20);
         label1.setLocation(10, 5);
         label1.setHorizontalAlignment(JLabel.LEFT);
         this.add(label1);
         
         JLabel label2 = new JLabel(type);
-        label2.setSize(150, 20);
+        label2.setSize(130, 20);
         label2.setLocation(40, 45);
         label2.setHorizontalAlignment(JLabel.RIGHT);
         this.add(label2);
         
         JLabel label3 = new JLabel(hp + " hp");
         label3.setSize(40, 20);
-        label3.setLocation(150, 5);
+        label3.setLocation(130, 5);
         label3.setHorizontalAlignment(JLabel.RIGHT);
         this.add(label3);
         
-        lifeBar.setLocation(70,30);
+        lifeBar.setLocation(50,30);
         this.add(lifeBar);
         
         
