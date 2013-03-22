@@ -9,6 +9,7 @@ import java.util.Random;
 
 import com.unimongame.GUI.FightGUI;
 import com.unimongame.attack.Attack;
+import com.unimongame.attack.AttackLoader;
 
 public class Battle {
 	private Player[] players;
@@ -47,6 +48,7 @@ public class Battle {
 	}
 
 	public void loadUnimon() {
+		AttackLoader.load(attackList);
 		UnimonLoader.load(unimonList,attackList);
 	}
 
