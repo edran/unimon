@@ -57,7 +57,9 @@ public class Player {
 	 * returns the number of unimon left alive
 	 */
 	public int numAlive(){
-		return getAliveUnimon().size();
+		int i = getAliveUnimon().size();
+		System.out.println("nul alive = "+ i);
+		return i;
 	}
 	
 	public void startOfTurnUpdate(){

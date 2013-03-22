@@ -64,7 +64,7 @@ public class Battle {
 			selectUnimon(players[playerNumber]);
 		} else if (!players[playerNumber].getActiveUnimon().isAlive()) {
 			// current unimon is dead
-			if (!(players[playerNumber].numAlive() == 0)) {
+			if ((players[playerNumber].numAlive() == 0)) {
 				System.out.println("No Unimon Left! ");
 				end(players[1]);
 				return 1;
