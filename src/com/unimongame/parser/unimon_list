@@ -1,7 +1,7 @@
 id,name,type,hp,cost,description,attack,attack,attack,attack
-01,Donmon,Professor,200,50,Best professor ever,punch,recursion,Jagerbomb,Monads
-02,Perditamon,Professor,200,50,Can't recognize but watch out for her jokes,punch,recursion,Jagerbomb,Monads
-03,Donmon,Professor,200,50,Best professor ever,punch,recursion,Jagerbomb,Monads
+01,Donmon,Professor,200,80,Best professor ever,punch,recursion,Jagerbomb,Monads
+02,Perditamon,Professor,150,50,Can't recognize but watch out for her jokes,punch,recursion,Jagerbomb,Monads
+03,Lukemon,Student,100,30,Wannabe Caltecher,punch,recursion,Jagerbomb,Monads
 04,Donmon,Professor,200,50,Best professor ever,punch,recursion,Jagerbomb,Monads
 05,Donmon,Professor,200,50,Best professor ever,punch,recursion,Jagerbomb,Monads
 06,Donmon,Professor,200,50,Best professor ever,punch,recursion,Jagerbomb,Monads

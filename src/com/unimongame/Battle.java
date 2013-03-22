@@ -13,6 +13,7 @@ import com.unimongame.attack.Attack;
 public class Battle {
 	private Player[] players;
 	private Random rand = new Random();
+	private HashMap<String, Attack> attackList;
 	private HashMap<String, Unimon> unimonList;
 	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	private boolean isFinished = false;
@@ -20,6 +21,7 @@ public class Battle {
 	public Battle(Player playerA, Player playerB) {
 		players = new Player[2];
 		flipCoin(playerA, playerB);
+		attackList = new HashMap<String, Attack>();
 		unimonList = new HashMap<String, Unimon>();
 		loadUnimon();
 	} 
@@ -40,7 +42,7 @@ public class Battle {
 	}
 
 	public void loadUnimon() {
-		UnimonLoader.load(unimonList);
+		UnimonLoader.load(unimonList,attackList);
 	}
 
 	private void flipCoin(Player a, Player b) {
