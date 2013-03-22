@@ -21,7 +21,7 @@ public class AttackLoader {
 		map.put("Punch",new Punch());
 		map.put("Jagerbomb", new Jagerbomb());
 		map.put("Recursion", new Recursion());
-		
+		map.put("Monads", new Monads());
 		
 	}
 
