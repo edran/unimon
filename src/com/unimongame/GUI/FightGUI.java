@@ -16,7 +16,7 @@ public class FightGUI  implements ActionListener {
 	public JPanel totalGUI, enemyPanel, playerPanel, menuPanel, textPanel, attackPanel, bagPanel, unimonsPanel, abandonPanel;
 	public JLabel enemyUniName, playerUniName, textLabel, givenUp;
 	public JButton attack1, attack2, attack3, attack4, attack, bag, unimons, abandon;
-	public ImagePanel backgroundPanel;
+	public ImagePanel backgroundPanel, enemyImagePanel, playerImagePanel;
 	public Image backgroundImage;
 	
 	private int rnd = 1 + (int)(Math.random() * 4);
@@ -60,7 +60,6 @@ public class FightGUI  implements ActionListener {
 	backgroundPanel.setSize(500, 400);
 	backgroundPanel.setLocation(0,0);
 	totalGUI.add(backgroundPanel);
-	
 
 	//Panels and separators
 	enemyPanel = new JPanel();
@@ -83,6 +82,20 @@ public class FightGUI  implements ActionListener {
 	menuPanel.setSize(200,100);
 	totalGUI.add(menuPanel);
 
+	//Players images
+	
+	enemyImagePanel = new ImagePanel(new ImageIcon("don.png").getImage());
+	enemyImagePanel.setSize(152,200);
+	enemyImagePanel.setLocation(348,0);
+	enemyImagePanel.setBackground(new Color(0,0,0,64));
+	enemyPanel.add(enemyImagePanel);
+	
+	playerImagePanel = new ImagePanel(new ImageIcon("Player.png").getImage());
+	playerImagePanel.setSize(200,200);
+	playerImagePanel.setLocation(0,0);
+	playerImagePanel.setBackground(new Color(0,0,0,64));
+	playerPanel.add(playerImagePanel);
+	
 	//The changing Panel
 	textPanel = new JPanel();
 	textPanel.setLayout(null);
@@ -120,13 +133,13 @@ public class FightGUI  implements ActionListener {
 	totalGUI.add(abandonPanel);
 
 	//LifeBar
-	LifeBar lifeEnemy = new LifeBar(150,70);
-	InfoPanel infoEnemy = new InfoPanel("Name", "Type", 150, lifeEnemy);
+	LifeBar lifeEnemy = new LifeBar(150,124);
+	InfoPanel infoEnemy = new InfoPanel("Don", "Professor", 150, lifeEnemy);
 	infoEnemy.setLocation(20, 20);
 	enemyPanel.add(infoEnemy);
 	
 	LifeBar lifePlayer = new LifeBar(110,23);
-	InfoPanel infoPlayer = new InfoPanel("Name", "Type", 110, lifePlayer);
+	InfoPanel infoPlayer = new InfoPanel("Bob", "Lazy student", 110, lifePlayer);
 	infoPlayer.setLocation(280, 20);
 	playerPanel.add(infoPlayer);
 
