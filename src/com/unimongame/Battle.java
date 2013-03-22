@@ -58,13 +58,14 @@ public class Battle {
 	 */
 	private int turn(int playerNumber) {
 		players[playerNumber].startOfTurnUpdate();
+		System.out.println(players[playerNumber].getActiveUnimon().getName()+":"+players[playerNumber].getActiveUnimon().getHp()+"/"+players[playerNumber].getActiveUnimon().getMaxHp());
 		if (players[playerNumber].getActiveUnimon() == null) {
 			// first round, no unimon on field
 			selectUnimon(players[playerNumber]);
 		} else if (!players[playerNumber].getActiveUnimon().isAlive()) {
 			// current unimon is dead
 			if (!(players[playerNumber].numAlive() == 0)) {
-				// player one has no more unimon and loses
+				System.out.println("No Unimon Left! ");
 				end(players[1]);
 				return 1;
 			} else {
@@ -176,7 +177,7 @@ public class Battle {
 			System.out.println(players[p].getName() + "Select an attack!");
 			Unimon actUni = players[p].getActiveUnimon();
 			for (int i = 0; i < actUni.getAttacks().size(); i++) {
-				System.out.println(actUni.getAttacks().get(i).toString());
+				System.out.println(i+")"+actUni.getAttacks().get(i).toString());
 			}
 			try {
 				int choice = Integer.parseInt(in.readLine());
