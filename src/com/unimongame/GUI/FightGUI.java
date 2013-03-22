@@ -16,20 +16,24 @@ public class FightGUI  implements ActionListener {
 
 	//Declaring a few variables
 
-	public JPanel totalGUI, enemyPanel, playerPanel, menuPanel, textPanel, attackPanel, bagPanel, unimonsPanel, abandonPanel;
-	public JLabel enemyUniName, playerUniName, textLabel, givenUp;
-	public JButton attack1, attack2, attack3, attack4, attack, bag, unimons, abandon;
-	public ImagePanel backgroundPanel, enemyImagePanel, playerImagePanel;
-	public Image backgroundImage;
-	Player self;
-	Player enemy;
+	private JPanel totalGUI, enemyPanel, playerPanel, menuPanel, textPanel, attackPanel, bagPanel, unimonsPanel, abandonPanel;
+	private JLabel enemyUniName, playerUniName, textLabel, givenUp;
+	private JButton attack1, attack2, attack3, attack4, attack, bag, unimons, abandon;
+	private ImagePanel backgroundPanel, enemyImagePanel, playerImagePanel;
+	private Image backgroundImage;
+	
+	private Player self;
+	private Player enemy;
+	
+	
+	
 	
 	private int rnd = 1 + (int)(Math.random() * 4);
 
 	String story = "<html>Welcome to the game.<br>Prepare for battle!</html>";
 
 
-	public JPanel createFightPanel() {
+	public JPanel createFightPanel(Player self, Player enemy) {
 
 	//Bottom JPanel to place everything on.
 	totalGUI = new JPanel();
@@ -138,13 +142,13 @@ public class FightGUI  implements ActionListener {
 	totalGUI.add(abandonPanel);
 
 	//LifeBar
-	LifeBar lifeEnemy = new LifeBar(150,124);
-	InfoPanel infoEnemy = new InfoPanel("Don", "Professor", 150, lifeEnemy);
+	LifeBar lifeEnemy = new LifeBar(enemy.getActiveUnimon().getMaxHp(),enemy.getActiveUnimon().getHp());
+	InfoPanel infoEnemy = new InfoPanel(enemy.getActiveUnimon().getName(),enemy.getActiveUnimon().getType().toString(),enemy.getActiveUnimon().getMaxHp() , lifeEnemy);
 	infoEnemy.setLocation(20, 20);
 	enemyPanel.add(infoEnemy);
 	
-	LifeBar lifePlayer = new LifeBar(110,23);
-	InfoPanel infoPlayer = new InfoPanel("Bob", "Lazy student", 110, lifePlayer);
+	LifeBar lifePlayer = new LifeBar(self.getActiveUnimon().getMaxHp(),self.getActiveUnimon().getHp());
+	InfoPanel infoPlayer = new InfoPanel(self.getActiveUnimon().getName(), self.getActiveUnimon().getType().toString(),self.getActiveUnimon().getMaxHp() , lifePlayer);
 	infoPlayer.setLocation(280, 20);
 	playerPanel.add(infoPlayer);
 
@@ -216,6 +220,11 @@ public class FightGUI  implements ActionListener {
 	
 
 	return totalGUI;
+	
+	}
+	
+	public void setSelf(Player p){
+		this.self = p;
 	}
 
 	@Override
@@ -256,14 +265,14 @@ public class FightGUI  implements ActionListener {
 		}
 	}
 
-	public static void createAndShowGUI() {
+	public void createAndShowGUI(Player s, Player e) {
 
 	JFrame.setDefaultLookAndFeelDecorated(true); //Unified look, independent of the OS.
 	JFrame frame= new JFrame("Unimon Game");
 
 	//Create and set up the content pane.
-	FightGUI setup = new FightGUI();
-	frame.setContentPane(setup.createFightPanel());
+	
+	frame.setContentPane(this.createFightPanel(s,e));
 
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setSize(510, 533);
@@ -271,12 +280,6 @@ public class FightGUI  implements ActionListener {
 	frame.setVisible(true);
 	}
 
-	public static void main(String[] args) {
-	SwingUtilities.invokeLater(new Runnable(){
-		public void run() {
-			createAndShowGUI();
-		}
-	});
-	}
+
 
 }

@@ -16,6 +16,8 @@ public class Battle {
 	private HashMap<String, Unimon> unimonList;
 	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	private boolean isFinished = false;
+	FightGUI guiP1 = new FightGUI();
+	FightGUI guiP2 = new FightGUI();
 
 	public Battle(Player playerA, Player playerB) {
 		players = new Player[2];
@@ -25,12 +27,15 @@ public class Battle {
 	} 
 
 	public void run() {
-		pickTeam(players[0]);
 		System.out.println();
+		pickTeam(players[0]);
 		pickTeam(players[1]);
 		selectUnimon(players[0]);
 		selectUnimon(players[1]);
-		FightGUI.main(new String[0]);
+		guiP1.createAndShowGUI(players[0],players[1]);
+		guiP2.createAndShowGUI(players[1],players[0]);
+		
+		
 		
 
 		for (int i = 0; isFinished == false; i++) {

@@ -45,8 +45,8 @@ public class InfoPanel extends JPanel{
         this.add(label2);
         
         JLabel label3 = new JLabel(hp + " hp");
-        label3.setSize(40, 20);
-        label3.setLocation(130, 5);
+        label3.setSize(60, 20);
+        label3.setLocation(110, 5);
         label3.setHorizontalAlignment(JLabel.RIGHT);
         this.add(label3);
         
