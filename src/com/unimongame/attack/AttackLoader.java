@@ -25,7 +25,10 @@ public class AttackLoader {
 		unimons.add(new Unimon("04","Duhmon", new Type(),"lolololol",90,40));
 		for(Unimon u : unimons){
 			map.put(u.getName(), u);
+			
 		}
+		
+		
 		
 	}
 

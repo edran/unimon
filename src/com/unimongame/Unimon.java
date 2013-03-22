@@ -19,6 +19,7 @@ public class Unimon implements Cloneable{
 	private int turnsUntilNotHungover		    =0;
 	private MulitpleTurnAttackList multipleTurnAttacks;
 	private int hp;
+	private int maxHp;
 	private Random rand;
 	private String id;
 	private String name;
@@ -35,6 +36,7 @@ public class Unimon implements Cloneable{
 		this.type = type;
 		this.status =1;
 		this.hp = startHp;
+		this.maxHp = startHp;
 		this.description = des;
 		this.cost = cost;
 		attacks = new ArrayList<Attack>();
@@ -70,6 +72,10 @@ public class Unimon implements Cloneable{
 	 */
 	public int getHp(){
 		return hp;
+	}
+	
+	public int getMaxHp(){
+		return maxHp;
 	}
 
 
