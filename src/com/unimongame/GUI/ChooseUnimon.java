@@ -14,14 +14,16 @@ import java.util.ArrayList;
 public class ChooseUnimon extends JPanel implements ListSelectionListener{
 	
 
-		public JList<String> listUnimons, listAttacks;
-		public JScrollPane area1, area2, area3;
-		public JTextArea description, descriptionAttack;
-		public Unimon selected;
-		public Attack selectedAttack;
-		public ArrayList<Unimon> aliveUnimons;
-		public ArrayList<Attack> unimonAttacks;
-		public ArrayList<String> aliveUnimonsNames, unimonAttacksNames;
+		private JList<String> listUnimons, listAttacks;
+		private JScrollPane area1, area2, area3, area4;
+		private JTextArea description, descriptionAttack;
+		private LifeBar lifeBar;
+		private JLabel hp, type;
+		private Unimon selected;
+		private Attack selectedAttack;
+		private ArrayList<Unimon> aliveUnimons;
+		private ArrayList<Attack> unimonAttacks;
+		private ArrayList<String> aliveUnimonsNames, unimonAttacksNames;
 		
 	public ChooseUnimon(Player p) {
 		super();
@@ -54,6 +56,10 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener{
         listAttacks.setFixedCellWidth(150);
         listAttacks.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listAttacks.addListSelectionListener(this);
+        listAttacks.setSize(150,80);
+        listAttacks.setLocation(330, 270);
+        this.add(listAttacks);
+        
 
 		area1 = new JScrollPane(listUnimons, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		area1.setSize(150,300);
@@ -63,17 +69,30 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener{
 		
 		description = new JTextArea(selected.getDescription());
 		area2 = new JScrollPane(description, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		area2.setSize(260,200);
-		area2.setLocation(220,50);
+		area2.setSize(290,200);
+		area2.setLocation(190,50);
 		area2.setVisible(true);
 		this.add(area2);
 		
 		descriptionAttack = new JTextArea(selectedAttack.getDescription());
 		area3 = new JScrollPane(descriptionAttack, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		area3.setSize(150,80);
-		area3.setLocation(430, 270);
+		area3.setSize(290,200);
+		area3.setLocation(190, 50);
 		area3.setVisible(false);
 		this.add(area3);
+		
+		lifeBar = new LifeBar(selected.getMaxHp(),selected.getHp());
+		lifeBar.setLocation(190,270);
+		this.add(lifeBar);
+		
+		hp = new JLabel(selected.getMaxHp() + "HP");
+		hp.setSize(120, 15);
+		hp.setLocation(190,300);
+		
+		type = new JLabel(selected.getType().toString());
+		type.setSize(120, 15);
+		type.setLocation(190,330);
+		
 		
 		
 		
