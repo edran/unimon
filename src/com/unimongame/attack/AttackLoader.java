@@ -19,7 +19,7 @@ public class AttackLoader {
 	public static void load(HashMap<String,Attack> map){
 		//while we have no parser.. dummy Unimon.
 		map.put("Punch",new Punch());
-		
+		map.put("Jagerbomb", new Jagerbomb());
 		
 		
 	}

@@ -143,12 +143,12 @@ public class FightGUI  implements ActionListener {
 
 	//LifeBar
 	LifeBar lifeEnemy = new LifeBar(enemy.getActiveUnimon().getMaxHp(),enemy.getActiveUnimon().getHp());
-	InfoPanel infoEnemy = new InfoPanel(enemy.getActiveUnimon().getName(),enemy.getActiveUnimon().getType().toString(),enemy.getActiveUnimon().getMaxHp() , lifeEnemy);
+	InfoPanel infoEnemy = new InfoPanel(enemy.getActiveUnimon().getName(),null,enemy.getActiveUnimon().getMaxHp() , lifeEnemy);
 	infoEnemy.setLocation(20, 20);
 	enemyPanel.add(infoEnemy);
 	
 	LifeBar lifePlayer = new LifeBar(self.getActiveUnimon().getMaxHp(),self.getActiveUnimon().getHp());
-	InfoPanel infoPlayer = new InfoPanel(self.getActiveUnimon().getName(), self.getActiveUnimon().getType().toString(),self.getActiveUnimon().getMaxHp() , lifePlayer);
+	InfoPanel infoPlayer = new InfoPanel(self.getActiveUnimon().getName(), null,self.getActiveUnimon().getMaxHp() , lifePlayer);
 	infoPlayer.setLocation(280, 20);
 	playerPanel.add(infoPlayer);
 
