@@ -37,6 +37,7 @@ public class FightGUI implements ActionListener {
 
 	public FightGUI(Battle battle,Player self, Player enemy, double d) {
 		this.self = self;
+		System.out.println(self.getName());
 		this.enemy = enemy;
 		System.out.println(d);
 		this.battle = battle;

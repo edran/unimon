@@ -23,12 +23,14 @@ public class AttackLoader {
 		map.put("Monads", new Monads());
 		map.put("Time Distortion", new TimeDistortion());
 		map.put("Feline Scratch", new FelineScratch());
-		map.put("Feline Scratch", new FelineScratch());
-		map.put("Feline Scratch", new FelineScratch());
-		map.put("Feline Scratch", new FelineScratch());
-		map.put("Feline Scratch", new FelineScratch());
-		map.put("Feline Scratch", new FelineScratch());
-		
+		map.put("Locgiclessness", new Logiclessness());
+		map.put("Nesting", new Nesting());
+		map.put("Patrolling", new Patrolling());
+		map.put("Ploymorphism", new Polymorphism());
+		map.put("Regexplosion",new Regexplosion());
+		map.put("Salesman",new Salesman());
+		map.put("TreeDrawing",new TreeDrawing());
+
 	}
 
 }
