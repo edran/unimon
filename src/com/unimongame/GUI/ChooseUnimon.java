@@ -26,15 +26,21 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener, Actio
 		private ArrayList<Attack> unimonAttacks;
 		private ArrayList<String> aliveUnimonsNames = new ArrayList<String>();
 		private ArrayList<String> unimonAttacksNames = new ArrayList<String>();
-		
+		private Player p;
 	public ChooseUnimon(Player p) {
 		super();
 		setSize(500,400);
 		setLocation(0,0);
+		this.p = p;
 		setLayout(null);
-		
+		init();
+	}
+	
+	public void init()
+	{
 		aliveUnimons = p.getAliveUnimon();
 		selected = null;
+		selectedAttack = null;
 		
 		for(Unimon uni  : aliveUnimons){
 			aliveUnimonsNames.add(uni.getName());
@@ -61,7 +67,7 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener, Actio
         this.add(listAttacks);
         
 
-		area1 = new JScrollPane(listUnimons, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		area1 = new JScrollPane(listUnimons, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		area1.setSize(150,300);
 		area1.setLocation(20, 50);
 		this.add(area1);
@@ -109,9 +115,16 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener, Actio
 		
 	}
 	
+	public void destroy(){
+		aliveUnimons.removeAll(aliveUnimons);
+		aliveUnimonsNames.removeAll(aliveUnimonsNames);
+		this.setVisible(false);
+		this.removeAll();
+		
+	}
+	
 	@Override
     public void valueChanged(ListSelectionEvent e) {
-
         if (e.getValueIsAdjusting() == false) {
             if (e.getSource() == listUnimons) {
                 for(int i = 0; i < aliveUnimons.size(); i++)

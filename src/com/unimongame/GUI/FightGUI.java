@@ -71,6 +71,8 @@ public class FightGUI implements ActionListener {
 		backgroundPanel.setLocation(0, 0);
 		totalGUI.add(backgroundPanel);
 
+		chooseUnimon  = new ChooseUnimon(self);
+		totalGUI.add(chooseUnimon);
 		// Panels
 		enemyPanel = new JPanel();
 		enemyPanel.setLayout(null);
@@ -92,9 +94,6 @@ public class FightGUI implements ActionListener {
 		menuPanel.setSize(200, 100);
 		totalGUI.add(menuPanel);
 
-		chooseUnimon = new ChooseUnimon(self);
-		chooseUnimon.setVisible(false);
-		totalGUI.add(chooseUnimon);
 
 		// Players images
 
@@ -235,7 +234,6 @@ public class FightGUI implements ActionListener {
 	public int selectUnimon(Player p) {
 		backgroundPanel.setVisible(false);
 		ChooseUnimon chooser = new ChooseUnimon(p);
-
 		return 0;
 	}
 
@@ -250,6 +248,7 @@ public class FightGUI implements ActionListener {
 			unimonsPanel.setVisible(false);
 			abandonPanel.setVisible(false);
 			chooseUnimon.setVisible(false);
+			chooseUnimon.destroy();
 			backgroundPanel.setVisible(true);
 			sep1.setVisible(true);
 
@@ -258,6 +257,7 @@ public class FightGUI implements ActionListener {
 			textPanel.setVisible(false);
 			attackPanel.setVisible(false);
 			bagPanel.setVisible(true);
+			chooseUnimon.destroy();
 			unimonsPanel.setVisible(false);
 			abandonPanel.setVisible(false);
 
@@ -268,6 +268,8 @@ public class FightGUI implements ActionListener {
 			bagPanel.setVisible(false);
 			unimonsPanel.setVisible(true);
 			abandonPanel.setVisible(false);
+			chooseUnimon.destroy();
+			chooseUnimon.init();
 			chooseUnimon.setVisible(true);
 			backgroundPanel.setVisible(false);
 			sep1.setVisible(false);
