@@ -12,8 +12,10 @@ import java.util.ArrayList;
 
 public class ChooseUnimon extends JPanel implements ListSelectionListener, ActionListener{
 	
-
-		private JList<String> listUnimons, listAttacks;
+		
+		DefaultListModel<String> model = new DefaultListModel<String>();
+		private JList<String> listAttacks;
+		private JList<String> listUnimons;
 		private JScrollPane area1, area2, area3, area4;
 		private JTextArea description, descriptionAttack;
 		private LifeBar lifeBar;
@@ -23,9 +25,9 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener, Actio
 		private int selectedNumber;
 		private Attack selectedAttack;
 		private ArrayList<Unimon> aliveUnimons;
-		private ArrayList<Attack> unimonAttacks;
+		private ArrayList<Attack> unimonAttacks = new ArrayList<Attack>();
 		private ArrayList<String> aliveUnimonsNames = new ArrayList<String>();
-		private ArrayList<String> unimonAttacksNames = new ArrayList<String>();
+
 		private Player p;
 	public ChooseUnimon(Player p) {
 		super();
@@ -56,7 +58,8 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener, Actio
         listUnimons.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listUnimons.addListSelectionListener(this);
         
-        listAttacks = new JList<String>();
+      
+        listAttacks = new JList<String>(model);
         listAttacks.setVisibleRowCount(4);
         listAttacks.setFixedCellHeight(20);
         listAttacks.setFixedCellWidth(150);
@@ -74,14 +77,20 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener, Actio
 		
 		
 		description = new JTextArea();
-		area2 = new JScrollPane(description, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		description.setEditable(false);
+		description.setLineWrap(true);
+		description.setWrapStyleWord(true);
+		area2 = new JScrollPane(description, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		area2.setSize(290,200);
 		area2.setLocation(190,50);
 		area2.setVisible(true);
 		this.add(area2);
 		
 		descriptionAttack = new JTextArea();
-		area3 = new JScrollPane(descriptionAttack, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		descriptionAttack.setEditable(false);
+		descriptionAttack.setLineWrap(true);
+		descriptionAttack.setWrapStyleWord(true);
+		area3 = new JScrollPane(descriptionAttack, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		area3.setSize(290,200);
 		area3.setLocation(190, 50);
 		area3.setVisible(false);
@@ -119,6 +128,7 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener, Actio
 		aliveUnimons.removeAll(aliveUnimons);
 		aliveUnimonsNames.removeAll(aliveUnimonsNames);
 		this.setVisible(false);
+		this.model.clear();
 		this.removeAll();
 		
 	}
@@ -127,32 +137,25 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener, Actio
     public void valueChanged(ListSelectionEvent e) {
         if (e.getValueIsAdjusting() == false) {
             if (e.getSource() == listUnimons) {
-                for(int i = 0; i < aliveUnimons.size(); i++)
-                {
-                    if (i == listUnimons.getSelectedIndex())
-                    {
-                    //for selected unimon item 	
-                    	
-                    selected = aliveUnimons.get(i);
-                    selectedNumber = i;
+            		model.clear();
+                   int selectedNumber = listUnimons.getSelectedIndex();
+                    selected = aliveUnimons.get(selectedNumber);
                     description.setText(selected.getDescription());
                     area2.setVisible(true);
                     area3.setVisible(false);
-                    for(int k=0; k<4; k++) {
-            			if(selected!=null){
-            				unimonAttacks.add(selected.getAttacks().get(k));
-            			}
-            		
-            		}
-
+                    unimonAttacks = selected.getAttacks();
+                    
             		for(Attack attack : unimonAttacks) {
-            			if(selected!=null){
-            				unimonAttacksNames.add(attack.getName());
+            			
+            				int pos = model.getSize();
+            				model.add(pos,attack.getName());
+            				
+            				//System.out.println("for attack : unimonATtakcs not null");
+            			
             			}
-            			}
-                    }
-                    listAttacks = new JList<String>((String[]) unimonAttacksNames.toArray(new String[0]));	
-                    lifeBar = new LifeBar(selected.getMaxHp(),selected.getHp());
+                    
+         	
+                    
                     lifeBar.setVisible(true);
                     hp.setText(""+selected.getMaxHp());
                     hp.setVisible(true);
@@ -161,7 +164,7 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener, Actio
                     
                     
                 } 
-            }
+            
             if (e.getSource() == listAttacks) {
                 for(int i = 0; i < 4; i++)
                 {

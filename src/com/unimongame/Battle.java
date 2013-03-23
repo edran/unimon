@@ -19,8 +19,8 @@ public class Battle {
 	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	private boolean isFinished = false;
 	Double x = Math.random()*1000;
-	FightGUI guiP1 = new FightGUI(x);
-	FightGUI guiP2 = new FightGUI(x);
+	FightGUI guiP1 = new FightGUI(this,x);
+	FightGUI guiP2 = new FightGUI(this,x);
 
 	public Battle(Player playerA, Player playerB) {
 		players = new Player[2];

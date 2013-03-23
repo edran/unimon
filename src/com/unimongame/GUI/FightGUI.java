@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.*;
 
+import com.unimongame.Battle;
 import com.unimongame.Player;
 
 import java.awt.*;
@@ -27,15 +28,16 @@ public class FightGUI implements ActionListener {
 	private ImagePanel backgroundPanel, enemyImagePanel, playerImagePanel;
 	private Image backgroundImage;
 	private JSeparator sep1, sep2;
-
+	private Battle battle;
 	private Player self;
 	private Player enemy;
 
 	private int rnd;
 	private Random random;
 	
-	public FightGUI(double d) {
+	public FightGUI(Battle battle, double d) {
 		System.out.println(d);
+		this.battle = battle;
 		rnd = ((int)d)%NUM_BACKGROUND_IMAGES;
 		System.out.println(rnd);
 	}
