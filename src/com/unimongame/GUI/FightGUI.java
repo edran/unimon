@@ -22,7 +22,7 @@ public class FightGUI implements ActionListener {
 			attackPanel, bagPanel, unimonsPanel, abandonPanel;
 	private ChooseUnimon chooseUnimon;
 	private JLabel enemyUniName, playerUniName, textLabel, givenUp;
-	private JButton attack1, attack2, attack3, attack4, attack, bag, unimons,
+	private JButton attack1, attack2, attack3, attack4, givingUp, attack, bag, unimons,
 			abandon;
 	private ImagePanel backgroundPanel, enemyImagePanel, playerImagePanel;
 	private Image backgroundImage;
@@ -134,27 +134,6 @@ public class FightGUI implements ActionListener {
 		attackPanel.setVisible(false);
 		totalGUI.add(attackPanel);
 
-		bagPanel = new JPanel();
-		bagPanel.setLayout(null);
-		bagPanel.setLocation(0, 400);
-		bagPanel.setSize(300, 100);
-		bagPanel.setVisible(false);
-		totalGUI.add(bagPanel);
-
-		unimonsPanel = new JPanel();
-		unimonsPanel.setLayout(null);
-		unimonsPanel.setLocation(0, 400);
-		unimonsPanel.setSize(300, 100);
-		unimonsPanel.setVisible(false);
-		totalGUI.add(unimonsPanel);
-
-		abandonPanel = new JPanel();
-		abandonPanel.setLayout(null);
-		abandonPanel.setLocation(0, 400);
-		abandonPanel.setSize(300, 100);
-		abandonPanel.setVisible(false);
-		totalGUI.add(abandonPanel);
-
 		// LifeBar
 		LifeBar lifeEnemy = new LifeBar(enemy.getActiveUnimon().getMaxHp(),
 				enemy.getActiveUnimon().getHp());
@@ -177,32 +156,41 @@ public class FightGUI implements ActionListener {
 		textLabel.setSize(300, 100);
 		textPanel.add(textLabel);
 
-		givenUp = new JLabel("You've given up! You're weak...");
-		givenUp.setHorizontalAlignment(0);
-		givenUp.setLocation(0, 0);
-		givenUp.setSize(300, 100);
-		abandonPanel.add(givenUp);
-
 		// Buttons
-		attack1 = new JButton("attack 1");
+		attack1 = new JButton(self.getActiveUnimon().getAttacks().get(0).getName());
 		attack1.setLocation(0, 0);
 		attack1.setSize(150, 50);
+		attack1.setToolTipText(self.getActiveUnimon().getAttacks().get(0).getDescription());
+		attack1.addActionListener(this);
 		attackPanel.add(attack1);
 
-		attack2 = new JButton("attack 2");
+		attack2 = new JButton(self.getActiveUnimon().getAttacks().get(1).getName());
 		attack2.setLocation(150, 0);
 		attack2.setSize(150, 50);
+		attack2.setToolTipText(self.getActiveUnimon().getAttacks().get(1).getDescription());
+		attack2.addActionListener(this);
 		attackPanel.add(attack2);
 
-		attack3 = new JButton("attack 3");
+		attack3 = new JButton(self.getActiveUnimon().getAttacks().get(2).getName());
 		attack3.setLocation(0, 50);
 		attack3.setSize(150, 50);
+		attack3.setToolTipText(self.getActiveUnimon().getAttacks().get(2).getDescription());
+		attack3.addActionListener(this);
 		attackPanel.add(attack3);
 
-		attack4 = new JButton("attack 4");
+		attack4 = new JButton(self.getActiveUnimon().getAttacks().get(3).getName());
 		attack4.setLocation(150, 50);
 		attack4.setSize(150, 50);
+		attack4.setToolTipText(self.getActiveUnimon().getAttacks().get(3).getDescription());
+		attack4.addActionListener(this);
 		attackPanel.add(attack4);
+		
+		givingUp = new JButton("Yes! I'm scared...");
+		givingUp.setSize(150, 20);
+		givingUp.setHorizontalAlignment(0);
+		givingUp.setLocation(75, 70);
+		givingUp.setVisible(false);
+		textPanel.add(givingUp);
 
 		attack = new JButton("Attack");
 		attack.setLocation(0, 0);
@@ -228,7 +216,7 @@ public class FightGUI implements ActionListener {
 		unimons.addActionListener(this);
 		menuPanel.add(unimons);
 
-		abandon = new JButton("Abandon");
+		abandon = new JButton("Give up!");
 		abandon.setLocation(100, 50);
 		abandon.setSize(100, 50);
 		abandon.setBackground(Color.lightGray);
@@ -253,44 +241,47 @@ public class FightGUI implements ActionListener {
 
 			textPanel.setVisible(false);
 			attackPanel.setVisible(true);
-			bagPanel.setVisible(false);
-			unimonsPanel.setVisible(false);
-			abandonPanel.setVisible(false);
 			chooseUnimon.setVisible(false);
 			chooseUnimon.destroy();
 			backgroundPanel.setVisible(true);
 			sep1.setVisible(true);
+			givingUp.setVisible(false);
 
 		} else if (e.getSource() == bag) {
 
-			textPanel.setVisible(false);
+			textPanel.setVisible(true);
+			textLabel.setText("Take an item.");
 			attackPanel.setVisible(false);
-			bagPanel.setVisible(true);
+			chooseUnimon.setVisible(false);
 			chooseUnimon.destroy();
-			unimonsPanel.setVisible(false);
-			abandonPanel.setVisible(false);
+			backgroundPanel.setVisible(true);
+			sep1.setVisible(true);
+			givingUp.setVisible(false);
 
 		} else if (e.getSource() == unimons) {
 
-			textPanel.setVisible(false);
+			textPanel.setVisible(true);
+			textLabel.setText("Choose your Unimon.");
 			attackPanel.setVisible(false);
-			bagPanel.setVisible(false);
-			unimonsPanel.setVisible(true);
-			abandonPanel.setVisible(false);
 			chooseUnimon.destroy();
 			chooseUnimon.init();
 			chooseUnimon.setVisible(true);
 			backgroundPanel.setVisible(false);
 			sep1.setVisible(false);
+			givingUp.setVisible(false);
 
 		} else if (e.getSource() == abandon) {
 
-			textPanel.setVisible(false);
+			textPanel.setVisible(true);
+			textLabel.setText("Are you really giving up?");
+			givingUp.setVisible(true);
 			attackPanel.setVisible(false);
-			bagPanel.setVisible(false);
-			unimonsPanel.setVisible(false);
-			abandonPanel.setVisible(true);
+			chooseUnimon.setVisible(false);
+			chooseUnimon.destroy();
+			backgroundPanel.setVisible(true);
 
+		} else if (e.getSource() == attack1) {
+			
 		}
 	}
 
