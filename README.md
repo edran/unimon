@@ -16,7 +16,7 @@ TODO - Basile
 
 TODO - Luke
 - Linking the GUI and making the 1 Computer version
-- 
+- MOAR randomness!
 
 TODO - Nantas
 - Write down the methods for the LAN
