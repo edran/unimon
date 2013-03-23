@@ -23,6 +23,11 @@ public class AttackLoader {
 		map.put("Monads", new Monads());
 		map.put("Time Distortion", new TimeDistortion());
 		map.put("Feline Scratch", new FelineScratch());
+		map.put("Feline Scratch", new FelineScratch());
+		map.put("Feline Scratch", new FelineScratch());
+		map.put("Feline Scratch", new FelineScratch());
+		map.put("Feline Scratch", new FelineScratch());
+		map.put("Feline Scratch", new FelineScratch());
 		
 	}
 

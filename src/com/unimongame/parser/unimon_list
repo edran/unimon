@@ -1,8 +1,8 @@
 id,name,type,hp,cost,description,attack,attack,attack,attack
 01,Donmon,Professor,200,80,Best professor ever,Time Distortion,Recursion,Monads,Feline Scratch
 02,Ianmon,Professor,200,80,Master of the databases,Salesman,Evil Syntax,Tree drawing,Punch
-03,Perditamon,Professor,200,80,Can't recognize you - attacks you regardless,Punch,Nesting,Patrolling, Polymorphism
-04,Robertsonmon,Professor,200,80,Head of the school,Feline Scratch,Logic,Time Distortion,Regexplosion
+03,Perditamon,Professor,200,80,Can't recognize you - attacks you regardless,Punch,Nesting,Patrolling,Polymorphism
+04,Robertsonmon,Professor,200,80,Head of the school,Feline Scratch,Logiclessness,Time Distortion,Regexplosion
 05,KKmon,Professor,200,80,YOU SHALL NOT PASS,Punch,Recursion,Jagerbomb,Monads
 06,Starkmon,Professor,200,80,Head of the school,Punch,Recursion,Jagerbomb,Monads
 07,Starkmon,Professor,200,80,Head of the school,Punch,Recursion,Jagerbomb,Monads
