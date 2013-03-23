@@ -1,6 +1,9 @@
 package com.unimongame.GUI;
 
 import javax.swing.*;
+
+import com.unimongame.Unimon;
+
 import java.awt.*;
 
 public class InfoPanel extends JPanel{
@@ -23,37 +26,60 @@ public class InfoPanel extends JPanel{
     protected int shadowOffset = 2;
     /** The transparency value of shadow. ( 0 - 255) */
     protected int shadowAlpha = 150;
+	private Unimon currentUni;
+	private LifeBar lifeBar;
+	JLabel label1;
+	JLabel label2;
+	JLabel label3;
 	
-	public InfoPanel(String name, String type, int hp, LifeBar lifeBar) {
-        super();
+	
+	public InfoPanel(Unimon uni) {
+		currentUni = uni;
         setLayout(null);
         setOpaque(false);
         setSize(180,70);
         setBackground(Color.lightGray);
         setForeground(Color.black);
         
-        JLabel label1 = new JLabel(name);
+         label1 = new JLabel();
         label1.setSize(130, 20);
         label1.setLocation(10, 5);
         label1.setHorizontalAlignment(JLabel.LEFT);
         this.add(label1);
         
-        JLabel label2 = new JLabel(type);
+       label2 = new JLabel();
         label2.setSize(130, 20);
         label2.setLocation(40, 45);
         label2.setHorizontalAlignment(JLabel.RIGHT);
         this.add(label2);
         
-        JLabel label3 = new JLabel(hp + " hp");
+        label3 = new JLabel();
         label3.setSize(60, 20);
         label3.setLocation(110, 5);
         label3.setHorizontalAlignment(JLabel.RIGHT);
         this.add(label3);
         
+        
+        lifeBar = new LifeBar(currentUni.getMaxHp(),currentUni.getHp()); 
         lifeBar.setLocation(50,30);
         this.add(lifeBar);
-        
-        
+	}
+	
+	public void updateInfo(){
+		label1.setText(currentUni.getName());
+		label2.setText("Type");
+		label3.setText(currentUni.getMaxHp()+" HP");
+		lifeBar.setValue(currentUni.getHp());
+		lifeBar.repaint();
+		repaint();
+	}
+	
+	public void updateInfo(Unimon uni){
+		System.out.println("changing from -"+currentUni.getName()+"to "+uni.getName());
+		currentUni =uni;
+		lifeBar.setMaximum(currentUni.getMaxHp());
+		updateInfo();
+		
 	}
 	
   	 @Override

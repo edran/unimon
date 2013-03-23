@@ -41,12 +41,9 @@ public class Battle {
 		pickTeam(players[0]);
 		pickTeam(players[1]);
 		
-		System.out.println("player ones first unimon is :"+players[0].getAliveUnimon());
-		System.out.println("player twos first unimon is :"+players[1].getAliveUnimon());
 		selectUnimon(players[0],players[0].getAliveUnimon().get(0),false);
 		selectUnimon(players[1],players[1].getAliveUnimon().get(0),false);
-		System.out.println("player ones active unimon is :"+players[0].getActiveUnimon());
-		System.out.println("player twos active unimon is :"+players[1].getActiveUnimon());
+	
 		guis[0] = new FightGUI(this,players[0],players[1],seed);
 		guis[1] = new FightGUI(this,players[1],players[0],seed);
 		guis[0].createAndShowGUI();
@@ -78,6 +75,7 @@ public class Battle {
 	 * returns 1 if someone wins 0 otherwise.
 	 */
 	private void turn(int playerNumber) {
+		update(false);
 		guis[(playerNumber+1)%2].waitOnPlayer();
 		guis[playerNumber].turn();
 	}
@@ -131,21 +129,18 @@ public class Battle {
 
 
 	public void selectUnimon(Player p , Unimon uni, boolean endTurn) {
-		System.out.println("select Unimon");
-		if(p == null){
-			System.out.println("p == null");
-		}else if(uni==null){
-			System.out.println("uni == null");
-		}
 		p.setActiveUnimon(uni);
+		if(guis[0]!=null){
+			update(true);
+		}
 		if(endTurn){
 			endTurn();
 		}
 	}
 	
-	private void update(){
-		guis[0].update();
-		guis[1].update();
+	private void update(boolean newUnimon){
+		guis[0].updateInfo(newUnimon);
+		guis[1].updateInfo(newUnimon);
 	}
 
 	private void end(Player winner) {
@@ -156,8 +151,7 @@ public class Battle {
 	public void doAttack(Player attacker,Player target ,int AttackNum) {
 				System.out.println("attack");
 				attacker.getActiveUnimon().attack(AttackNum, target.getActiveUnimon());	
-				
-				update();
+				update(false);
 				
 				
 				System.out.println("isTurnover = true");

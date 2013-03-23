@@ -27,10 +27,11 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener, Actio
 		private ArrayList<Unimon> aliveUnimons;
 		private ArrayList<Attack> unimonAttacks = new ArrayList<Attack>();
 		private ArrayList<String> aliveUnimonsNames = new ArrayList<String>();
+		private Battle battle;
 
 		private Player p;
-	public ChooseUnimon(Player p) {
-		super();
+	public ChooseUnimon(Player p,Battle battle) {
+		this.battle = battle;
 		setSize(500,400);
 		setLocation(0,0);
 		this.p = p;
@@ -193,6 +194,9 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener, Actio
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button) {
+			this.setVisible(false);
+			this.destroy();
+			battle.selectUnimon(p, selected, true);
 			
 		}
 		
