@@ -11,11 +11,13 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 public class FightGUI implements ActionListener {
 
 	// Declaring a few variables
 
+	private static final int NUM_BACKGROUND_IMAGES = 4;
 	private JPanel totalGUI, enemyPanel, playerPanel, menuPanel, textPanel,
 			attackPanel, bagPanel, unimonsPanel, abandonPanel;
 	private ChooseUnimon chooseUnimon;
@@ -29,7 +31,14 @@ public class FightGUI implements ActionListener {
 	private Player self;
 	private Player enemy;
 
-	private int rnd = 1 + (int) (Math.random() * 4);
+	private int rnd;
+	private Random random;
+	
+	public FightGUI(double d) {
+		System.out.println(d);
+		rnd = ((int)d)%NUM_BACKGROUND_IMAGES;
+		System.out.println(rnd);
+	}
 
 	String story = "<html>Welcome to the game.<br>Prepare for battle!</html>";
 

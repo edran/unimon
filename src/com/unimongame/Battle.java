@@ -18,8 +18,9 @@ public class Battle {
 	private HashMap<String, Unimon> unimonList;
 	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	private boolean isFinished = false;
-	FightGUI guiP1 = new FightGUI();
-	FightGUI guiP2 = new FightGUI();
+	Double x = Math.random()*1000;
+	FightGUI guiP1 = new FightGUI(x);
+	FightGUI guiP2 = new FightGUI(x);
 
 	public Battle(Player playerA, Player playerB) {
 		players = new Player[2];
