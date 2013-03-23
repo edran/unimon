@@ -104,20 +104,20 @@ public class Battle {
 			if (available.size() == 0)
 				break;
 			System.out.println("## " + p.getName()
-					+ " select a unimon, you have $" + p.getMoney()
-					+ " credits left.");
-			System.out.println("## Type END to finish selection early.");
+					+ " select a unimon - you have $" + p.getMoney()
+					+ " credits left");
+			System.out.println("## Type q to finish selection early");
 			if (available.size() == 0)
 				break;
 			for (Unimon u : available) {
-				System.out.println(u.getName() + " :: $" + u.getCost() + " '"
+				System.out.println(u.getId() + " - " + u.getName() + " :: $" + u.getCost() + " '"
 						+ u.getDescription() + "'");
 			}
 
 			try {
-				System.out.print("Name > ");
+				System.out.print("Id > ");
 				String choice = in.readLine();
-				if (choice.equals("END"))
+				if (choice.equals("q"))
 					break;
 				else if (!unimonList.containsKey(choice)) {
 					System.out.println("invalid choice try again..");
@@ -156,7 +156,7 @@ public class Battle {
 	private void selectUnimon(Player p) {
 		while (true) {
 			System.out.println("##########");
-			System.out.println("Select Unimon to put out on to field");
+			System.out.println("Which Unimon do you want to use?");
 			for (int i = 0; i < p.numAlive(); i++) {
 				System.out.println(i + ")"
 						+ p.getAliveUnimon().get(i).toString());

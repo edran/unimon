@@ -32,7 +32,7 @@ public class UnimonLoader {
 
 			}
 			
-			UnimonMap.put(d[i][1],uni);	
+			UnimonMap.put(d[i][0],uni);	
 		}
 		/*
 		unimons.add(new Unimon("01","Profmon",new Type(),"he's not very nice.",100,20));
