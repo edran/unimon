@@ -35,6 +35,7 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener, Actio
 		setLocation(0,0);
 		this.p = p;
 		setLayout(null);
+		//destroy();
 		init();
 	}
 	
@@ -125,8 +126,12 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener, Actio
 	}
 	
 	public void destroy(){
+		if(aliveUnimons!=null){
+			
+		}
 		aliveUnimons.removeAll(aliveUnimons);
 		aliveUnimonsNames.removeAll(aliveUnimonsNames);
+		button.setVisible(false);
 		this.setVisible(false);
 		this.model.clear();
 		this.removeAll();

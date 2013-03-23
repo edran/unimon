@@ -63,6 +63,7 @@ public class FightGUI implements ActionListener {
 	public void update(){
 		lifeEnemy.setValue(enemy.getActiveUnimon().getHp());
 		lifePlayer.setValue(self.getActiveUnimon().getHp());
+		backgroundPanel.repaint();
 	}
 
 	public JPanel createFightPanel() {
@@ -104,7 +105,7 @@ public class FightGUI implements ActionListener {
 		totalGUI.add(backgroundPanel);
 
 		chooseUnimon = new ChooseUnimon(self);
-		totalGUI.add(chooseUnimon);
+		//totalGUI.add(chooseUnimon);
 		// Panels
 		enemyPanel = new JPanel();
 		enemyPanel.setLayout(null);
@@ -284,6 +285,7 @@ public class FightGUI implements ActionListener {
 
 		} else if (e.getSource() == unimons) {
 
+			totalGUI.add(chooseUnimon);
 			textPanel.setVisible(true);
 			textLabel.setText("Choose your Unimon.");
 			attackPanel.setVisible(false);
