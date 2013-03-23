@@ -11,7 +11,7 @@ public class FelineScratch extends Attack {
 	@Override
 	public void doAttack(Unimon attacker, Unimon target) {
 		target.reduceHp(50);
-		target.distract(1);
+		
 
 	}
 

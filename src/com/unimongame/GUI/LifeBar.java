@@ -39,6 +39,10 @@ public class LifeBar extends JProgressBar {
 		
 		
 	}
+	public void setValue(int x){
+		super.setValue(x);
+		setString(x+"");
+	}
 
 
 

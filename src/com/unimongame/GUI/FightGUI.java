@@ -23,28 +23,49 @@ public class FightGUI implements ActionListener {
 			attackPanel, bagPanel, unimonsPanel, abandonPanel;
 	private ChooseUnimon chooseUnimon;
 	private JLabel enemyUniName, playerUniName, textLabel, givenUp;
-	private JButton attack1, attack2, attack3, attack4, givingUp, attack, bag, unimons,
-			abandon;
+	private JButton attack1, attack2, attack3, attack4, givingUp, attack, bag,
+			unimons, abandon;
 	private ImagePanel backgroundPanel, enemyImagePanel, playerImagePanel;
 	private Image backgroundImage;
 	private JSeparator sep1, sep2;
 	private Battle battle;
 	private Player self;
-	private Player enemy;
-
+	private Player enemy;	
+	private LifeBar lifeEnemy;
+	private LifeBar lifePlayer;
 	private int rnd;
-	private Random random;
-	
-	public FightGUI(Battle battle, double d) {
+
+	public FightGUI(Battle battle,Player self, Player enemy, double d) {
+		this.self = self;
+		this.enemy = enemy;
 		System.out.println(d);
 		this.battle = battle;
-		rnd = ((int)d)%NUM_BACKGROUND_IMAGES;
+		rnd = ((int) d) % NUM_BACKGROUND_IMAGES;
 		System.out.println(rnd);
+		
 	}
 
-	String story = "<html>Welcome to the game.<br>Prepare for battle!</html>";
+	public void waitOnPlayer() {
+		menuPanel.setVisible(false);
+		attackPanel.setVisible(false);
+		System.out.println("waiting on player");
+		textLabel.setText("Waiting on the other player...");
+		textPanel.setVisible(true);
+	
+	}
 
-	public JPanel createFightPanel(Player self, Player enemy) {
+	public void turn() {
+		menuPanel.setVisible(true);
+		textLabel.setText("Your turn!");
+		
+	}
+	
+	public void update(){
+		lifeEnemy.setValue(enemy.getActiveUnimon().getHp());
+		lifePlayer.setValue(self.getActiveUnimon().getHp());
+	}
+
+	public JPanel createFightPanel() {
 
 		// Bottom JPanel to place everything on.
 		totalGUI = new JPanel();
@@ -82,7 +103,7 @@ public class FightGUI implements ActionListener {
 		backgroundPanel.setLocation(0, 0);
 		totalGUI.add(backgroundPanel);
 
-		chooseUnimon  = new ChooseUnimon(self);
+		chooseUnimon = new ChooseUnimon(self);
 		totalGUI.add(chooseUnimon);
 		// Panels
 		enemyPanel = new JPanel();
@@ -104,7 +125,6 @@ public class FightGUI implements ActionListener {
 		menuPanel.setLocation(300, 400);
 		menuPanel.setSize(200, 100);
 		totalGUI.add(menuPanel);
-
 
 		// Players images
 
@@ -137,14 +157,14 @@ public class FightGUI implements ActionListener {
 		totalGUI.add(attackPanel);
 
 		// LifeBar
-		LifeBar lifeEnemy = new LifeBar(enemy.getActiveUnimon().getMaxHp(),
+		lifeEnemy = new LifeBar(enemy.getActiveUnimon().getMaxHp(),
 				enemy.getActiveUnimon().getHp());
 		InfoPanel infoEnemy = new InfoPanel(enemy.getActiveUnimon().getName(),
 				"type", enemy.getActiveUnimon().getMaxHp(), lifeEnemy);
 		infoEnemy.setLocation(20, 20);
 		enemyPanel.add(infoEnemy);
 
-		LifeBar lifePlayer = new LifeBar(self.getActiveUnimon().getMaxHp(),
+		 lifePlayer = new LifeBar(self.getActiveUnimon().getMaxHp(),
 				self.getActiveUnimon().getHp());
 		InfoPanel infoPlayer = new InfoPanel(self.getActiveUnimon().getName(),
 				"type", self.getActiveUnimon().getMaxHp(), lifePlayer);
@@ -152,41 +172,49 @@ public class FightGUI implements ActionListener {
 		playerPanel.add(infoPlayer);
 
 		// Labels
-		textLabel = new JLabel(story);
+		textLabel = new JLabel("");
 		textLabel.setHorizontalAlignment(0);
 		textLabel.setLocation(0, 0);
 		textLabel.setSize(300, 100);
 		textPanel.add(textLabel);
 
 		// Buttons
-		attack1 = new JButton(self.getActiveUnimon().getAttacks().get(0).getName());
+		attack1 = new JButton(self.getActiveUnimon().getAttacks().get(0)
+				.getName());
 		attack1.setLocation(0, 0);
 		attack1.setSize(150, 50);
-		attack1.setToolTipText(self.getActiveUnimon().getAttacks().get(0).getDescription());
+		attack1.setToolTipText(self.getActiveUnimon().getAttacks().get(0)
+				.getDescription());
 		attack1.addActionListener(this);
 		attackPanel.add(attack1);
 
-		attack2 = new JButton(self.getActiveUnimon().getAttacks().get(1).getName());
+		attack2 = new JButton(self.getActiveUnimon().getAttacks().get(1)
+				.getName());
 		attack2.setLocation(150, 0);
 		attack2.setSize(150, 50);
-		attack2.setToolTipText(self.getActiveUnimon().getAttacks().get(1).getDescription());
+		attack2.setToolTipText(self.getActiveUnimon().getAttacks().get(1)
+				.getDescription());
 		attack2.addActionListener(this);
 		attackPanel.add(attack2);
 
-		attack3 = new JButton(self.getActiveUnimon().getAttacks().get(2).getName());
+		attack3 = new JButton(self.getActiveUnimon().getAttacks().get(2)
+				.getName());
 		attack3.setLocation(0, 50);
 		attack3.setSize(150, 50);
-		attack3.setToolTipText(self.getActiveUnimon().getAttacks().get(2).getDescription());
+		attack3.setToolTipText(self.getActiveUnimon().getAttacks().get(2)
+				.getDescription());
 		attack3.addActionListener(this);
 		attackPanel.add(attack3);
 
-		attack4 = new JButton(self.getActiveUnimon().getAttacks().get(3).getName());
+		attack4 = new JButton(self.getActiveUnimon().getAttacks().get(3)
+				.getName());
 		attack4.setLocation(150, 50);
 		attack4.setSize(150, 50);
-		attack4.setToolTipText(self.getActiveUnimon().getAttacks().get(3).getDescription());
+		attack4.setToolTipText(self.getActiveUnimon().getAttacks().get(3)
+				.getDescription());
 		attack4.addActionListener(this);
 		attackPanel.add(attack4);
-		
+
 		givingUp = new JButton("Yes! I'm scared...");
 		givingUp.setSize(150, 20);
 		givingUp.setHorizontalAlignment(0);
@@ -228,12 +256,6 @@ public class FightGUI implements ActionListener {
 
 		return totalGUI;
 
-	}
-
-	public int selectUnimon(Player p) {
-		backgroundPanel.setVisible(false);
-		ChooseUnimon chooser = new ChooseUnimon(p);
-		return 0;
 	}
 
 	@Override
@@ -283,11 +305,21 @@ public class FightGUI implements ActionListener {
 			backgroundPanel.setVisible(true);
 
 		} else if (e.getSource() == attack1) {
-			
+			battle.doAttack(self, enemy, 0);
+			//Effects.runEffect(enemyPanel,"horizontal","moderate",1000);
+
+		} else if (e.getSource() == attack2) {
+			battle.doAttack(self, enemy, 1);
+
+		} else if (e.getSource() == attack3) {
+			battle.doAttack(self, enemy, 2);
+
+		} else if (e.getSource() == attack4) {
+			battle.doAttack(self, enemy, 3);
 		}
 	}
 
-	public void createAndShowGUI(Player s, Player e) {
+	public void createAndShowGUI() {
 
 		JFrame.setDefaultLookAndFeelDecorated(true); // Unified look,
 														// independent of the
@@ -296,7 +328,7 @@ public class FightGUI implements ActionListener {
 
 		// Create and set up the content pane.
 
-		frame.setContentPane(this.createFightPanel(s, e));
+		frame.setContentPane(this.createFightPanel());
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(510, 533);

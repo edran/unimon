@@ -7,23 +7,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import com.unimongame.GUI.Effects;
 import com.unimongame.GUI.FightGUI;
 import com.unimongame.attack.Attack;
 import com.unimongame.attack.AttackLoader;
 
 public class Battle {
 	private Player[] players;
+	private FightGUI[] guis;
 	private Random rand = new Random();
 	private HashMap<String, Attack> attackList;
 	private HashMap<String, Unimon> unimonList;
 	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	private boolean isFinished = false;
-	Double x = Math.random()*1000;
-	FightGUI guiP1 = new FightGUI(this,x);
-	FightGUI guiP2 = new FightGUI(this,x);
+	Double seed = Math.random()*1000;
+	private boolean isTurnOver = false;
+	private int playerNum = 0;
+	
+	
 
 	public Battle(Player playerA, Player playerB) {
 		players = new Player[2];
+		guis	= new FightGUI[2];
 		flipCoin(playerA, playerB);
 		attackList = new HashMap<String, Attack>();
 		unimonList = new HashMap<String, Unimon>();
@@ -31,21 +36,18 @@ public class Battle {
 	} 
 
 	public void run() {
-		System.out.println();
 		pickTeam(players[0]);
 		pickTeam(players[1]);
-		selectUnimon(players[0]);
-		selectUnimon(players[1]);
-		guiP1.createAndShowGUI(players[0],players[1]);
-		guiP2.createAndShowGUI(players[1],players[0]);
+		selectUnimon(players[0],players[0].getAliveUnimon().get(0),false);
+		selectUnimon(players[1],players[1].getAliveUnimon().get(0),false);
+		guis[0] = new FightGUI(this,players[0],players[1],seed);
+		guis[1] = new FightGUI(this,players[1],players[0],seed);
+		guis[0].createAndShowGUI();
+		guis[1].createAndShowGUI();
 		
 		
 		
-
-		for (int i = 0; isFinished == false; i++) {
-			int playerNumber = i % 2;
-			turn(playerNumber);
-		}
+		turn(playerNum);
 	}
 
 	public void loadUnimon() {
@@ -68,31 +70,13 @@ public class Battle {
 	/*
 	 * returns 1 if someone wins 0 otherwise.
 	 */
-	private int turn(int playerNumber) {
-		players[playerNumber].startOfTurnUpdate();
-		System.out.println(players[playerNumber].getActiveUnimon().getName()
-				+ ":" + players[playerNumber].getActiveUnimon().getHp() + "/"
-				+ players[playerNumber].getActiveUnimon().getMaxHp());
-		if (players[playerNumber].getActiveUnimon() == null) {
-			// first round, no unimon on field
-			selectUnimon(players[playerNumber]);
-		} else if (!players[playerNumber].getActiveUnimon().isAlive()) {
-			// current unimon is dead
-			if ((players[playerNumber].numAlive() == 0)) {
-				System.out.println("No Unimon Left! ");
-				end(players[1]);
-				return 1;
-			} else {
-				selectUnimon(players[playerNumber]);
-			}
-		}
-
-		// at this stage player has alive unimon on the field.
-
-		getAction(playerNumber);
-		return 0; // no winner this turn;
-
+	private void turn(int playerNumber) {
+		guis[(playerNumber+1)%2].waitOnPlayer();
+		guis[playerNumber].turn();
 	}
+	
+	
+
 
 	private void pickTeam(Player p) {
 		while (p.getMoney() > 0) {
@@ -137,47 +121,18 @@ public class Battle {
 
 	}
 
-	private void getAction(int p) {
-		switch (turnMenu()) {
-		case 0:
-			doAttack(p);
-			checkForWin();
-			break;
-		case 1:
-			selectUnimon(players[p]);
-			break;
-		case 2: // items aren't implemented yet
-			break;
-		default:
-			System.out.println("error in turnMenu");
-			break;
+
+
+	public void selectUnimon(Player p , Unimon uni, boolean endTurn) {
+		p.setActiveUnimon(uni);
+		if(endTurn){
+			isTurnOver = true;
 		}
 	}
-
-	private void selectUnimon(Player p) {
-		while (true) {
-			System.out.println("##########");
-			System.out.println("Which Unimon do you want to use?");
-			for (int i = 0; i < p.numAlive(); i++) {
-				System.out.println(i + ")"
-						+ p.getAliveUnimon().get(i).toString());
-			}
-			try {
-				int choice = Integer.parseInt(in.readLine());
-				if (choice < 0 || choice >= p.numAlive()) {
-					System.out.println("invalid choice" + p.numAlive());
-					continue;
-				}
-				System.out.println(p.getAliveUnimon().get(choice)
-						+ " was sent out!");
-				p.setActiveUnimon(p.getAliveUnimon().get(choice));
-				break;
-			} catch (IOException e) {
-				e.printStackTrace();
-				continue;
-			}
-		}
-
+	
+	private void update(){
+		guis[0].update();
+		guis[1].update();
 	}
 
 	private void end(Player winner) {
@@ -185,29 +140,21 @@ public class Battle {
 		System.out.println(winner.getName() + "is the winner");
 	}
 
-	private void doAttack(int p) {
-		while (true) {
+	public void doAttack(Player attacker,Player target ,int AttackNum) {
+				System.out.println("attack");
+				attacker.getActiveUnimon().attack(AttackNum, target.getActiveUnimon());	
+				
+				update();
+				
+				
+				System.out.println("isTurnover = true");
+				endTurn();
+	}
 
-			System.out.println(players[p].getName() + "Select an attack!");
-			Unimon actUni = players[p].getActiveUnimon();
-			for (int i = 0; i < actUni.getAttacks().size(); i++) {
-				System.out.println(i + ")"
-						+ actUni.getAttacks().get(i).toString());
-			}
-			try {
-				int choice = Integer.parseInt(in.readLine());
-				if (choice < 0 || choice >= actUni.getAttacks().size())
-					continue;
-				Attack chosen = actUni.getAttacks().get(choice);
-				actUni.attack(chosen, players[(p + 1) % 2].getActiveUnimon());
-				break;
-
-			} catch (IOException e) {
-				e.printStackTrace();
-				continue;
-			}
-		}
-
+	private void endTurn() {
+		//check win conditons
+		turn((++playerNum)%2);
+		
 	}
 
 	private int turnMenu() {
