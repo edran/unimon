@@ -19,6 +19,7 @@ public class FightGUI implements ActionListener {
 	// Declaring a few variables
 
 	private static final int NUM_BACKGROUND_IMAGES = 4;
+	private JFrame mainFrame = new JFrame("Unimon Game");
 	private JPanel totalGUI, enemyPanel, playerPanel, menuPanel, textPanel,
 			attackPanel, bagPanel, unimonsPanel, abandonPanel;
 	private ChooseUnimon chooseUnimon;
@@ -34,15 +35,21 @@ public class FightGUI implements ActionListener {
 	private LifeBar lifeEnemy;
 	private LifeBar lifePlayer;
 	private int rnd;
+	static{
+		JFrame.setDefaultLookAndFeelDecorated(true);
+	}
 
 	public FightGUI(Battle battle,Player self, Player enemy, double d) {
+		
 		this.self = self;
-		System.out.println(self.getName());
 		this.enemy = enemy;
-		System.out.println(d);
 		this.battle = battle;
 		rnd = ((int) d) % NUM_BACKGROUND_IMAGES;
-		System.out.println(rnd);
+		
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.setSize(510, 533);
+		mainFrame.setResizable(false); // Only one size!
+		mainFrame.setVisible(true);
 		
 	}
 
@@ -62,14 +69,12 @@ public class FightGUI implements ActionListener {
 	public void turn() {
 		menuPanel.setVisible(true);
 		textLabel.setText("Your turn!");
-		waitingImagePanel.setVisible(false);
+		//waitingImagePanel.setVisible(false);
 		
 	}
 	
 	public void update(){
-		lifeEnemy.setValue(enemy.getActiveUnimon().getHp());
-		lifePlayer.setValue(self.getActiveUnimon().getHp());
-		backgroundPanel.repaint();
+		
 	}
 
 	public JPanel createFightPanel() {
@@ -111,7 +116,7 @@ public class FightGUI implements ActionListener {
 		totalGUI.add(backgroundPanel);
 
 		chooseUnimon = new ChooseUnimon(self);
-		//totalGUI.add(chooseUnimon);
+	
 		// Panels
 		enemyPanel = new JPanel();
 		enemyPanel.setLayout(null);
@@ -149,11 +154,11 @@ public class FightGUI implements ActionListener {
 		playerPanel.add(playerImagePanel);
 		
 		//Waiting image
-		waitingImagePanel = new ImagePanel(new ImageIcon("pageload.gif").getImage());
-		waitingImagePanel.setSize(100, 100);
-		waitingImagePanel.setLocation(350, 400);
-		waitingImagePanel.setVisible(false);
-		totalGUI.add(waitingImagePanel);
+//		waitingImagePanel = new ImagePanel(new ImageIcon("pageload.gif").getImage());
+//		waitingImagePanel.setSize(100, 100);
+//		waitingImagePanel.setLocation(350, 400);
+//		waitingImagePanel.setVisible(false);
+//		totalGUI.add(waitingImagePanel);
 
 		// The changing Panel
 		textPanel = new JPanel();
@@ -335,20 +340,9 @@ public class FightGUI implements ActionListener {
 	}
 
 	public void createAndShowGUI() {
-
-		JFrame.setDefaultLookAndFeelDecorated(true); // Unified look,
-														// independent of the
-														// OS.
-		JFrame frame = new JFrame("Unimon Game");
-
 		// Create and set up the content pane.
-
-		frame.setContentPane(this.createFightPanel());
-
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(510, 533);
-		frame.setResizable(false); // Only one size!
-		frame.setVisible(true);
+		mainFrame.setContentPane(this.createFightPanel());
+		
 	}
 
 }

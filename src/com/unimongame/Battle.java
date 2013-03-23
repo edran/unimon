@@ -21,13 +21,15 @@ public class Battle {
 	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	private boolean isFinished = false;
 	Double seed = Math.random()*1000;
-	private boolean isTurnOver = false;
+	//private boolean isTurnOver = false;
 	private int playerNum = 0;
 	
 	
 
 	public Battle(Player playerA, Player playerB) {
 		players = new Player[2];
+		players[0] = playerA;
+		players[1] = playerB;
 		guis	= new FightGUI[2];
 		flipCoin(playerA, playerB);
 		attackList = new HashMap<String, Attack>();
@@ -38,8 +40,13 @@ public class Battle {
 	public void run() {
 		pickTeam(players[0]);
 		pickTeam(players[1]);
+		
+		System.out.println("player ones first unimon is :"+players[0].getAliveUnimon());
+		System.out.println("player twos first unimon is :"+players[1].getAliveUnimon());
 		selectUnimon(players[0],players[0].getAliveUnimon().get(0),false);
 		selectUnimon(players[1],players[1].getAliveUnimon().get(0),false);
+		System.out.println("player ones active unimon is :"+players[0].getActiveUnimon());
+		System.out.println("player twos active unimon is :"+players[1].getActiveUnimon());
 		guis[0] = new FightGUI(this,players[0],players[1],seed);
 		guis[1] = new FightGUI(this,players[1],players[0],seed);
 		guis[0].createAndShowGUI();
@@ -124,9 +131,15 @@ public class Battle {
 
 
 	public void selectUnimon(Player p , Unimon uni, boolean endTurn) {
+		System.out.println("select Unimon");
+		if(p == null){
+			System.out.println("p == null");
+		}else if(uni==null){
+			System.out.println("uni == null");
+		}
 		p.setActiveUnimon(uni);
 		if(endTurn){
-			isTurnOver = true;
+			endTurn();
 		}
 	}
 	
@@ -152,30 +165,11 @@ public class Battle {
 	}
 
 	private void endTurn() {
-		//check win conditons
+		checkForWin();
 		turn((++playerNum)%2);
-		
 	}
 
-	private int turnMenu() {
-		System.out.println("0)Attack 1)Change Unimon 2)Use Item");
-		try {
-			int choice = Integer.parseInt(in.readLine());
-			if (choice > 2 || choice < 0) {
-				System.out.println("invalid choice");
-				choice = turnMenu();
-			} else {
-				return choice;
-			}
 
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return -1; // error
-
-	}
 
 	/*
 	 * checks for a winner, ends game if there is.

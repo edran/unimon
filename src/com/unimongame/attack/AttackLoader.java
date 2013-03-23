@@ -21,8 +21,8 @@ public class AttackLoader {
 		map.put("Jagerbomb", new Jagerbomb());
 		map.put("Recursion", new Recursion());
 		map.put("Monads", new Monads());
-		map.put("Time Distortion", new TimeDistortion());
-		map.put("Feline Scratch", new FelineScratch());
+		map.put("TimeDistortion", new TimeDistortion());
+		map.put("FelineScratch", new FelineScratch());
 		map.put("Locgiclessness", new Logiclessness());
 		map.put("Nesting", new Nesting());
 		map.put("Patrolling", new Patrolling());

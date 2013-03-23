@@ -11,7 +11,7 @@ public class UnimonLoader {
 	public static void load(HashMap<String,Unimon> UnimonMap, HashMap<String,Attack>attackMap){
 		//while we have no parser.. dummy Unimon.
 		
-		boolean DEBUG = false;
+		boolean DEBUG = true;
 		
 		ArrayList<Unimon> unimons = new ArrayList<Unimon>();
 		String[][] d = unimonParser.getData();
@@ -24,6 +24,7 @@ public class UnimonLoader {
 
 			if(DEBUG){
 				System.out.println("##");
+				System.out.println(uni.getName());
 				System.out.println(uni.getAttacks().get(0));
 				System.out.println(uni.getAttacks().get(1));
 				System.out.println(uni.getAttacks().get(2));
@@ -34,19 +35,7 @@ public class UnimonLoader {
 			
 			UnimonMap.put(d[i][0],uni);	
 		}
-		/*
-		unimons.add(new Unimon("01","Profmon",new Type(),"he's not very nice.",100,20));
-		unimons.add(new Unimon("02","Lukemon",new Type(),"A beast",100,60));
-		unimons.add(new Unimon("03","Moronmon", new Type(), "Ninjaa",150,39));
-		unimons.add(new Unimon("04","Duhmon", new Type(),"lolololol",90,40));
-		*/
-		/*
-		for(Unimon u : unimons){
-			u.addAttack(new Punch());
-			u.addAttack(new Recursion());
-			map.put(u.getName(), u);
-		}
-		*/
+		
 		
 	}
 	
