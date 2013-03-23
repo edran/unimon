@@ -7,7 +7,7 @@ import java.io.*;
 import java.net.*;
 
 
-public class Net(){
+public class Net{
 	
 	
 	
