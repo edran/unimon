@@ -12,12 +12,15 @@ public class MainTesting {
 
 
 	public static void main(String[] args) {
-		Player a = new Player("ian");
-		//System.out.println();
-		Player b = new Player("bob");
 		
-		Battle bat = new Battle(a,b);
-		bat.run();
+		boolean DEBUG = true;
+		
+			Player a = new Player("ian");
+			//System.out.println();
+			Player b = new Player("bob");
+			Battle bat = new Battle(a,b);
+			bat.run();
+		
 
 }
 }
