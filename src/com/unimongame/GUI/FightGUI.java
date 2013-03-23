@@ -51,9 +51,10 @@ public class FightGUI implements ActionListener {
 		System.out.println("waiting on player");
 		textLabel.setText("Waiting on the other player...");
 		textPanel.setVisible(true);
-		waitingImagePanel.setVisible(true);
-		do {waitingImagePanel.repaint();}
-		while (true);
+//		makes if freeze
+//		waitingImagePanel.setVisible(true);
+//		do {waitingImagePanel.repaint();}
+//		while (true);
 	
 	}
 
