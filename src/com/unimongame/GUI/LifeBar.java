@@ -8,11 +8,11 @@ import java.awt.event.*;
 
 public class LifeBar extends JProgressBar {
 
-	public LifeBar (int max, int value) {
 	
+	public LifeBar (int max, int value) {
 	super(0,max);
+	
 	double ratio = (double) value / (double) max;
-
     setUI(new BasicProgressBarUI() {
         protected Color getSelectionBackground() { return Color.darkGray; }
         protected Color getSelectionForeground() { return Color.darkGray; }
@@ -29,7 +29,15 @@ public class LifeBar extends JProgressBar {
 	this.setString(value +"");
 	this.setStringPainted(true);
 	this.setSize(120,15);
-
+	}
+	
+	
+	public void setValues(int max, int value){
+		setMaximum(max);
+		setString(value+"");
+		setValue(value);
+		
+		
 	}
 
 

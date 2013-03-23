@@ -154,10 +154,9 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener, Actio
             			
             			}
                     
-         	
-                    
+                    lifeBar.setValues(selected.getMaxHp(),selected.getHp());
                     lifeBar.setVisible(true);
-                    hp.setText(""+selected.getMaxHp());
+                    hp.setText("MaxHp: "+selected.getMaxHp()+" HP");
                     hp.setVisible(true);
                     type.setText("type");
                     type.setVisible(true);
