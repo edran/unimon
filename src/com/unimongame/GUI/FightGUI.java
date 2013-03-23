@@ -25,7 +25,7 @@ public class FightGUI implements ActionListener {
 	private JLabel enemyUniName, playerUniName, textLabel, givenUp;
 	private JButton attack1, attack2, attack3, attack4, givingUp, attack, bag,
 			unimons, abandon;
-	private ImagePanel backgroundPanel, enemyImagePanel, playerImagePanel;
+	private ImagePanel backgroundPanel, enemyImagePanel, playerImagePanel, waitingImagePanel;
 	private Image backgroundImage;
 	private JSeparator sep1, sep2;
 	private Battle battle;
@@ -51,12 +51,16 @@ public class FightGUI implements ActionListener {
 		System.out.println("waiting on player");
 		textLabel.setText("Waiting on the other player...");
 		textPanel.setVisible(true);
+		waitingImagePanel.setVisible(true);
+		do {waitingImagePanel.repaint();}
+		while (true);
 	
 	}
 
 	public void turn() {
 		menuPanel.setVisible(true);
 		textLabel.setText("Your turn!");
+		waitingImagePanel.setVisible(false);
 		
 	}
 	
@@ -141,6 +145,13 @@ public class FightGUI implements ActionListener {
 		playerImagePanel.setLocation(0, 0);
 		playerImagePanel.setBackground(new Color(0, 0, 0, 64));
 		playerPanel.add(playerImagePanel);
+		
+		//Waiting image
+		waitingImagePanel = new ImagePanel(new ImageIcon("pageload.gif").getImage());
+		waitingImagePanel.setSize(100, 100);
+		waitingImagePanel.setLocation(350, 400);
+		waitingImagePanel.setVisible(false);
+		totalGUI.add(waitingImagePanel);
 
 		// The changing Panel
 		textPanel = new JPanel();
