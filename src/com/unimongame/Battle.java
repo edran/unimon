@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import com.unimongame.GUI.CombatPanel;
 import com.unimongame.GUI.Effects;
 import com.unimongame.GUI.FightGUI;
+import com.unimongame.GUI.GameWindow;
 import com.unimongame.attack.Attack;
 import com.unimongame.attack.AttackLoader;
 
@@ -20,7 +22,7 @@ public class Battle {
 	private HashMap<String, Unimon> unimonList;
 	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	private boolean isFinished = false;
-	Double seed = Math.random()*1000;
+	
 	//private boolean isTurnOver = false;
 	private int playerNum = 0;
 	
@@ -43,15 +45,17 @@ public class Battle {
 		
 		selectUnimon(players[0],players[0].getAliveUnimon().get(0),false);
 		selectUnimon(players[1],players[1].getAliveUnimon().get(0),false);
-	
-		guis[0] = new FightGUI(this,players[0],players[1],seed);
-		guis[1] = new FightGUI(this,players[1],players[0],seed);
-		guis[0].createAndShowGUI();
-		guis[1].createAndShowGUI();
 		
+		GameWindow window = new GameWindow(players[0],players[1]);
+//	
+//		guis[0] = new FightGUI(this,players[0],players[1],seed);
+//		guis[1] = new FightGUI(this,players[1],players[0],seed);
+//		guis[0].createAndShowGUI();
+//		guis[1].createAndShowGUI();
 		
-		
-		turn(playerNum);
+//		
+//		
+//		turn(playerNum);
 	}
 
 	public void loadUnimon() {
@@ -107,6 +111,7 @@ public class Battle {
 			try {
 				System.out.print("Id > ");
 				String choice = in.readLine();
+				choice = "01";
 				if (choice.equals("q"))
 					break;
 				else if (!unimonList.containsKey(choice)) {

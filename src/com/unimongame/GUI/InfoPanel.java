@@ -2,6 +2,7 @@ package com.unimongame.GUI;
 
 import javax.swing.*;
 
+import com.unimongame.Player;
 import com.unimongame.Unimon;
 
 import java.awt.*;
@@ -28,50 +29,54 @@ public class InfoPanel extends JPanel{
     protected int shadowAlpha = 150;
 	private Unimon currentUni;
 	private LifeBar lifeBar;
-	JLabel label1;
-	JLabel label2;
-	JLabel label3;
+	JLabel nameLabel;
+	JLabel typeLabel;
+	JLabel numUnimonLabel;
+	Player player;
 	
 	
-	public InfoPanel(Unimon uni) {
-		currentUni = uni;
+	public InfoPanel(Player player) {
+		this.player = player;
+		currentUni = player.getActiveUnimon();
         setLayout(null);
         setOpaque(false);
         setSize(180,70);
         setBackground(Color.lightGray);
         setForeground(Color.black);
+        setVisible(true);
         
-         label1 = new JLabel();
-        label1.setSize(130, 20);
-        label1.setLocation(10, 5);
-        label1.setHorizontalAlignment(JLabel.LEFT);
-        this.add(label1);
+        nameLabel = new JLabel();
+        nameLabel.setSize(130, 20);
+        nameLabel.setLocation(10, 5);
+        nameLabel.setHorizontalAlignment(JLabel.LEFT);
+        this.add(nameLabel);
         
-       label2 = new JLabel();
-        label2.setSize(130, 20);
-        label2.setLocation(40, 45);
-        label2.setHorizontalAlignment(JLabel.RIGHT);
-        this.add(label2);
+       typeLabel = new JLabel();
+        typeLabel.setSize(130, 20);
+        typeLabel.setLocation(40, 45);
+        typeLabel.setHorizontalAlignment(JLabel.RIGHT);
+        this.add(typeLabel);
         
-        label3 = new JLabel();
-        label3.setSize(60, 20);
-        label3.setLocation(110, 5);
-        label3.setHorizontalAlignment(JLabel.RIGHT);
-        this.add(label3);
+        numUnimonLabel = new JLabel();
+        numUnimonLabel.setSize(60, 20);
+        numUnimonLabel.setLocation(110, 5);
+        numUnimonLabel.setHorizontalAlignment(JLabel.RIGHT);
+        this.add(numUnimonLabel);
         
         
         lifeBar = new LifeBar(currentUni.getMaxHp(),currentUni.getHp()); 
         lifeBar.setLocation(50,30);
         this.add(lifeBar);
+        
+        updateInfo();
 	}
 	
 	public void updateInfo(){
-		label1.setText(currentUni.getName());
-		label2.setText("Type");
-		label3.setText(currentUni.getMaxHp()+" HP");
+		nameLabel.setText(currentUni.getName());
+		typeLabel.setText("Type");
+		numUnimonLabel.setText(player.numAlive()+"/"+player.getUnimon().size());
 		lifeBar.setValue(currentUni.getHp());
 		lifeBar.repaint();
-		repaint();
 	}
 	
 	public void updateInfo(Unimon uni){

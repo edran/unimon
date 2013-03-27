@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 
+@SuppressWarnings("serial")
 class ImagePanel extends JPanel {
 
   private Image img;
@@ -17,16 +18,27 @@ class ImagePanel extends JPanel {
 
   public ImagePanel(Image img) {
     this.img = img;
-    Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-    setPreferredSize(size);
-    setMinimumSize(size);
-    setMaximumSize(size);
-    setSize(size);
-    setLayout(null);
-    setVisible(true);
   }
 
-  @Override
+  
+  public void updateImg(String imgPath) {
+		this.img = new ImageIcon(img).getImage();
+		setup();
+	}
+
+  private void setup() {
+	    Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+	    setPreferredSize(size);
+	    setMinimumSize(size);
+	    setMaximumSize(size);
+	    setSize(size);
+	    setLayout(null);
+	    setVisible(true);
+	  }
+	
+
+
+@Override
   public void paintComponent(Graphics g) {
     g.drawImage(img, 0, 0, null);
   }

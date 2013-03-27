@@ -10,28 +10,27 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class ChooseUnimon extends JPanel implements ListSelectionListener, ActionListener{
+@SuppressWarnings("serial")
+public class ChooseUnimonPanel extends JPanel implements ListSelectionListener, ActionListener{
 	
 		
 		DefaultListModel<String> model = new DefaultListModel<String>();
 		private JList<String> listAttacks;
 		private JList<String> listUnimons;
-		private JScrollPane area1, area2, area3, area4;
+		private JScrollPane area1, area2, area3;
 		private JTextArea description, descriptionAttack;
 		private LifeBar lifeBar;
 		private JLabel hp, type;
 		private JButton button;
 		private Unimon selected;
-		private int selectedNumber;
 		private Attack selectedAttack;
 		private ArrayList<Unimon> aliveUnimons;
 		private ArrayList<Attack> unimonAttacks = new ArrayList<Attack>();
 		private ArrayList<String> aliveUnimonsNames = new ArrayList<String>();
-		private Battle battle;
+		private FightGUI parent;
 
 		private Player p;
-	public ChooseUnimon(Player p,Battle battle) {
-		this.battle = battle;
+	public ChooseUnimonPanel(Player p, FightGUI parent) {
 		setSize(500,400);
 		setLocation(0,0);
 		this.p = p;
@@ -196,8 +195,8 @@ public class ChooseUnimon extends JPanel implements ListSelectionListener, Actio
 		if (e.getSource() == button) {
 			this.setVisible(false);
 			this.destroy();
-			battle.selectUnimon(p, selected, true);
-			
+			parent.unimonSelected(selected);
+		
 		}
 		
 	}
