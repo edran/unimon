@@ -1,3 +1,4 @@
+package com.unimongame.GUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -5,7 +6,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import com.unimongame.Player;
-import com.unimongame.GUI.FightGUI;
 
 public class AttackMenuPanel extends JPanel implements ActionListener {
 	private JButton attack1, attack2, attack3, attack4;
