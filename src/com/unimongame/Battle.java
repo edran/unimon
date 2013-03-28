@@ -111,7 +111,7 @@ public class Battle {
 			try {
 				System.out.print("Id > ");
 				String choice = in.readLine();
-				choice = "01";
+				//choice = "01";
 				if (choice.equals("q"))
 					break;
 				else if (!unimonList.containsKey(choice)) {

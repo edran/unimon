@@ -59,13 +59,13 @@ public class MenuPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == attack) {
-			parent.showAttacks();
+			parent.showAttacksClicked();
 		} else if (e.getSource() == bag) {
-			parent.showBag();
+			parent.showBagClicked();
 		} else if (e.getSource() == unimons) {
-			parent.chooseUnimon();
+			parent.chooseUnimonClicked();
 		} else if (e.getSource() == abandon) {
-			parent.abandon();
+			parent.abandonClicked();
 		}
 	}
 

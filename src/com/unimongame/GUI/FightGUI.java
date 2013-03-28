@@ -1,6 +1,8 @@
 package com.unimongame.GUI;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -31,7 +33,7 @@ public class FightGUI extends JPanel {
 		this.self = self;
 		this.enemy = enemy;
 		cbPanel = new CombatPanel(self, enemy, seed);
-		chPanel = new ChooseUnimonPanel(enemy, this);
+		chPanel = new ChooseUnimonPanel(self, this);
 
 		// look and feel
 		setSize(500, 500);
@@ -64,7 +66,6 @@ public class FightGUI extends JPanel {
 	}
 
 	private void showCombatPanel() {
-		//remove(cbPanel);
 		remove(chPanel);
 		add(cbPanel);
 		cbPanel.setVisible(true);
@@ -74,7 +75,7 @@ public class FightGUI extends JPanel {
 	
 	private void showChoosePanel(){
 		remove(cbPanel);
-		//remove(chPanel);
+		chPanel.updateValues();
 		add(chPanel);
 		chPanel.setVisible(true);
 		System.out.println("adding chPanel");
@@ -100,27 +101,28 @@ public class FightGUI extends JPanel {
 		menu.setVisible(true);
 	}
 
-	public void abandon() {
-		// TODO Auto-generated method stub
-
+	public void abandonClicked() {
+		showCombatPanel();
+		chPanel.reset();
 	}
 
-	public void chooseUnimon() {
+	public void chooseUnimonClicked() {
+		chPanel.reset();
 		showChoosePanel();
 	}
 
-	public void showBag() {
-		// TODO Auto-generated method stub
-
+	public void showBagClicked() {
+		showCombatPanel();
+		chPanel.reset();
 	}
 
-	public void showAttacks() {
+	public void showAttacksClicked() {
 		showCombatPanel();
+		chPanel.reset();
 	}
 
 	public void unimonSelected(Unimon selected) {
 		System.out.println(selected);
-
 	}
 
 	public void doAttack(Attack attack) {

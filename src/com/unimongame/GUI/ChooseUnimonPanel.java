@@ -2,7 +2,6 @@ package com.unimongame.GUI;
 
 import javax.swing.*;
 import javax.swing.event.*;
-
 import com.unimongame.*;
 import com.unimongame.attack.Attack;
 
@@ -15,55 +14,35 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 		ActionListener {
 
 	DefaultListModel<String> model = new DefaultListModel<String>();
+	DefaultListModel<String> unimonModel = new DefaultListModel<String>();
 	private JList<String> listAttacks;
 	private JList<String> listUnimons;
-	private JScrollPane  area2, area3;
-	private JTextArea description, descriptionAttack;
+	private JTextArea description;
 	private LifeBar lifeBar;
 	private JLabel hp, type;
 	private JButton button;
 	private Unimon selected;
 	private Attack selectedAttack;
-	private ArrayList<Unimon> aliveUnimons;
 	private ArrayList<Attack> unimonAttacks = new ArrayList<Attack>();
-	private ArrayList<String> aliveUnimonsNames = new ArrayList<String>();
 	private FightGUI parent;
 
 	private Player p;
 
 	public ChooseUnimonPanel(Player p, FightGUI parent) {
 		setSize(500, 400);
-		this.setMinimumSize(new Dimension(500,400));
 		setLocation(0, 0);
 		this.p = p;
 		this.parent = parent;
 		setLayout(null);
-		// destroy();
-		init();
 		System.out.println("chooseUnimonPanel constructor");
-	}
-
-	public void init() {
-
-
-		aliveUnimons = p.getAliveUnimon();
-		selected = null;
-		selectedAttack = null;
-
-		for (Unimon uni : aliveUnimons) {
-			aliveUnimonsNames.add(uni.getName());
-			System.out.println(uni.getName());
-		}
-
-		listUnimons = new JList<String>(
-				(String[]) aliveUnimonsNames.toArray(new String[0]));
+	
+		listUnimons = new JList<String>(unimonModel);
 		listUnimons.setFixedCellHeight(20);
 		listUnimons.setFixedCellWidth(150);
 		listUnimons.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listUnimons.addListSelectionListener(this);
 		listUnimons.setSize(150, 300);
-		//listUnimons.setBackground(Color.pink);
-		listUnimons.setLocation(20,50);
+		listUnimons.setLocation(20, 50);
 		add(listUnimons);
 
 		listAttacks = new JList<String>(model);
@@ -73,34 +52,34 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 		listAttacks.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listAttacks.addListSelectionListener(this);
 		listAttacks.setSize(150, 80);
-		//listAttacks.setBackground(Color.green);
 		listAttacks.setLocation(330, 270);
 		this.add(listAttacks);
 
-		description = new JTextArea();
+		description = new JTextArea(
+				"hello asdkjflaksdjf sdkfjlkasjdlfkajsldfkjasl dkfjas dlkfjasldkfjalskdjf asdlfkja sldkfja sldkfj alskdjf laksdjf laksjd flkasjdf laksjd flaksjdf alksdf jalksdf"
+						+ "aslkdfj alskdjf laksjdf alksdjf laksdjf "
+						+ "asldkjf alsdkjflaksdjflkasjdf "
+						+ "aslkdfjal skdjf alskdfj asldkjf"
+						+ "alskdjf laskdjf lasdkjf alskdfj "
+						+ "alskdjf laskdjf lasdkjf alskdfj "
+						+ "alskdjf laskdjf lasdkjf alskdfj "
+						+ "alskdjf laskdjf lasdkjf alskdfj "
+						+ "alskdjf laskdjf lasdkjf alskdfj "
+						+ "alskdjf laskdjf lasdkjf alskdfj "
+						+ "alskdjf laskdjf lasdkjf alskdfj "
+						+ "alskdjf laskdjf lasdkjf alskdfj "
+						+ "alskdjf laskdjf lasdkjf alskdfj "
+						+ "alskdjf laskdjf lasdkjf alskdfj "
+						+ "alskdjf laskdjf lasdkjf alskdfj "
+						
+						+ "laskdjflaskdjf laskdjf;laskdjf l;aksdjf l;aksdjf laksdjf alsdf");
 		description.setEditable(false);
 		description.setLineWrap(true);
 		description.setWrapStyleWord(true);
-		area2 = new JScrollPane(description,
-				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		area2.setSize(290, 200);
-		area2.setLocation(190, 50);
-		area2.setVisible(true);
-		this.add(area2);
-
-		descriptionAttack = new JTextArea();
-		descriptionAttack.setEditable(false);
-		descriptionAttack.setLineWrap(true);
-		descriptionAttack.setWrapStyleWord(true);
-		area3 = new JScrollPane(descriptionAttack,
-				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		area3.setSize(290, 200);
-		area3.setLocation(190, 50);
-		area3.setBackground(Color.blue);
-		area3.setVisible(false);
-		this.add(area3);
+		description.setSize(290, 200);
+		description.setBackground(Color.white);
+		description.setLocation(190, 50);
+		add(description);
 
 		lifeBar = new LifeBar(100, 100);
 		lifeBar.setLocation(190, 270);
@@ -125,28 +104,39 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 		button.addActionListener(this);
 		this.add(button);
 
+		// sets the default selection
+		updateValues();
 	}
 
-	public void destroy() {
-		
-		aliveUnimons.removeAll(aliveUnimons);
-		aliveUnimonsNames.removeAll(aliveUnimonsNames);
-		button.setVisible(false);
-		model.clear();
-		removeAll();
+	public void updateValues(){
+		System.out.println("updating values");
+		System.out.println("model size"+unimonModel.size());
+		for(Unimon uni :p.getAliveUnimon()){
+			unimonModel.add(unimonModel.getSize(), uni.getName());
+		}
+		button.setVisible(true);
+		listUnimons.setSelectedIndex(0);
 
+	}
+	
+	public void reset() {
+		System.out.println("reset");
+		button.setVisible(false);
+		unimonModel.clear();
+		model.clear();
 	}
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-		if (e.getValueIsAdjusting() == false) {
+		if (e.getValueIsAdjusting() == false && listUnimons.getSelectedIndex()>=0) {
+			System.out.println("unimon list value not changing");
 			if (e.getSource() == listUnimons) {
+				System.out.println("unimon list value change");
 				model.clear();
 				int selectedNumber = listUnimons.getSelectedIndex();
-				selected = aliveUnimons.get(selectedNumber);
+				selected = p.getAliveUnimon().get(selectedNumber);
 				description.setText(selected.getDescription());
-				area2.setVisible(true);
-				area3.setVisible(false);
+
 				unimonAttacks = selected.getAttacks();
 
 				for (Attack attack : unimonAttacks) {
@@ -154,7 +144,6 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 					int pos = model.getSize();
 					model.add(pos, attack.getName());
 
-					// System.out.println("for attack : unimonATtakcs not null");
 
 				}
 
@@ -165,21 +154,18 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 				type.setText("type");
 				type.setVisible(true);
 
+			} else if (e.getSource() == listAttacks &&listAttacks.getSelectedIndex()>=0) {
+
+				int i = listAttacks.getSelectedIndex();
+
+				selectedAttack = unimonAttacks.get(i);
+				description.setText(selectedAttack.getDescription());
+				System.out.println("selected Attack = "
+						+ selectedAttack.getName());
 			}
-
-			if (e.getSource() == listAttacks) {
-				for (int i = 0; i < 4; i++) {
-					if (i == listAttacks.getSelectedIndex()) {
-
-						selectedAttack = unimonAttacks.get(i);
-						descriptionAttack.setText(selectedAttack
-								.getDescription());
-						area2.setVisible(false);
-						area3.setVisible(true);
-					} else {
-
-					}
-				}
+			else{
+				System.out.println("source ="+e.getSource().toString());
+		
 			}
 		}
 	}
@@ -187,9 +173,7 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button) {
-			destroy();
 			parent.unimonSelected(selected);
-
 		}
 
 	}
