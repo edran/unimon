@@ -56,23 +56,7 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 		this.add(listAttacks);
 
 		description = new JTextArea(
-				"hello asdkjflaksdjf sdkfjlkasjdlfkajsldfkjasl dkfjas dlkfjasldkfjalskdjf asdlfkja sldkfja sldkfj alskdjf laksdjf laksjd flkasjdf laksjd flaksjdf alksdf jalksdf"
-						+ "aslkdfj alskdjf laksjdf alksdjf laksdjf "
-						+ "asldkjf alsdkjflaksdjflkasjdf "
-						+ "aslkdfjal skdjf alskdfj asldkjf"
-						+ "alskdjf laskdjf lasdkjf alskdfj "
-						+ "alskdjf laskdjf lasdkjf alskdfj "
-						+ "alskdjf laskdjf lasdkjf alskdfj "
-						+ "alskdjf laskdjf lasdkjf alskdfj "
-						+ "alskdjf laskdjf lasdkjf alskdfj "
-						+ "alskdjf laskdjf lasdkjf alskdfj "
-						+ "alskdjf laskdjf lasdkjf alskdfj "
-						+ "alskdjf laskdjf lasdkjf alskdfj "
-						+ "alskdjf laskdjf lasdkjf alskdfj "
-						+ "alskdjf laskdjf lasdkjf alskdfj "
-						+ "alskdjf laskdjf lasdkjf alskdfj "
-						
-						+ "laskdjflaskdjf laskdjf;laskdjf l;aksdjf l;aksdjf laksdjf alsdf");
+				"");
 		description.setEditable(false);
 		description.setLineWrap(true);
 		description.setWrapStyleWord(true);

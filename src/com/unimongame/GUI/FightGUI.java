@@ -23,9 +23,10 @@ public class FightGUI extends JPanel {
 	private JTextField textArea;
 	private JButton attack1, attack2, attack3, attack4, givingUp;
 	private JSeparator sep;
-	private MenuPanel menu = new MenuPanel(this);
 	private Player self;
 	private Player enemy;
+	private MenuPanel menu = new MenuPanel(this);
+	private AttackMenuPanel attackMenu;
 	private int seed = (int) Math.random() * 1000;
 
 	public FightGUI(Player self, Player enemy) {
@@ -34,7 +35,7 @@ public class FightGUI extends JPanel {
 		this.enemy = enemy;
 		cbPanel = new CombatPanel(self, enemy, seed);
 		chPanel = new ChooseUnimonPanel(self, this);
-
+		attackMenu  = new AttackMenuPanel(this, self);
 		// look and feel
 		setSize(500, 500);
 		setLocation(0, 0);
@@ -98,27 +99,43 @@ public class FightGUI extends JPanel {
 	public void showMenu() {
 		remove(menu);
 		add(menu);
-		menu.setVisible(true);
+	}
+	
+	public void showAttacksMenu(){
+		remove(attackMenu);
+		add(attackMenu);
+		attackMenu.setVisible(true);
+		textArea.setVisible(false);
+		
+	}
+	public void hideAttacksMenu(){
+		attackMenu.setVisible(false);
+		textArea.setVisible(true);
 	}
 
 	public void abandonClicked() {
 		showCombatPanel();
 		chPanel.reset();
+		hideAttacksMenu();
 	}
 
 	public void chooseUnimonClicked() {
 		chPanel.reset();
 		showChoosePanel();
+		textArea.setText("Choose a Unimon, this will end your turn!");
+		hideAttacksMenu();
 	}
 
 	public void showBagClicked() {
 		showCombatPanel();
 		chPanel.reset();
+		hideAttacksMenu();
 	}
 
 	public void showAttacksClicked() {
 		showCombatPanel();
 		chPanel.reset();
+		showAttacksMenu();
 	}
 
 	public void unimonSelected(Unimon selected) {

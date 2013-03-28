@@ -1,4 +1,5 @@
 package com.unimongame.GUI;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,6 +16,12 @@ public class AttackMenuPanel extends JPanel implements ActionListener {
 	public AttackMenuPanel(FightGUI parent, Player p) {
 		this.self = p;
 		this.parent = parent;
+		setLayout(null);
+		setSize(300,100);
+		setLocation(0,400);
+		setBackground(Color.pink);
+		
+		System.out.println(self.getName()+" : ");//+self.getActiveUnimon()+" ->"+self.getActiveUnimon().getAttacks().get(0));
 		// Buttons
 		attack1 = new JButton(self.getActiveUnimon().getAttacks().get(0)
 				.getName());
@@ -59,13 +66,13 @@ public class AttackMenuPanel extends JPanel implements ActionListener {
 			 parent.doAttack(self.getActiveUnimon().getAttacks().get(0));
 		
 		 } else if (e.getSource() == attack2) {
-			 parent.doAttack(self.getActiveUnimon().getAttacks().get(0));
+			 parent.doAttack(self.getActiveUnimon().getAttacks().get(1));
 		
 		 } else if (e.getSource() == attack3) {
-			 parent.doAttack(self.getActiveUnimon().getAttacks().get(0));
+			 parent.doAttack(self.getActiveUnimon().getAttacks().get(2));
 		
 		 } else if (e.getSource() == attack4) {
-			 parent.doAttack(self.getActiveUnimon().getAttacks().get(0));
+			 parent.doAttack(self.getActiveUnimon().getAttacks().get(3));
 		 }		
 	}
 
