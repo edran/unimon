@@ -1,4 +1,4 @@
-Unimon
+![Alt text](https://raw.github.com/inf1op/unimon/master/Unimon%20Logo%20%28HQ%29.png "Optional title")
 ======
 A University based battling game.
 
@@ -25,4 +25,31 @@ TODO - Nantas
 TODO - ALL
 - Write MOAR attacks!
 - Write MOAR Unimons!
+- 
+- 
+- 
+-
+
+
+ATTACK TEMPLATE - $attack.java /src/unimongame/attack
+
+package com.unimongame.attack;
+
+import com.unimongame.Unimon;
+
+public class $attack_name extends Attack {
+
+  public $attack_name() {
+		super("$attack_name", "$Attack_description");
+	}
+
+	@Override
+	public void doAttack(Unimon attacker, Unimon target) {
+		target.$attack();
+		$attack();
+
+	}
+
+}
+
 
