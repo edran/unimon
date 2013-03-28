@@ -65,7 +65,6 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 		listUnimons.setLocation(20,50);
 		add(listUnimons);
 
-		model.add(model.size(), "luke");
 		listAttacks = new JList<String>(model);
 		listAttacks.setVisibleRowCount(4);
 		listAttacks.setFixedCellHeight(20);
