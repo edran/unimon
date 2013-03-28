@@ -17,7 +17,7 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 	DefaultListModel<String> model = new DefaultListModel<String>();
 	private JList<String> listAttacks;
 	private JList<String> listUnimons;
-	private JScrollPane sideBarArea, area2, area3;
+	private JScrollPane  area2, area3;
 	private JTextArea description, descriptionAttack;
 	private LifeBar lifeBar;
 	private JLabel hp, type;
@@ -33,6 +33,7 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 
 	public ChooseUnimonPanel(Player p, FightGUI parent) {
 		setSize(500, 400);
+		this.setMinimumSize(new Dimension(500,400));
 		setLocation(0, 0);
 		this.p = p;
 		this.parent = parent;
@@ -127,13 +128,10 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 	}
 
 	public void destroy() {
-		if (aliveUnimons != null) {
-
-		}
+		
 		aliveUnimons.removeAll(aliveUnimons);
 		aliveUnimonsNames.removeAll(aliveUnimonsNames);
 		button.setVisible(false);
-		setVisible(false);
 		model.clear();
 		removeAll();
 

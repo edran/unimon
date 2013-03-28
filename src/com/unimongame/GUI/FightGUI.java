@@ -43,8 +43,6 @@ public class FightGUI extends JPanel {
 		sep = new JSeparator();
 		sep.setSize(500, 2);
 		sep.setLocation(0, 400);
-		sep.setBackground(Color.BLACK);
-		sep.setForeground(Color.BLACK);
 		sep.setVisible(true);
 		add(sep);
 
