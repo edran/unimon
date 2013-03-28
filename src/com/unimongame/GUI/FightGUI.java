@@ -118,13 +118,10 @@ public class FightGUI extends JPanel {
 
 	public void showAttacks() {
 		showCombatPanel();
-		
-		
-		
 	}
 
 	public void unimonSelected(Unimon selected) {
-		
+		System.out.println(selected);
 
 	}
 
