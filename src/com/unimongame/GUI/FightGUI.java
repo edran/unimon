@@ -1,20 +1,15 @@
 package com.unimongame.GUI;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.event.*;
+import java.awt.Color;
 
-import com.unimongame.Battle;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+
 import com.unimongame.Player;
 import com.unimongame.Unimon;
 import com.unimongame.attack.Attack;
-
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.Random;
 
 public class FightGUI extends JPanel {
 
@@ -42,6 +37,7 @@ public class FightGUI extends JPanel {
 		setSize(500, 500);
 		setLocation(0, 0);
 		setLayout(null);
+		setVisible(true);
 
 		// add separator
 		sep = new JSeparator();
@@ -70,11 +66,21 @@ public class FightGUI extends JPanel {
 	}
 
 	private void showCombatPanel() {
-		remove(cbPanel);
+		//remove(cbPanel);
 		remove(chPanel);
 		add(cbPanel);
 		cbPanel.setVisible(true);
 		System.out.println("adding cbPanel");
+		repaint();
+	}
+	
+	private void showChoosePanel(){
+		remove(cbPanel);
+		//remove(chPanel);
+		add(chPanel);
+		chPanel.setVisible(true);
+		System.out.println("adding chPanel");
+		repaint();
 	}
 
 	public void waitOnPlayer() {
@@ -102,8 +108,7 @@ public class FightGUI extends JPanel {
 	}
 
 	public void chooseUnimon() {
-		// TODO Auto-generated method stub
-
+		showChoosePanel();
 	}
 
 	public void showBag() {
@@ -112,17 +117,19 @@ public class FightGUI extends JPanel {
 	}
 
 	public void showAttacks() {
-		// TODO Auto-generated method stub
-
+		showCombatPanel();
+		
+		
+		
 	}
 
 	public void unimonSelected(Unimon selected) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	public void doAttack(Attack attack) {
-		// TODO Auto-generated method stub
+		
 
 	}
 

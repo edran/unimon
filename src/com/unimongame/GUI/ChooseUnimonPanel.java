@@ -37,6 +37,7 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener, 
 		setLayout(null);
 		//destroy();
 		init();
+		System.out.println("chooseUnimonPanel constructor");
 	}
 	
 	public void init()
