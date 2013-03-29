@@ -145,7 +145,7 @@ public class Server {
 	 */ 
 	public static void main(String[] args) {
 		// start server on port 1500 unless a PortNumber is specified 
-		int portNumber = 1234;
+		int portNumber = 1235;
 		Server server = new Server(portNumber);
 		server.start();
 	}
