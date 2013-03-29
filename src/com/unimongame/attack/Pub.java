@@ -10,7 +10,8 @@ public class Pub extends Attack {
 
 	@Override
 	public void doAttack(Unimon attacker, Unimon target) {
-		target.reduceHp(40);
+		target.reduceHp(60);
+		target.hungover();
 		
 	}
 
