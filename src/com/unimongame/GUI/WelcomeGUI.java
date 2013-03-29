@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
 
 import javax.swing.*;
 
@@ -12,41 +14,100 @@ public class WelcomeGUI extends JPanel implements ActionListener{
 	
 	private ImagePanel unimon;
 	private JLabel welcome ,credits, date;
-	private JButton oneComputer, lan ,button;
+	private JButton local, host, join, help;
+	private JTextField hostIP, hostPort, joinIP, joinPort;
 	private GameWindow window;
 	private Image img;
+	private String myIP;
 	
 	public WelcomeGUI(GameWindow window){
 		setLayout(null);
 		setSize(500,500);
 		this.window = window;
 		
+		//My IP
+		try {
+			myIP = Inet4Address.getLocalHost().getHostAddress();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		//ImagePanel
-		img = new ImageIcon("UnimonLogo.png").getImage();
+		img = new ImageIcon("UnimonLogo2.png").getImage();
 		unimon = new ImagePanel(img);
-		unimon.setSize(500,173);
-		unimon.setLocation(0,20);
+		unimon.setSize(450,156);
+		unimon.setLocation(25,20);
 		add(unimon);
 		
 		//JTextArea
 		welcome = new JLabel("Welcome to the unimon game !");
 		welcome.setSize(400, 20);
-		welcome.setLocation(50,unimon.getLocation().y+unimon.getHeight()+10);
+		welcome.setLocation(50,210);
 		welcome.setHorizontalAlignment(0);
 		add(welcome);
 		
-		button = new JButton("Start");
-		button.setSize(100,30);
-		button.setLocation(200,300);
-		button.addActionListener(this);
-		add(button);
+		//Buttons
+		local = new JButton("Play on one computer");
+		local.setSize(250,30);
+		local.setLocation(125,260);
+		local.addActionListener(this);
+		add(local);
+		
+		host = new JButton("Host");
+		host.setSize(90,30);
+		host.setLocation(125,300);
+		host.addActionListener(this);
+		add(host);
+		
+		join = new JButton("Join");
+		join.setSize(90,30);
+		join.setLocation(125,340);
+		join.addActionListener(this);
+		add(join);
+		
+		help = new JButton("Help");
+		help.setSize(250,30);
+		help.setLocation(125,380);
+		help.addActionListener(this);
+		add(help);
+		
+		//JTextField
+		hostIP = new JTextField(myIP, 15);
+		hostIP.setSize(100,30);
+		hostIP.setLocation(225, 300);
+		hostIP.setHorizontalAlignment(0);
+		hostIP.setEditable(false);
+		add(hostIP);
+		
+		hostPort = new JTextField("1234", 5);
+		hostPort.setSize(40,30);
+		hostPort.setLocation(335, 300);
+		hostPort.setHorizontalAlignment(0);
+		hostPort.setEditable(true);
+		add(hostPort);
+		
+		joinIP = new JTextField("", 15);
+		joinIP.setSize(100,30);
+		joinIP.setLocation(225, 340);
+		joinIP.setHorizontalAlignment(0);
+		joinIP.setEditable(true);
+		add(joinIP);
+		
+		joinPort = new JTextField("1234", 5);
+		joinPort.setSize(40,30);
+		joinPort.setLocation(335, 340);
+		joinPort.setHorizontalAlignment(0);
+		joinPort.setEditable(true);
+		add(joinPort);
 		
 		credits = new JLabel("<html><div style=\"width:400px;text-align:center;\">By Caterina Brandani, Basile Henry, " +
-				"Joseph Kennelly,<br>Nantas Nardelli and Luke McAuley</div><html>"
-				);
+				"Joseph Kennelly,<br>Nantas Nardelli and Luke McAuley</div><html>");
+		
 		credits.setSize(500,50);
 		credits.setLocation(0,430);
 		add(credits);
+		
 		date = new JLabel("Inf1-OOP 2013");
 		date.setLocation(200,480);
 		date.setSize(100,20);
@@ -58,7 +119,16 @@ public class WelcomeGUI extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==button){
+		if(e.getSource()==local){
+			window.startClicked();
+
+		} else if(e.getSource()==host){
+			window.startClicked();
+
+		} else if(e.getSource()==join){
+			window.startClicked();
+			
+		} else if(e.getSource()==help){
 			window.startClicked();
 		}
 		
