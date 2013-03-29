@@ -26,6 +26,7 @@ public class GameWindow extends JFrame {
 		super("Unimon Game");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
+		setBattle(battle);
 		showStartScreen();
 		setSize(510, 533);
 		
@@ -72,8 +73,8 @@ public class GameWindow extends JFrame {
 		battle.selectUnimon(playerSelf, uni, true);
 	}
 	
-	public void updateInfo(boolean isNewUnimon){
-		fightGUI.updateInfo(isNewUnimon);
+	public void updateInfo(Player self, Player enemy){
+		fightGUI.updateInfo(self, enemy);
 	}
 	
 	public void showFightGUI(){

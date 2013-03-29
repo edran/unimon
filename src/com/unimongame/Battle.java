@@ -16,7 +16,6 @@ import com.unimongame.attack.AttackLoader;
 
 public class Battle {
 	private Player[] players;
-	private FightGUI[] guis;
 	private Random rand = new Random();
 	private HashMap<String, Attack> attackList;
 	private HashMap<String, Unimon> unimonList;
@@ -34,7 +33,6 @@ public class Battle {
 		windows = new GameWindow[2];
 		players[0] = playerA;
 		players[1] = playerB;
-		guis	= new FightGUI[2];
 		flipCoin(playerA, playerB);
 		attackList = new HashMap<String, Attack>();
 		unimonList = new HashMap<String, Unimon>();
@@ -55,6 +53,7 @@ public class Battle {
 	}
 	
 	public void start(){
+		System.out.println("in start");
 		windows[0].setPlayers(players[0],players[1]);
 		windows[1].setPlayers(players[1],players[0]);
 		windows[0].showFightGUI();
@@ -83,7 +82,7 @@ public class Battle {
 	 * returns 1 if someone wins 0 otherwise.
 	 */
 	private void turn(int playerNumber) {
-		update(false);
+		update();
 		windows[playerNumber].turn();
 		windows[++playerNumber%2].waitOnPlayer();
 		
@@ -145,9 +144,9 @@ public class Battle {
 		}
 	}
 	
-	private void update(boolean newUnimon){
-		windows[0].updateInfo(false);
-		windows[1].updateInfo(false);
+	private void update(){
+		windows[0].updateInfo(players[0],players[1]);
+		windows[1].updateInfo(players[1],players[0]);
 	}
 
 	private void end(Player winner) {
@@ -158,7 +157,7 @@ public class Battle {
 	public void doAttack(Player attacker,Player target ,int attackNum) {
 				System.out.println("attack");
 				attacker.getActiveUnimon().attack(attackNum, target.getActiveUnimon());	
-				update(false);
+				update();
 				
 				
 				System.out.println("isTurnover = true");

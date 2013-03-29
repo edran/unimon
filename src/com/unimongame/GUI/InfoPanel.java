@@ -36,8 +36,6 @@ public class InfoPanel extends JPanel{
 	
 	
 	public InfoPanel(Player player) {
-		this.player = player;
-		currentUni = player.getActiveUnimon();
         setLayout(null);
         setOpaque(false);
         setSize(180,70);
@@ -63,15 +61,19 @@ public class InfoPanel extends JPanel{
         numUnimonLabel.setHorizontalAlignment(JLabel.RIGHT);
         this.add(numUnimonLabel);
         
-        
+        this.player = player;
+        currentUni = player.getActiveUnimon();
         lifeBar = new LifeBar(currentUni.getMaxHp(),currentUni.getHp()); 
         lifeBar.setLocation(50,30);
         this.add(lifeBar);
         
-        updateInfo();
+        updateInfo(player);
 	}
 	
-	public void updateInfo(){
+	public void updateInfo(Player player){
+		this.player = player;
+		currentUni =player.getActiveUnimon();
+		lifeBar.setMaximum(currentUni.getMaxHp());
 		nameLabel.setText(currentUni.getName());
 		typeLabel.setText("Type");
 		numUnimonLabel.setText(player.numAlive()+"/"+player.getUnimon().size());
@@ -79,14 +81,7 @@ public class InfoPanel extends JPanel{
 		lifeBar.repaint();
 	}
 	
-	public void updateInfo(Unimon uni){
-		System.out.println("changing from -"+currentUni.getName()+"to "+uni.getName());
-		currentUni =uni;
-		lifeBar.setMaximum(currentUni.getMaxHp());
-		updateInfo();
-		
-	}
-	
+
   	 @Override
   	 protected void paintComponent(Graphics g) {
   	        super.paintComponent(g);

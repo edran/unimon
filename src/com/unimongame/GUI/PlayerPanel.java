@@ -12,7 +12,7 @@ public class PlayerPanel extends JPanel {
 	public final static Point IMAGE_LOCATOIN = new Point(0,0);
 	public final static Point INFO_LOCATOIN = new Point(280,20);
 	private static final Point PANEL_LOCATION = new Point(0,200);
-	private final Player player;
+	private Player player;
 	ImagePanel imgPanel;
 	InfoPanel infoPanel;
 
@@ -52,13 +52,14 @@ public class PlayerPanel extends JPanel {
 		return INFO_LOCATOIN;
 	}
 	
-	public void updateStats() {
+	public void updateStats(Player player) {
+		this.player = player;
 		changeUnimon();
-		infoPanel.updateInfo();
+		infoPanel.updateInfo(player);
 	}
 
 	public void changeUnimon() {
-		infoPanel.updateInfo(player.getActiveUnimon());
+		infoPanel.updateInfo(player);
 		imgPanel.updateImg(getImagePath());
 	}
 

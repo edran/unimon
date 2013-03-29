@@ -95,8 +95,10 @@ public class FightGUI extends JPanel {
 		showMenu();
 	}
 
-	public void updateInfo(boolean newUnimon) {
-		cbPanel.updateStats();
+	public void updateInfo(Player self,Player enemy) {
+		cbPanel.updateStats(self,enemy);
+		this.self = self;
+		this.enemy = enemy;
 	}
 
 

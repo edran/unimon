@@ -60,9 +60,9 @@ public class CombatPanel extends JPanel {
 		}
 	}
 
-	public void updateStats() {
-		enemyPanel.updateStats();
-		selfPanel.updateStats();
+	public void updateStats(Player self, Player enemy) {
+		enemyPanel.updateStats(enemy);
+		selfPanel.updateStats(self);
 	}
 
 	public void paintComponent(Graphics g) {
