@@ -36,10 +36,7 @@ public class Server {
 		this.sg = sg;
 		// the port
 		this.port = port;
-		// to display hh:mm:ss
-		sdf = new SimpleDateFormat("HH:mm:ss");
-		// ArrayList for the Client list
-		al = new ArrayList<ClientThread>();
+		// to display hh:mm:s
 	}
 	
 	public void start() {
@@ -112,17 +109,7 @@ public class Server {
 	/*
 	 *  to broadcast a message to all Clients
 	 */
-	private synchronized void broadcast(Message message) {
 	
-		for(int i = al.size(); --i >= 0;) {
-			ClientThread ct = al.get(i);
-			// try to write to the Client if it fails remove it from the list
-			if(!ct.sendMsg(message)) {
-				al.remove(i);
-				display("Disconnected Client " + ct.username + " removed from list.");
-			}
-		}
-	}
 
 	// for a client who logoff using the LOGOUT message
 	synchronized void remove(int id) {
