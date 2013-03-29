@@ -1,0 +1,11 @@
+id,name,type,hp,cost,description,attack,attack,attack,attack
+01,a,Professor,200,80,Best professor ever,TimeDistortion,Recursion,Monads,FelineScratch
+02,b,Professor,201,81,Best professor ever,TimeDistortion,Recursion,Monads,FelineScratch
+03,d,Professor,202,82,Best professor ever,TimeDistortion,Recursion,Monads,FelineScratch
+04,e,Professor,203,83,Best professor ever,TimeDistortion,Recursion,Monads,FelineScratch
+05,f,Professor,204,84,Best professor ever,TimeDistortion,Recursion,Monads,FelineScratch
+06,g,Professor,205,85,Best professor ever,TimeDistortion,Recursion,Monads,FelineScratch
+07,h,Professor,206,86,Best professor ever,TimeDistortion,Recursion,Monads,FelineScratch
+08,I,Professor,207,87,Best professor ever,TimeDistortion,Recursion,Monads,FelineScratch
+09,j,Professor,208,88,Best professor ever,TimeDistortion,Recursion,Monads,FelineScratch
+10,k,Professor,209,89,Best professor ever,TimeDistortion,Recursion,Monads,FelineScratch

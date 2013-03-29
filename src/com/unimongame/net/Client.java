@@ -152,7 +152,7 @@ public class Client  {
 	 * In console mode, if an error occurs the program simply stops
 	 * when a GUI id used, the GUI is informed of the disconnection
 	 */
-	public static void main(String[] args) {
+	public static void kd(String[] args) {
 		// default values
 		int portNumber = 1500;
 		String serverAddress = "localhost";
