@@ -61,8 +61,18 @@ public class GameWindow extends JFrame {
 		welcome.setVisible(false);
 	}
 	
-	public void startClicked(){
+	public void startClicked(String name){
 		battle.start();
+	}
+	
+	public void hostClicked(String name, int port){
+		
+		
+	}
+	
+	public void joinClicked(String name, String IP, int port){
+		
+		
 	}
 	
 	public void doAttack(int i){
