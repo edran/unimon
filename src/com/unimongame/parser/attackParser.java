@@ -14,15 +14,15 @@ public class attackParser {
  
   /*
 	 * Get list from attack_list
-	 * id,name,self_damage,self_status,target_damage,target_status
+	 * id,name,description,self_damage,self_status,target_damage,target_status
 	 */
 	
 	
 	public static String[][] getData() {
- 
+		int n = 7;
 		BufferedReader buffer = null;
 		String currentLine;
-		String[][] data = new String[100][6]; //modify accordingly
+		String[][] data = new String[100][n]; //modify accordingly
 		
 		try {
 			
@@ -35,7 +35,7 @@ public class attackParser {
 				i++;
 			}
 			
-			String[][] finalData = new String[i][10];
+			String[][] finalData = new String[i][n];
 			System.arraycopy(data, 0, finalData, 0, i); //makes length usable.
 			return finalData;
 			
@@ -63,7 +63,7 @@ public class attackParser {
 		for (int k = 0; k < data.length; k++){
 			System.out.println(data[k][0] + " = " + data[k][1] + 
 					" " + data[k][2] + " " + data[k][3] + " " +
-					data[k][4] + " " + data[k][5]);
+					data[k][4] + " " + data[k][5] + " " + data[k][6]);
 		}
 		
 	}

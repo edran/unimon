@@ -1,4 +1,4 @@
-id,name,self_damage,self_status,target_damage,target_status
-01,Punch,0,NULL,50,NULL
-02,Recursion,0,NULL,0,confuse
-03,Pizza,50,normal,0,NULL
+id,name,description,self_damage,self_status,target_damage,target_status
+01,Punch,Gives a punch,0,NULL,50,NULL
+02,Recursion,Never stops,0,NULL,0,confuse
+03,Pizza,I'm HUNGRYYY!!1111eleven,50,normal,0,NULL
