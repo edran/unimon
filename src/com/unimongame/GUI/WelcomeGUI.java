@@ -15,7 +15,7 @@ public class WelcomeGUI extends JPanel implements ActionListener{
 	private ImagePanel unimon;
 	private JLabel welcome ,credits, date;
 	private JButton local, host, join, help;
-	private JTextField hostIP, hostPort, joinIP, joinPort;
+	private JTextField name, hostIP, hostPort, joinIP, joinPort;
 	private GameWindow window;
 	private Image img;
 	private String myIP;
@@ -46,9 +46,17 @@ public class WelcomeGUI extends JPanel implements ActionListener{
 		//JTextArea
 		welcome = new JLabel("Welcome to the unimon game !");
 		welcome.setSize(400, 20);
-		welcome.setLocation(50,210);
+		welcome.setLocation(50,190);
 		welcome.setHorizontalAlignment(0);
 		add(welcome);
+		
+		//Name of the player
+		
+		name = new JTextField("Enter your name...");
+		name.setSize(250, 30);
+		name.setLocation(125, 220);
+		name.setHorizontalAlignment(0);
+		add(name);
 		
 		//Buttons
 		local = new JButton("Play on one computer");
