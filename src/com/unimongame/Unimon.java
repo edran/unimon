@@ -10,13 +10,13 @@ public class Unimon implements Cloneable{
 	 * add. A unimon could have longer after multiple attacks;
 	 */
 	
-	private static final int MAX_DISTRACT_TURNS = 3;
-	private static final int MAX_CONFUSE_TURNS  = 5;
-	private static final int MAX_HUNGOVER_TURNS = 3;
-	private int status							=1;
-	private int turnsUntilNotConfused			=0;
-	private int turnsUntilNotDistracted		    =0;
-	private int turnsUntilNotHungover		    =0;
+	private static final int MAX_DISTRACT_TURNS 	= 3;
+	private static final int MAX_CONFUSE_TURNS  	= 5;
+	private static final int MAX_HUNGOVER_TURNS 	= 3;
+	private int status								= 1;
+	private int turnsUntilNotConfused				= 0;
+	private int turnsUntilNotDistracted		    = 0;
+	private int turnsUntilNotHungover			    = 0;
 	private MulitpleTurnAttackList multipleTurnAttacks;
 	private int hp;
 	private int maxHp;
