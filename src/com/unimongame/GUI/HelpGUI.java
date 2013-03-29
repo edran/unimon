@@ -12,6 +12,7 @@ public class HelpGUI extends JPanel implements ActionListener{
 	GameWindow window;
 	
 	public HelpGUI(GameWindow window) {
+		this.window = window;
 		
 		setLayout(null);
 		setSize(500,500);

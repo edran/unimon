@@ -48,16 +48,15 @@ public class GameWindow extends JFrame {
 	}
 	
 	public void showStartScreen(){
+		System.out.println("in showStartScreen");
 		setContentPane(welcome);
 		welcome.setVisible(true);
-		
 		helpGUI.setVisible(false);
 	}
 	
 	public void helpClicked(){
 		setContentPane(helpGUI);
 		helpGUI.setVisible(true);
-		
 		welcome.setVisible(false);
 	}
 	
