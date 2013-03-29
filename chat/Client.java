@@ -132,8 +132,8 @@ public class Client  {
 	 */
 	public static void main(String[] args) {
 		// default values
-		int portNumber = 1234;
-		String serverAddress = "localhost";
+		int portNumber = 1235;
+		String serverAddress = "172.20.154.70";
 		
 
 		// depending of the number of arguments provided we fall through

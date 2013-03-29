@@ -24,7 +24,6 @@ public class GameWindow extends JFrame {
 	
 	public GameWindow(Battle battle){
 		super("Unimon Game");
-		this.battle = battle;
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
 		showStartScreen();
@@ -33,6 +32,10 @@ public class GameWindow extends JFrame {
 		setResizable(false); // Only one size!
 		setVisible(true);
 		
+	}
+	
+	public void setBattle(Battle battle){
+		this.battle = battle;
 	}
 	
 	public void setPlayers(Player self, Player enemy){
