@@ -1,5 +1,6 @@
 package com.unimongame.GUI;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -35,6 +36,10 @@ class ImagePanel extends JPanel {
 	    setLayout(null);
 	    setVisible(true);
 	  }
+  
+  public Dimension getImgSize(){
+	  return new Dimension(img.getWidth(null), img.getHeight(null));
+  }
 	
 
 

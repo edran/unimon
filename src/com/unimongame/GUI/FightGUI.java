@@ -116,6 +116,7 @@ public class FightGUI extends JPanel {
 	public void abandonClicked() {
 		showCombatPanel();
 		chPanel.reset();
+		textArea.setText("Are you sure you want to leave?");
 		hideAttacksMenu();
 	}
 
@@ -129,6 +130,7 @@ public class FightGUI extends JPanel {
 	public void showBagClicked() {
 		showCombatPanel();
 		chPanel.reset();
+		textArea.setText("Choose an Item to use!");
 		hideAttacksMenu();
 	}
 
@@ -138,8 +140,10 @@ public class FightGUI extends JPanel {
 		showAttacksMenu();
 	}
 
+	
+	
 	public void unimonSelected(Unimon selected) {
-		System.out.println(selected);
+		
 	}
 
 	public void doAttack(Attack attack) {

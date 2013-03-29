@@ -20,6 +20,7 @@ public class Battle {
 	private Random rand = new Random();
 	private HashMap<String, Attack> attackList;
 	private HashMap<String, Unimon> unimonList;
+	private GameWindow window;
 	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	private boolean isFinished = false;
 	
@@ -43,19 +44,18 @@ public class Battle {
 		pickTeam(players[0]);
 		pickTeam(players[1]);
 		
+		window = new GameWindow(this);
 		selectUnimon(players[0],players[0].getAliveUnimon().get(0),false);
 		selectUnimon(players[1],players[1].getAliveUnimon().get(0),false);
 		
-		GameWindow window = new GameWindow(players[0],players[1]);
-//	
-//		guis[0] = new FightGUI(this,players[0],players[1],seed);
-//		guis[1] = new FightGUI(this,players[1],players[0],seed);
-//		guis[0].createAndShowGUI();
-//		guis[1].createAndShowGUI();
 		
-//		
-//		
+	
 //		turn(playerNum);
+	}
+	
+	public void start(){
+		window.setPlayers(players[0],players[1]);
+		window.showFightGUI();
 	}
 
 	public void loadUnimon() {
@@ -111,7 +111,7 @@ public class Battle {
 			try {
 				System.out.print("Id > ");
 				String choice = in.readLine();
-				//choice = "01";
+				choice = "01";
 				if (choice.equals("q"))
 					break;
 				else if (!unimonList.containsKey(choice)) {
