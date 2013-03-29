@@ -1,6 +1,7 @@
 package com.unimongame.GUI;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,7 @@ public class WelcomeGUI extends JPanel implements ActionListener{
 	private JLabel welcome ,credits, date;
 	private JButton oneComputer, lan ,button;
 	private GameWindow window;
+	private Image img;
 	
 	public WelcomeGUI(GameWindow window){
 		setLayout(null);
@@ -20,10 +22,10 @@ public class WelcomeGUI extends JPanel implements ActionListener{
 		this.window = window;
 		
 		//ImagePanel
-		unimon = new ImagePanel("UnimonLogo.png");
-		unimon.setBackground(Color.black);
-		unimon.setSize(unimon.getImgSize());
-		unimon.setLocation((getWidth()/2-unimon.getWidth()/2),30);
+		img = new ImageIcon("UnimonLogo.png").getImage();
+		unimon = new ImagePanel(img);
+		unimon.setSize(500,173);
+		unimon.setLocation(0,20);
 		add(unimon);
 		
 		//JTextArea
@@ -33,14 +35,14 @@ public class WelcomeGUI extends JPanel implements ActionListener{
 		welcome.setHorizontalAlignment(0);
 		add(welcome);
 		
-		 button = new JButton("Start");
+		button = new JButton("Start");
 		button.setSize(100,30);
 		button.setLocation(200,300);
 		button.addActionListener(this);
 		add(button);
 		
-		credits = new JLabel("<html><div style=\"width:400px;text-align:center;\">By Caterina Brandani, Basile Henry," +
-				"Joseph Kennelly<br>Nantas Nardelli and Luke McAuley</div><html>"
+		credits = new JLabel("<html><div style=\"width:400px;text-align:center;\">By Caterina Brandani, Basile Henry, " +
+				"Joseph Kennelly,<br>Nantas Nardelli and Luke McAuley</div><html>"
 				);
 		credits.setSize(500,50);
 		credits.setLocation(0,430);
@@ -61,4 +63,5 @@ public class WelcomeGUI extends JPanel implements ActionListener{
 		}
 		
 	}
+		 
 }
