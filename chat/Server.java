@@ -2,6 +2,8 @@ import java.io.*;
 import java.net.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import com.unimongame.MessageType;
+import com.unimongame.Message;
 
 /*
  * The server that can be run both as a console application or a GUI
@@ -105,31 +107,17 @@ public class Server {
 	 * Display an event (not a message) to the console or the GUI
 	 */
 	private void display(String msg) {
-		String time = sdf.format(new Date()) + " " + msg;
-		if(sg == null)
-			System.out.println(time);
-		else
-			sg.appendEvent(time + "\n");
+		System.out.println(msg);
 	}
 	/*
 	 *  to broadcast a message to all Clients
 	 */
-	private synchronized void broadcast(String message) {
-		// add HH:mm:ss and \n to the message
-		String time = sdf.format(new Date());
-		String messageLf = time + " " + message + "\n";
-		// display message on console or GUI
-		if(sg == null)
-			System.out.print(messageLf);
-		else
-			sg.appendRoom(messageLf);     // append in the room window
-		
-		// we loop in reverse order in case we would have to remove a Client
-		// because it has disconnected
+	private synchronized void broadcast(Message message) {
+	
 		for(int i = al.size(); --i >= 0;) {
 			ClientThread ct = al.get(i);
 			// try to write to the Client if it fails remove it from the list
-			if(!ct.writeMsg(messageLf)) {
+			if(!ct.sendMsg(message)) {
 				al.remove(i);
 				display("Disconnected Client " + ct.username + " removed from list.");
 			}
@@ -157,25 +145,7 @@ public class Server {
 	 */ 
 	public static void main(String[] args) {
 		// start server on port 1500 unless a PortNumber is specified 
-		int portNumber = 1500;
-		switch(args.length) {
-			case 1:
-				try {
-					portNumber = Integer.parseInt(args[0]);
-				}
-				catch(Exception e) {
-					System.out.println("Invalid port number.");
-					System.out.println("Usage is: > java Server [portNumber]");
-					return;
-				}
-			case 0:
-				break;
-			default:
-				System.out.println("Usage is: > java Server [portNumber]");
-				return;
-				
-		}
-		// create a server object and start it
+		int portNumber = 1234;
 		Server server = new Server(portNumber);
 		server.start();
 	}
@@ -191,7 +161,7 @@ public class Server {
 		// the Username of the Client
 		String username;
 		// the only type of message a will receive
-		ChatMessage cm;
+		Message messageRecieved;
 		// the date I connect
 		String date;
 
@@ -223,13 +193,14 @@ public class Server {
 		}
 
 		// what will run forever
+		@SuppressWarnings("incomplete-switch")
 		public void run() {
 			// to loop until LOGOUT
 			boolean keepGoing = true;
 			while(keepGoing) {
 				// read a String (which is an object)
 				try {
-					cm = (ChatMessage) sInput.readObject();
+					messageRecieved = (Message) sInput.readObject();
 				}
 				catch (IOException e) {
 					display(username + " Exception reading Streams: " + e);
@@ -238,26 +209,15 @@ public class Server {
 				catch(ClassNotFoundException e2) {
 					break;
 				}
-				// the messaage part of the ChatMessage
-				String message = cm.getMessage();
-
+				
 				// Switch on the type of message receive
-				switch(cm.getType()) {
+				switch(messageRecieved.getMessageType()) {
 
-				case ChatMessage.MESSAGE:
-					broadcast(username + ": " + message);
+				case ATTACK_SELECTED	:
+					System.out.print(messageRecieved.getAttack());
 					break;
-				case ChatMessage.LOGOUT:
-					display(username + " disconnected with a LOGOUT message.");
-					keepGoing = false;
-					break;
-				case ChatMessage.WHOISIN:
-					writeMsg("List of the users connected at " + sdf.format(new Date()) + "\n");
-					// scan al the users connected
-					for(int i = 0; i < al.size(); ++i) {
-						ClientThread ct = al.get(i);
-						writeMsg((i+1) + ") " + ct.username + " since " + ct.date);
-					}
+				case DO_TURN:
+					display(" doturn");
 					break;
 				}
 			}
@@ -287,7 +247,7 @@ public class Server {
 		/*
 		 * Write a String to the Client output stream
 		 */
-		private boolean writeMsg(String msg) {
+		private boolean sendMsg(Message msg) {
 			// if Client is still connected send the message to it
 			if(!socket.isConnected()) {
 				close();

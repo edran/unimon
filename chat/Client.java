@@ -2,6 +2,9 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 
+import com.unimongame.Message;
+import com.unimongame.MessageType;
+
 /*
  * The Client that can be run both as a console or a GUI
  */
@@ -12,34 +15,14 @@ public class Client  {
 	private ObjectOutputStream sOutput;		// to write on the socket
 	private Socket socket;
 
-	// if I use a GUI or not
-	private ClientGUI cg;
-	
-	// the server, the port and the username
 	private String server, username;
 	private int port;
 
-	/*
-	 *  Constructor called by console mode
-	 *  server: the server address
-	 *  port: the port number
-	 *  username: the username
-	 */
-	Client(String server, int port, String username) {
-		// which calls the common constructor with the GUI set to null
-		this(server, port, username, null);
-	}
 
-	/*
-	 * Constructor call when used from a GUI
-	 * in console mode the ClienGUI parameter is null
-	 */
-	Client(String server, int port, String username, ClientGUI cg) {
+
+	Client(String server, int port) {
 		this.server = server;
 		this.port = port;
-		this.username = username;
-		// save if we are in GUI mode or not
-		this.cg = cg;
 	}
 	
 	/*
@@ -91,16 +74,15 @@ public class Client  {
 	 * To send a message to the console or the GUI
 	 */
 	private void display(String msg) {
-		if(cg == null)
-			System.out.println(msg);      // println in console mode
-		else
-			cg.append(msg + "\n");		// append to the ClientGUI JTextArea (or whatever)
+	
+			System.out.println(msg);      
+		
 	}
 	
 	/*
 	 * To send a message to the server
 	 */
-	void sendMessage(ChatMessage msg) {
+	void sendMessage(Message msg) {
 		try {
 			sOutput.writeObject(msg);
 		}
@@ -127,9 +109,7 @@ public class Client  {
 		}
 		catch(Exception e) {} // not much else I can do
 		
-		// inform the GUI
-		if(cg != null)
-			cg.connectionFailed();
+	
 			
 	}
 	/*
@@ -152,64 +132,23 @@ public class Client  {
 	 */
 	public static void main(String[] args) {
 		// default values
-		int portNumber = 1500;
+		int portNumber = 1234;
 		String serverAddress = "localhost";
-		String userName = "Anonymous";
+		
 
 		// depending of the number of arguments provided we fall through
-		switch(args.length) {
-			// > javac Client username portNumber serverAddr
-			case 3:
-				serverAddress = args[2];
-			// > javac Client username portNumber
-			case 2:
-				try {
-					portNumber = Integer.parseInt(args[1]);
-				}
-				catch(Exception e) {
-					System.out.println("Invalid port number.");
-					System.out.println("Usage is: > java Client [username] [portNumber] [serverAddress]");
-					return;
-				}
-			// > javac Client username
-			case 1: 
-				userName = args[0];
-			// > java Client
-			case 0:
-				break;
-			// invalid number of arguments
-			default:
-				System.out.println("Usage is: > java Client [username] [portNumber] {serverAddress]");
-			return;
-		}
+	
 		// create the Client object
-		Client client = new Client(serverAddress, portNumber, userName);
+		Client client = new Client(serverAddress, portNumber);
 		// test if we can start the connection to the Server
 		// if it failed nothing we can do
 		if(!client.start())
 			return;
 		
-		// wait for messages from user
-		Scanner scan = new Scanner(System.in);
-		// loop forever for message from the user
-		while(true) {
-			System.out.print("> ");
-			// read message from user
-			String msg = scan.nextLine();
-			// logout if message is LOGOUT
-			if(msg.equalsIgnoreCase("LOGOUT")) {
-				client.sendMessage(new ChatMessage(ChatMessage.LOGOUT, ""));
-				// break to do the disconnect
-				break;
-			}
-			// message WhoIsIn
-			else if(msg.equalsIgnoreCase("WHOISIN")) {
-				client.sendMessage(new ChatMessage(ChatMessage.WHOISIN, ""));				
-			}
-			else {				// default to ordinary message
-				client.sendMessage(new ChatMessage(ChatMessage.MESSAGE, msg));
-			}
-		}
+		// wait for messages from use
+		Message msg = new Message(MessageType.DO_TURN);
+		client.sendMessage(msg);
+		// loop forever for message from the use
 		// done disconnect
 		client.disconnect();	
 	}
@@ -223,20 +162,11 @@ public class Client  {
 		public void run() {
 			while(true) {
 				try {
-					String msg = (String) sInput.readObject();
-					// if console mode print the message and add back the prompt
-					if(cg == null) {
-						System.out.println(msg);
-						System.out.print("> ");
-					}
-					else {
-						cg.append(msg);
-					}
+					Message msg = (Message) sInput.readObject();
+					System.out.println(msg.getMessageType());
 				}
 				catch(IOException e) {
 					display("Server has close the connection: " + e);
-					if(cg != null) 
-						cg.connectionFailed();
 					break;
 				}
 				// can't happen with a String object but need the catch anyhow

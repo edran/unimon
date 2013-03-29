@@ -30,6 +30,8 @@ public class ChatMessage implements Serializable {
 	String getMessage() {
 		return message;
 	}
+	
+	
 }
 
 
