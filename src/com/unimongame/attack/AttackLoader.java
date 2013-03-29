@@ -30,7 +30,19 @@ public class AttackLoader {
 		map.put("Regexplosion",new Regexplosion());
 		map.put("Salesman",new Salesman());
 		map.put("TreeDrawing",new TreeDrawing());
-
+		map.put("Pub", new Pub());
+		map.put("Rambling", new Rambling());
+		map.put("Sneeze", new Sneeze());
+		map.put("CompileError",new CompileError());
+		map.put("Donism",new Donism());
+		map.put("Horror",new Horror());
+		map.put("Shock",new Shock());
+		map.put("TeachingReschedule",new TeachingReschedule());
+		map.put("TutorialShift",new TutorialShift());
+		map.put("Github",new Github());
+		map.put("Series",new Series());
+		
+		
 	}
 
 }
