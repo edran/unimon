@@ -24,18 +24,20 @@ public class FightGUI extends JPanel {
 	private JButton attack1, attack2, attack3, attack4, givingUp;
 	private JSeparator sep;
 	private Player self;
+	private GameWindow window;
 	private Player enemy;
 	private MenuPanel menu = new MenuPanel(this);
 	private AttackMenuPanel attackMenu;
 	private int seed = (int) Math.random() * 1000;
 
-	public FightGUI(Player self, Player enemy) {
+	public FightGUI(Player self, Player enemy,GameWindow window) {
 		// init variables
 		this.self = self;
 		this.enemy = enemy;
 		cbPanel = new CombatPanel(self, enemy, seed);
 		chPanel = new ChooseUnimonPanel(self, this);
 		attackMenu  = new AttackMenuPanel(this, self);
+		this.window = window;
 		// look and feel
 		setSize(500, 500);
 		setLocation(0, 0);
@@ -62,7 +64,7 @@ public class FightGUI extends JPanel {
 
 		// add
 		showCombatPanel();
-		showMenu();
+		//showMenu();
 
 	}
 
@@ -84,21 +86,27 @@ public class FightGUI extends JPanel {
 	}
 
 	public void waitOnPlayer() {
-
+		textArea.setText("waiting for opponent to make a move");
+		hideMenu();
 	}
 
 	public void turn() {
-
+		textArea.setText("its your turn ! make a move..");
+		showMenu();
 	}
 
 	public void updateInfo(boolean newUnimon) {
-
+		cbPanel.updateStats();
 	}
 
 
 	public void showMenu() {
 		remove(menu);
 		add(menu);
+		menu.setVisible(true);
+	}
+	public void hideMenu(){
+		menu.setVisible(false);
 	}
 	
 	public void showAttacksMenu(){
@@ -143,12 +151,13 @@ public class FightGUI extends JPanel {
 	
 	
 	public void unimonSelected(Unimon selected) {
-		
+		window.changeUnimon(selected);
+		showCombatPanel();
 	}
 
-	public void doAttack(Attack attack) {
-		
-
+	public void doAttack(int i) {
+		window.doAttack(i);
+		hideAttacksMenu();
 	}
 
 }

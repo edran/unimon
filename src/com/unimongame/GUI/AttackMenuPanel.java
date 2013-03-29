@@ -63,16 +63,16 @@ public class AttackMenuPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		 if (e.getSource() == attack1) {
-			 parent.doAttack(self.getActiveUnimon().getAttacks().get(0));
+			 parent.doAttack(0);
 		
 		 } else if (e.getSource() == attack2) {
-			 parent.doAttack(self.getActiveUnimon().getAttacks().get(1));
+			 parent.doAttack(1);
 		
 		 } else if (e.getSource() == attack3) {
-			 parent.doAttack(self.getActiveUnimon().getAttacks().get(2));
+			 parent.doAttack(2);
 		
 		 } else if (e.getSource() == attack4) {
-			 parent.doAttack(self.getActiveUnimon().getAttacks().get(3));
+			 parent.doAttack(3);
 		 }		
 	}
 

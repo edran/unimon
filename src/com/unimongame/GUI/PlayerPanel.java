@@ -53,6 +53,7 @@ public class PlayerPanel extends JPanel {
 	}
 	
 	public void updateStats() {
+		changeUnimon();
 		infoPanel.updateInfo();
 	}
 

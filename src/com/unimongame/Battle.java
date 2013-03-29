@@ -20,7 +20,7 @@ public class Battle {
 	private Random rand = new Random();
 	private HashMap<String, Attack> attackList;
 	private HashMap<String, Unimon> unimonList;
-	private GameWindow window;
+	private GameWindow[] windows;
 	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	private boolean isFinished = false;
 	
@@ -31,6 +31,7 @@ public class Battle {
 
 	public Battle(Player playerA, Player playerB) {
 		players = new Player[2];
+		windows = new GameWindow[2];
 		players[0] = playerA;
 		players[1] = playerB;
 		guis	= new FightGUI[2];
@@ -44,18 +45,21 @@ public class Battle {
 		pickTeam(players[0]);
 		pickTeam(players[1]);
 		
-		window = new GameWindow(this);
+		windows[0] = new GameWindow(this);
+		windows[1]= new GameWindow(this);
 		selectUnimon(players[0],players[0].getAliveUnimon().get(0),false);
 		selectUnimon(players[1],players[1].getAliveUnimon().get(0),false);
 		
 		
 	
-//		turn(playerNum);
 	}
 	
 	public void start(){
-		window.setPlayers(players[0],players[1]);
-		window.showFightGUI();
+		windows[0].setPlayers(players[0],players[1]);
+		windows[1].setPlayers(players[1],players[0]);
+		windows[0].showFightGUI();
+		windows[1].showFightGUI();
+		turn(playerNum);
 	}
 
 	public void loadUnimon() {
@@ -80,8 +84,9 @@ public class Battle {
 	 */
 	private void turn(int playerNumber) {
 		update(false);
-		guis[(playerNumber+1)%2].waitOnPlayer();
-		guis[playerNumber].turn();
+		windows[playerNumber].turn();
+		windows[++playerNumber%2].waitOnPlayer();
+		
 	}
 	
 	
@@ -111,7 +116,7 @@ public class Battle {
 			try {
 				System.out.print("Id > ");
 				String choice = in.readLine();
-				choice = "01";
+				//choice = "01";
 				if (choice.equals("q"))
 					break;
 				else if (!unimonList.containsKey(choice)) {
@@ -135,17 +140,14 @@ public class Battle {
 
 	public void selectUnimon(Player p , Unimon uni, boolean endTurn) {
 		p.setActiveUnimon(uni);
-		if(guis[0]!=null){
-			update(true);
-		}
 		if(endTurn){
 			endTurn();
 		}
 	}
 	
 	private void update(boolean newUnimon){
-		guis[0].updateInfo(newUnimon);
-		guis[1].updateInfo(newUnimon);
+		windows[0].updateInfo(false);
+		windows[1].updateInfo(false);
 	}
 
 	private void end(Player winner) {
@@ -153,9 +155,9 @@ public class Battle {
 		System.out.println(winner.getName() + "is the winner");
 	}
 
-	public void doAttack(Player attacker,Player target ,int AttackNum) {
+	public void doAttack(Player attacker,Player target ,int attackNum) {
 				System.out.println("attack");
-				attacker.getActiveUnimon().attack(AttackNum, target.getActiveUnimon());	
+				attacker.getActiveUnimon().attack(attackNum, target.getActiveUnimon());	
 				update(false);
 				
 				

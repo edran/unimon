@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 
 import com.unimongame.Battle;
 import com.unimongame.Player;
+import com.unimongame.Unimon;
+import com.unimongame.attack.Attack;
 
 
 @SuppressWarnings("serial")
@@ -32,7 +34,7 @@ public class GameWindow extends JFrame {
 	}
 	
 	public void setPlayers(Player self, Player enemy){
-		fightGUI = new FightGUI(self, enemy); 
+		fightGUI = new FightGUI(self, enemy, this); 
 		playerSelf = self;
 		playerEnemy = enemy;
 		
@@ -47,6 +49,18 @@ public class GameWindow extends JFrame {
 		battle.start();
 	}
 	
+	public void doAttack(int i){
+		battle.doAttack(playerSelf,playerEnemy,i);
+	}
+	
+	public void changeUnimon(Unimon uni){
+		battle.selectUnimon(playerSelf, uni, true);
+	}
+	
+	public void updateInfo(boolean isNewUnimon){
+		fightGUI.updateInfo(isNewUnimon);
+	}
+	
 	public void showFightGUI(){
 		setContentPane(fightGUI);
 		this.getContentPane().setSize(500,500);
@@ -54,5 +68,13 @@ public class GameWindow extends JFrame {
 		welcome.setVisible(false);
 		fightGUI.setVisible(true);
 		repaint();
+	}
+
+	public void turn() {
+		fightGUI.turn();
+	}
+	
+	public void waitOnPlayer(){
+		fightGUI.waitOnPlayer();
 	}
 }
