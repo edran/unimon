@@ -15,6 +15,8 @@ public class GameWindow extends JFrame {
 	private Player playerSelf;
 	private Player playerEnemy;
 	private Battle battle;
+	private HelpGUI helpGUI = new HelpGUI(this);
+	
 	static{
 		JFrame.setDefaultLookAndFeelDecorated(true);
 	}
@@ -37,12 +39,22 @@ public class GameWindow extends JFrame {
 		fightGUI = new FightGUI(self, enemy, this); 
 		playerSelf = self;
 		playerEnemy = enemy;
+		this.setTitle("Unimon Game: " + self.getName());
 		
 	}
 	
 	public void showStartScreen(){
 		setContentPane(welcome);
 		welcome.setVisible(true);
+		
+		helpGUI.setVisible(false);
+	}
+	
+	public void helpClicked(){
+		setContentPane(helpGUI);
+		helpGUI.setVisible(true);
+		
+		welcome.setVisible(false);
 	}
 	
 	public void startClicked(){

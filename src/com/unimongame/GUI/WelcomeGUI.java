@@ -19,10 +19,13 @@ public class WelcomeGUI extends JPanel implements ActionListener{
 	private GameWindow window;
 	private Image img;
 	private String myIP;
+	private HelpGUI helpGUI;
 	
 	public WelcomeGUI(GameWindow window){
 		setLayout(null);
 		setSize(500,500);
+		setLocation(0,23);
+		setVisible(true);
 		this.window = window;
 		
 		//My IP
@@ -123,15 +126,14 @@ public class WelcomeGUI extends JPanel implements ActionListener{
 			window.startClicked();
 
 		} else if(e.getSource()==host){
-			window.startClicked();
+		
 
 		} else if(e.getSource()==join){
-			window.startClicked();
+		
 			
 		} else if(e.getSource()==help){
-			window.startClicked();
+			window.helpClicked();
 		}
-		
 	}
 		 
 }
