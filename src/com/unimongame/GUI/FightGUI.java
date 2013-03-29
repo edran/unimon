@@ -40,7 +40,7 @@ public class FightGUI extends JPanel {
 		this.window = window;
 		// look and feel
 		setSize(500, 500);
-		setLocation(0, 0);
+		setLocation(0,23);
 		setLayout(null);
 		setVisible(true);
 
