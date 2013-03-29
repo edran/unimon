@@ -100,8 +100,8 @@ public class Unimon implements Cloneable{
 	}
 
 	/*
-	 * confused unimon do damaged to themselves CONFUSE_PERCENTAGE of the time.
-	 * confuses the unimon between 1 and MAX_SLEEP_TURNS
+	 * Confused unimon do damaged to themselves CONFUSE_PERCENTAGE of the time.
+	 * Confuses the unimon between 1 and MAX_SLEEP_TURNS
 	 */
 	public void confuse(){
 		status *= 7;
@@ -109,8 +109,8 @@ public class Unimon implements Cloneable{
 	}
 
 	/*
-	 * distracted unimon distracted unimon don't attack DISTRACT_PERCENTAGE of the time.
-	 * distract the unimon for between 1 and MAX_DISTRACT_TURNS
+	 * Distracted unimon distracted unimon don't attack DISTRACT_PERCENTAGE of the time.
+	 * Distract the unimon for between 1 and MAX_DISTRACT_TURNS
 	 */
 	public void distract(int turns){
 		status *=3;
@@ -119,7 +119,7 @@ public class Unimon implements Cloneable{
 
 
 	/*
-	 * sleeping unimon are immobilised
+	 * Sleeping unimon are immobilised
 	 * sleep 
 	 */
 	public void hungover(){
@@ -153,7 +153,6 @@ public class Unimon implements Cloneable{
 	public void attack(int attackPosition, Unimon target){
 		attacks.get(attackPosition).doAttack(this, target);
 	}
-
 
 	/*
 	 * Adds an attack to the unimon.

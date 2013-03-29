@@ -25,7 +25,12 @@ public abstract class Attack{
 	}
 	
 	/*
-	 * Must be overloaded by each attack subclass
+	 * TO DO
+	 * 
+	 * DONE
+	 * Creation
+	 * 42
+	 * 
 	 */
 	
 	public abstract void doAttack(Unimon attacker, Unimon target);
