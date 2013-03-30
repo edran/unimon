@@ -8,7 +8,9 @@ import java.awt.event.ActionListener;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.swing.*;
@@ -19,10 +21,12 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 	private JLabel welcome, credits, date;
 	private JButton local, host, join, help;
 	private JLabel enterName;
-	private JTextField name, hostIP, hostPort, joinIP, joinPort;
+	private JTextField name, hostPort, joinIP, joinPort;
+	private JComboBox hostIP;
 	private GameWindow window;
 	private Image img;
-	private String myIP, username;
+	private ArrayList<String> myIP = new ArrayList<String>();
+	private String username;
 	private HelpGUI helpGUI;
 
 	public WelcomeGUI(GameWindow window) {
@@ -36,15 +40,21 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 
 		
 		// My IP
-		try {
-			myIP = Inet4Address.getLocalHost().getHostAddress();
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			myIP = Inet4Address.getLocalHost().getHostAddress();
+//		} catch (UnknownHostException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
-		/*
-		Enumeration e=NetworkInterface.getNetworkInterfaces();
+		
+		Enumeration e = null;
+		try {
+			e = NetworkInterface.getNetworkInterfaces();
+		} catch (SocketException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
         while(e.hasMoreElements())
         {
             NetworkInterface n=(NetworkInterface) e.nextElement();
@@ -52,11 +62,10 @@ public class WelcomeGUI extends JPanel implements ActionListener {
             while(ee.hasMoreElements())
             {
                 InetAddress i = (InetAddress) ee.nextElement();
-                System.out.println(i.getHostAddress()); //prints IP
-                System.out.println(i.getHostName()); //prints name of the connection
+                myIP.add(i.getHostAddress());
             }
         }
-*/
+
 		// ImagePanel
 		img = new ImageIcon("resources/img/UnimonLogo2.png").getImage();
 		unimon = new ImagePanel(img);
@@ -74,74 +83,74 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 		// Name of the player
 		enterName = new JLabel("Name:");
 		enterName.setSize(50, 30);
-		enterName.setLocation(125, 220);
+		enterName.setLocation(100, 220);
 		add(enterName);
 
 		name = new JTextField("");
-		name.setSize(190, 30);
-		name.setLocation(185, 220);
+		name.setSize(240, 30);
+		name.setLocation(160, 220);
 		name.setHorizontalAlignment(SwingConstants.LEFT);
 		add(name);
 
 		// Buttons
 		local = new JButton("Play on one computer");
-		local.setSize(250, 30);
-		local.setLocation(125, 260);
+		local.setSize(300, 30);
+		local.setLocation(100, 260);
 		local.addActionListener(this);
 		add(local);
 
 		host = new JButton("Host");
 		host.setSize(90, 30);
-		host.setLocation(125, 300);
+		host.setLocation(100, 300);
 		host.addActionListener(this);
 		add(host);
 
 		join = new JButton("Join");
 		join.setSize(90, 30);
-		join.setLocation(125, 340);
+		join.setLocation(100, 340);
 		join.addActionListener(this);
 		add(join);
 
 		help = new JButton("Help");
-		help.setSize(250, 30);
-		help.setLocation(125, 380);
+		help.setSize(300, 30);
+		help.setLocation(100, 380);
 		help.addActionListener(this);
 		add(help);
 
 		// JTextField
-		hostIP = new JTextField(myIP, 15);
-		hostIP.setSize(100, 30);
-		hostIP.setLocation(225, 300);
-		hostIP.setHorizontalAlignment(0);
+		hostIP = new JComboBox(myIP.toArray());
+		hostIP.setSize(150, 30);
+		hostIP.setLocation(200, 300);
 		hostIP.setEditable(false);
 		add(hostIP);
 
 		hostPort = new JTextField("1234", 5);
 		hostPort.setSize(40, 30);
-		hostPort.setLocation(335, 300);
+		hostPort.setLocation(360, 300);
 		hostPort.setHorizontalAlignment(0);
 		hostPort.setEditable(true);
 		add(hostPort);
 
 		joinIP = new JTextField("", 15);
-		joinIP.setSize(100, 30);
-		joinIP.setLocation(225, 340);
+		joinIP.setSize(150, 30);
+		joinIP.setLocation(200, 340);
 		joinIP.setHorizontalAlignment(0);
 		joinIP.setEditable(true);
 		add(joinIP);
 
 		joinPort = new JTextField("1234", 5);
 		joinPort.setSize(40, 30);
-		joinPort.setLocation(335, 340);
+		joinPort.setLocation(360, 340);
 		joinPort.setHorizontalAlignment(0);
 		joinPort.setEditable(true);
 		add(joinPort);
 
 		credits = new JLabel(
-				"<html><div style=\"width:400px;text-align:center;\">By Caterina Brandani, Basile Henry, "
+				"<html><div style=\"text-align:center;\">By Caterina Brandani, Basile Henry, "
 						+ "Joseph Kennelly,<br>Nantas Nardelli and Luke McAuley</div><html>");
 		credits.setSize(500, 50);
 		credits.setLocation(0, 430);
+		credits.setHorizontalAlignment(0);
 		add(credits);
 
 		date = new JLabel("Inf1-OOP - 2013., GPLv2");
