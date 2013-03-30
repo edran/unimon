@@ -16,8 +16,9 @@ import com.unimongame.item.*;
 
 public class itemLoader {
 	
-	public static void load(HashMap<String,Item> map){
+	public static HashMap<String, Item> load(){
 		
+		HashMap<String,Item> map = new HashMap<String,Item>();
 		boolean DEBUG = false;
 		
 		String[][] d = itemParser.getData();
@@ -25,8 +26,10 @@ public class itemLoader {
 			
 			//name is key, because of item_list
 			map.put(d[i][0],new Item(Integer.parseInt(d[i][0]),d[i][1],d[i][2],Integer.parseInt(d[i][3]),
-					Integer.parseInt(d[i][4])));
+					Integer.parseInt(d[i][4]), Integer.parseInt(d[i][5])));
 			
 		}
+		return map;
 	}
+	
 }

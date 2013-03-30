@@ -1,3 +1,4 @@
-id,name,description,effect,status
-01,Pint of Beer,Do you really need a description for this?,50,5
-02,Bacon,Hated by grass-eaters,100,0
+id,name,description,cost,effect,status
+01,Pint of Beer,Do you really need a description for this?,20,50,5
+02,Bacon,Hated by grass-eaters,50,100,0
+03,Pizza,I'm HUNGRYYY!!,50,0,0
