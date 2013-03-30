@@ -18,6 +18,7 @@ public class Server implements Runnable {
 	private Socket[] sockets = new Socket[2];
 	private ObjectInputStream[] inputStreams = new ObjectInputStream[2];
 	private ObjectOutputStream[] outputStreams = new ObjectOutputStream[2];
+	private ListenerFromClient[] listeners = new ListenerFromClient[2]; 
 
 	public Server(int port) {
 
@@ -42,6 +43,8 @@ public class Server implements Runnable {
 					outputStreams[numConnect-1].writeObject(new Message(MessageType.WAITING_FOR_CONNECTION));
 				}
 				inputStreams[numConnect-1] = new ObjectInputStream(socket.getInputStream());
+				listeners[numConnect-1] = new ListenerFromClient(numConnect-1);
+				new Thread(listeners[numConnect-1]).start();
 				System.out.println("wait message sent to"+socket.getInetAddress());
 			} catch (IOException e) {
 				System.out.println("Accept failed: on" + port);
@@ -62,6 +65,46 @@ public class Server implements Runnable {
 	public void run() {
 		getConnections();
 	}
+	
+	class ListenerFromClient extends Thread {
+
+		public int clientNumber;
+		ListenerFromClient(int num){
+			this.clientNumber = num;
+		}
+		public void run() {
+			while (true) {
+				try {
+					Message msg = (Message) inputStreams[clientNumber].readObject();
+					switch(msg.getMessageType()){
+					case ATTACK_SELECTED:
+						
+						break;
+					case DO_TURN:
+						break;
+					case ITEM_USED:
+						break;
+					case LEAVING_GAME:
+						break;
+					case SENDING_PLAYERS:
+						break;
+					case UNIMON_CHANGED:
+						break;
+					default:
+						break;
+					}
+				} catch (IOException e) {
+					System.out.println("Client has close the connection: " + e);
+					break;
+				}
+				// can't happen with a String object but need the catch anyhow
+				catch (ClassNotFoundException e2) {
+				}
+			}
+		}
+	}
+
+	
 
 
 }
