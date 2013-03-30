@@ -133,7 +133,7 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 
 	}
 
-	private String getUsername() {
+	public String getUsername() {
 		if (name.getText().trim().equals("")) {
 			username = "Anonymous";
 		} else {
@@ -142,7 +142,7 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 		return username;
 	}
 
-	private int getHostPort() {
+	public int getHostPort() {
 
 		int x = 1234;
 
@@ -155,7 +155,7 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 		return x;
 	}
 	
-	private int getJoinPort() {
+	public int getJoinPort() {
 
 		int x = 1234;
 
@@ -168,7 +168,7 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 		return x;
 	}
 		
-	private String getJoinIP() {
+	public String getJoinIP() {
 		
 		return joinIP.getText().trim();		
 	}
