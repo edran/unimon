@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 		ActionListener {
 
-	DefaultListModel<String> model = new DefaultListModel<String>();
-	DefaultListModel<String> unimonModel = new DefaultListModel<String>();
+	private DefaultListModel<String> model = new DefaultListModel<String>();
+	private DefaultListModel<String> unimonModel = new DefaultListModel<String>();
 	private JList<String> listAttacks;
 	private JList<String> listUnimons;
 	private JTextArea description;

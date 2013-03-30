@@ -10,6 +10,7 @@ import com.unimongame.attack.Attack;
 
 @SuppressWarnings("serial")
 public class GameWindow extends JFrame {
+	
 	private FightGUI fightGUI;
 	private WelcomeGUI welcome = new WelcomeGUI(this);
 	private Player playerSelf;
@@ -66,11 +67,10 @@ public class GameWindow extends JFrame {
 	
 	public void hostClicked(String name, int port){
 		
-		
 	}
 	
 	public void joinClicked(String name, String IP, int port){
-	
+		
 	}
 	
 	public void doAttack(int i){
