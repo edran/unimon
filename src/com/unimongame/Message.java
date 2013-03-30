@@ -8,7 +8,7 @@ import com.unimongame.attack.Attack;
 public class Message implements Serializable{
  static final long serialVersionUID = 8031047968928742647L;
  private final MessageType mType;
- private String attack;
+ private int attack;
  private String item;
  private String turnMessage;
  private Player[] players = new Player[2];
@@ -31,10 +31,10 @@ public class Message implements Serializable{
  public Player[] getPlayers(){
 	 return players;
  }
- public void setAttack(String attack){
+ public void setAttack(int attack){
 	 this.attack = attack;
  }
- public String getAttack(){
+ public int getAttack(){
 	 return attack;
  }
  

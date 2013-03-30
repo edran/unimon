@@ -87,8 +87,14 @@ public class Client implements Runnable {
 	}
 
 	public void doAttack(Player playerSelf, Player playerEnemy, int i) {
-		// TODO Auto-generated method stub
-
+		Message msg = new Message(MessageType.ATTACK_SELECTED);
+		msg.setAttack(i);
+		try {
+			sOutput.writeObject(msg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void selectUnimon(Player playerSelf, Unimon uni, boolean b) {
@@ -117,6 +123,13 @@ public class Client implements Runnable {
 						System.out.println("client - run : msg .getPlayers(0)"+msg.getPlayers()[0].getName());
 						System.out.println("client - run : msg.getPlayers(0) "+msg.getPlayers()[1].getName());
 						setUpFightGUI(msg.getPlayers());
+						break;
+					case DO_TURN:
+						gameWindow.turn();
+						break;
+					case WAIT:
+						gameWindow.waitOnPlayer();
+						break;
 					default:
 						break;//starts chain which launch fightGUI
 					}

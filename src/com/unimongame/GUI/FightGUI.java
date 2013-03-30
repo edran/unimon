@@ -161,8 +161,9 @@ public class FightGUI extends JPanel {
 	}
 
 	public void doAttack(int i) {
-		window.doAttack(i);
+		hideMenu();
 		hideAttacksMenu();
+		window.doAttack(i);
 	}
 
 }

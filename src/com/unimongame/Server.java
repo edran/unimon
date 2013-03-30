@@ -19,7 +19,7 @@ public class Server implements Runnable {
 	private ObjectInputStream[] inputStreams = new ObjectInputStream[2];
 	private int playersReceived = 0;
 	private ObjectOutputStream[] outputStreams = new ObjectOutputStream[2];
-	private ListenerFromClient[] listeners = new ListenerFromClient[2]; 
+	private ListenerFromClient[] listeners = new ListenerFromClient[2];
 
 	public Server(int port) {
 		players[0] = null;
@@ -32,46 +32,49 @@ public class Server implements Runnable {
 		}
 	}
 
-	private void getConnections(){
+	private void getConnections() {
 		while (numConnect < 2) {
 			try {
-				
+
 				Socket socket = serverSocket.accept();
 				numConnect++;
-				sockets[numConnect-1] = socket;
-				outputStreams[numConnect-1] = new ObjectOutputStream(socket.getOutputStream());
-				if(numConnect == 1){
-					outputStreams[numConnect-1].writeObject(new Message(MessageType.WAITING_FOR_CONNECTION));
+				sockets[numConnect - 1] = socket;
+				outputStreams[numConnect - 1] = new ObjectOutputStream(
+						socket.getOutputStream());
+				if (numConnect == 1) {
+					outputStreams[numConnect - 1].writeObject(new Message(
+							MessageType.WAITING_FOR_CONNECTION));
 				}
-				inputStreams[numConnect-1] = new ObjectInputStream(socket.getInputStream());
-				listeners[numConnect-1] = new ListenerFromClient(numConnect-1);
-				new Thread(listeners[numConnect-1]).start();
-				
+				inputStreams[numConnect - 1] = new ObjectInputStream(
+						socket.getInputStream());
+				listeners[numConnect - 1] = new ListenerFromClient(
+						numConnect - 1);
+				new Thread(listeners[numConnect - 1]).start();
+
 			} catch (IOException e) {
 				System.out.println("Accept failed: on" + port);
 			}
 		}
-		for(ObjectOutputStream out : outputStreams){
+		for (ObjectOutputStream out : outputStreams) {
 			try {
 				out.writeObject(new Message(MessageType.CONNECTED_SEND_PLAYERS));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
-		
+
 	}
-	
+
 	public void run() {
 		getConnections();
 	}
-	
-	
-	public void sendBothPlayers(){
+
+	public void sendBothPlayers() {
 		System.out.println("server : sendBothPlayers()");
-		//for connection 0;
-		
+		// for connection 0;
+
 		Message msg = new Message(MessageType.SENDING_PLAYERS);
 		Player[] tempArr = new Player[2];
 		tempArr[0] = players[0];
@@ -94,24 +97,27 @@ public class Server implements Runnable {
 			e.printStackTrace();
 		}
 
-		
-		
-		
 	}
-	
+
+	public void doAttack(int attackNumber, int clientNumber){
+		battle.doAttack(players[clientNumber],players[((clientNumber +1)%2)],attackNumber);
+	}
 	class ListenerFromClient extends Thread {
 
 		public int clientNumber;
-		ListenerFromClient(int num){
+
+		ListenerFromClient(int num) {
 			this.clientNumber = num;
 		}
+
 		public void run() {
 			while (true) {
 				try {
-					Message msg = (Message) inputStreams[clientNumber].readObject();
-					switch(msg.getMessageType()){
+					Message msg = (Message) inputStreams[clientNumber]
+							.readObject();
+					switch (msg.getMessageType()) {
 					case ATTACK_SELECTED:
-						
+						doAttack(msg.getAttack(),clientNumber);
 						break;
 					case DO_TURN:
 						break;
@@ -120,9 +126,10 @@ public class Server implements Runnable {
 					case LEAVING_GAME:
 						break;
 					case SENDING_PLAYERS:
-						System.out.println("server : clientNumber"+clientNumber);
-						setPlayers(msg.getPlayers()[0],clientNumber);
-						
+						System.out.println("server : clientNumber"
+								+ clientNumber);
+						setPlayers(msg.getPlayers()[0], clientNumber);
+
 						break;
 					case UNIMON_CHANGED:
 						break;
@@ -140,22 +147,42 @@ public class Server implements Runnable {
 		}
 	}
 
-	
-	
 	private void setPlayers(Player player, int num) {
 		this.players[num] = player;
-		System.out.println("setting"+player.getName());
-		if(playersReceived++==1){
-		System.out.println("players in setPlayers server"+players[0].getName()+"  "+players[1].getName());
-		assert(false);
-		battle = new Battle(players[0],players[1],this);
-		System.out.println("battle created");
-		sendBothPlayers();
+		System.out.println("setting" + player.getName());
+		if (playersReceived++ == 1) {
+			System.out.println("players in setPlayers server"
+					+ players[0].getName() + "  " + players[1].getName());
+			battle = new Battle(players[0], players[1], this);
+			System.out.println("battle created");
+			sendBothPlayers();
+			battle.start();
 		}
-		
 	}
 
-	
+	public void update(String infoString) {
 
+	}
+
+	public void startTurn(int playerNumber) {
+		System.out.println("server : startTurn()");
+		// for connection 0;
+
+		Message msg = new Message(MessageType.DO_TURN);
+		try {
+			outputStreams[playerNumber].writeObject(msg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		msg = new Message(MessageType.WAIT);
+		try {
+			outputStreams[(playerNumber + 1) % 2].writeObject(msg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 }

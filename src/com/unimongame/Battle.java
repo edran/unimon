@@ -17,10 +17,6 @@ import com.unimongame.attack.AttackLoader;
 public class Battle {
 	private Player[] players;
 	private Random rand = new Random();
-	private HashMap<String, Attack> attackList;
-	private HashMap<String, Unimon> unimonList;
-	private GameWindow[] windows;
-	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	private boolean isFinished = false;
 	private Server server;
 	
@@ -43,10 +39,6 @@ public class Battle {
 		turn(playerNum);
 	}
 
-	public void loadUnimon() {
-		UnimonLoader.load();
-	}
-
 	private void flipCoin(){
 		playerNum  = Math.abs(rand.nextInt())%2;
 	}
@@ -55,84 +47,31 @@ public class Battle {
 	 * returns 1 if someone wins 0 otherwise.
 	 */
 	private void turn(int playerNumber) {
-		update();
-		windows[playerNumber].turn();
-		windows[++playerNumber%2].waitOnPlayer();
-		
+		server.startTurn(playerNumber);
 	}
 	
 	
-
-
-	private void pickTeam(Player p) {
-		while (p.getMoney() > 0) {
-			ArrayList<Unimon> available = new ArrayList<Unimon>();
-			for (Unimon u : unimonList.values()) {
-				if (u.getCost() <= p.getMoney()) {
-					available.add(u);
-				}
-			}
-			if (available.size() == 0)
-				break;
-			System.out.println("## " + p.getName()
-					+ " select a unimon - you have $" + p.getMoney()
-					+ " credits left");
-			System.out.println("## Type q to finish selection early");
-			if (available.size() == 0)
-				break;
-			for (Unimon u : available) {
-				System.out.println(u.getId() + " - " + u.getName() + " :: $" + u.getCost() + " '"
-						+ u.getDescription() + "'");
-			}
-
-			try {
-				System.out.print("Id > ");
-				String choice = in.readLine();
-				//choice = "01";
-				if (choice.equals("q"))
-					break;
-				else if (!unimonList.containsKey(choice)) {
-					System.out.println("invalid choice try again..");
-					continue;
-				} else {
-					// creates a shallow clone of a unimon and adds it to the
-					// players list.
-					Unimon chosen = unimonList.get(choice);
-					p.addUnimon((Unimon) chosen.clone());
-					p.spendMoney(chosen.getCost());
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-
-	}
-
-
-
 	public void selectUnimon(Player p , Unimon uni, boolean endTurn) {
 		p.setActiveUnimon(uni);
+		server.update(p.getName()+" changed his Unimon to : "+uni.getName());
 		if(endTurn){
 			endTurn();
+		}else{
+			turn(playerNum);
 		}
 	}
 	
-	private void update(){
-		windows[0].updateInfo(players[0],players[1]);
-		windows[1].updateInfo(players[1],players[0]);
-	}
-
 	private void end(Player winner) {
 		isFinished = true;
 		System.out.println(winner.getName() + "is the winner");
 	}
 
 	public void doAttack(Player attacker,Player target ,int attackNum) {
-				System.out.println("attack");
+				System.out.println(attacker.getActiveUnimon()+" used "+attacker.getActiveUnimon().getAttacks().get(attackNum)
+						+"on "+target.getActiveUnimon().getName());
 				attacker.getActiveUnimon().attack(attackNum, target.getActiveUnimon());	
-				update();
-				
-				
+				server.update(attacker.getActiveUnimon()+" used "+attacker.getActiveUnimon().getAttacks().get(attackNum)
+						+"on "+target.getActiveUnimon().getName());
 				System.out.println("isTurnover = true");
 				endTurn();
 	}
