@@ -22,7 +22,7 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 	private JButton local, host, join, help;
 	private JLabel enterName;
 	private JTextField name, hostPort, joinIP, joinPort;
-	private JComboBox hostIP;
+	private JComboBox<String> hostIP;
 	private GameWindow window;
 	private Image img;
 	private ArrayList<String> myIP = new ArrayList<String>();
@@ -123,6 +123,9 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 		hostIP.setSize(150, 30);
 		hostIP.setLocation(200, 300);
 		hostIP.setEditable(false);
+		DefaultListCellRenderer look = new DefaultListCellRenderer();
+		look.setHorizontalAlignment(0);
+		hostIP.setRenderer(look);
 		add(hostIP);
 
 		hostPort = new JTextField("1234", 5);
