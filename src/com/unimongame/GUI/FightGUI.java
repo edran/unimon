@@ -17,7 +17,6 @@ public class FightGUI extends JPanel {
 
 	// Declaring a few variables
 
-	private static final int NUM_BACKGROUND_IMAGES = 4;
 	private CombatPanel cbPanel;
 	private ChooseUnimonPanel chPanel;
 	private JTextField textArea;
@@ -28,7 +27,7 @@ public class FightGUI extends JPanel {
 	private Player enemy;
 	private MenuPanel menu = new MenuPanel(this);
 	private AttackMenuPanel attackMenu;
-	private int seed = (int) Math.random() * 1000;
+	private int seed = (int) (Math.random() * 1000);
 
 	public FightGUI(Player self, Player enemy,GameWindow window) {
 		// init variables

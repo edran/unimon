@@ -29,6 +29,7 @@ public class CombatPanel extends JPanel {
 
 	public CombatPanel(Player self, Player enemy, int backgroundNumSeed) {
 
+		System.out.println("Seed: " + backgroundNumSeed);
 		backgroundImage = new ImageIcon("resources/img/background/Background" + backgroundNumSeed%NUM_BACKGROUNDS + ".png").getImage();
 		setLayout(null);
 		setSize(500, 400);
