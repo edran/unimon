@@ -40,7 +40,7 @@ public class Client  {
 		}
 		
 		String msg = "Connection accepted " + socket.getInetAddress() + ":" + socket.getPort();
-		display(msg);
+		System.out.println(msg);
 	
 		/* Creating both Data Stream */
 		try

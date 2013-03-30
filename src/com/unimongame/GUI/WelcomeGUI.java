@@ -178,7 +178,7 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==local){
 			
-			window.startClicked(getUsername());
+			//window.startClicked(getUsername());
 
 		} else if(e.getSource()==host){
 		

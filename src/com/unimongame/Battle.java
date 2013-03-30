@@ -43,8 +43,8 @@ public class Battle {
 		pickTeam(players[0]);
 		pickTeam(players[1]);
 		
-		windows[0] = new GameWindow(this);
-		windows[1]= new GameWindow(this);
+		//windows[0] = new GameWindow(this);
+		//windows[1]= new GameWindow(this);
 		selectUnimon(players[0],players[0].getAliveUnimon().get(0),false);
 		selectUnimon(players[1],players[1].getAliveUnimon().get(0),false);
 		

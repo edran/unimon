@@ -15,11 +15,11 @@ public class MainTesting {
 		
 		boolean DEBUG = true;
 		
-			Player a = new Player("ian");
-			//System.out.println();
-			Player b = new Player("bob");
-			Battle bat = new Battle(a,b);
-			bat.run();
+		UnimonGame game1 = new UnimonGame();
+		UnimonGame game2 = new UnimonGame();
+	
+		game1.run();
+		game2.run();
 		
 
 }

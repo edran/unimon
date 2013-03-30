@@ -2,7 +2,8 @@ package com.unimongame.GUI;
 
 import javax.swing.JFrame;
 
-import com.unimongame.Battle;
+import com.unimongame.*;
+import com.unimongame.Client;
 import com.unimongame.Player;
 import com.unimongame.Unimon;
 import com.unimongame.attack.Attack;
@@ -14,29 +15,30 @@ public class GameWindow extends JFrame {
 	private WelcomeGUI welcome = new WelcomeGUI(this);
 	private Player playerSelf;
 	private Player playerEnemy;
-	private Battle battle;
+	private Client client;
 	private HelpGUI helpGUI = new HelpGUI(this);
+	private UnimonGame main;
 	
 	static{
 		JFrame.setDefaultLookAndFeelDecorated(true);
 	}
 	
 	
-	public GameWindow(Battle battle){
+	public GameWindow(UnimonGame main){
 		super("Unimon Game");
+		this.main = main;
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
-		setBattle(battle);
+		
 		showStartScreen();
 		setSize(510, 533);
 		
 		setResizable(false); // Only one size!
 		setVisible(true);
-		
 	}
 	
-	public void setBattle(Battle battle){
-		this.battle = battle;
+	public void setClient(Client client){
+		this.client = client;
 	}
 	
 	public void setPlayers(Player self, Player enemy){
@@ -60,25 +62,22 @@ public class GameWindow extends JFrame {
 		welcome.setVisible(false);
 	}
 	
-	public void startClicked(String name){
-		battle.start();
-	}
+	
 	
 	public void hostClicked(String name, int port){
-		
-		
+		main.host(new Player(name),port);
 	}
 	
 	public void joinClicked(String name, String IP, int port){
-	
+		main.join(new Player(name),IP,port);
 	}
 	
 	public void doAttack(int i){
-		battle.doAttack(playerSelf,playerEnemy,i);
+		client.doAttack(playerSelf,playerEnemy,i);
 	}
 	
 	public void changeUnimon(Unimon uni){
-		battle.selectUnimon(playerSelf, uni, true);
+		client.selectUnimon(playerSelf, uni, true);
 	}
 	
 	public void updateInfo(Player self, Player enemy){
