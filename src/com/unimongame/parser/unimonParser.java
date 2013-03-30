@@ -28,7 +28,7 @@ public class unimonParser {
 		
 		try {
 			
-			buffer = new BufferedReader(new FileReader("unimon_list"));
+			buffer = new BufferedReader(new FileReader("resources/lists/unimon_list"));
 			currentLine = buffer.readLine(); //First line
 			int i = 0;
 			

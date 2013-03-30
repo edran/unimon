@@ -10,46 +10,26 @@ A University based battling game.
 - Professor
 
 TODO - Basile
-- Finish GUI
-- Write the Menu
-- Finish bag
+- Finish GUI (Well, this is for everyone)
 
 TODO - Luke
-- Linking the GUI and making the 1 Computer version
 - MOAR randomness!
 
 TODO - Nantas
-- Write down the methods for the LAN
-- Linking the methods with the Text based version.
+- Type class (?)
+- Fixing the IP.
+
 
 TODO - ALL
 - Write MOAR attacks!
 - Write MOAR Unimons!
-- 
-- 
-- 
--
+- Polish
+- Help.
 
 
-ATTACK TEMPLATE - $attack.java /src/unimongame/attack
 
-package com.unimongame.attack;
-
-import com.unimongame.Unimon;
-
-public class $attack_name extends Attack {
-
-  public $attack_name() {
-		super("$attack_name", "$Attack_description");
-	}
-
-	@Override
-	public void doAttack(Unimon attacker, Unimon target) {
-		target.$attack();
-		$attack();
-
-	}
-
-}
+=====
+LISTS
+To modify the data, modify the *_list files!
 
 
