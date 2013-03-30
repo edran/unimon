@@ -16,7 +16,7 @@ import com.unimongame.item.*;
 
 public class itemLoader {
 	
-	public static void load(){
+	public static HashMap<String, Item> load(){
 		
 		HashMap<String,Item> map = new HashMap<String,Item>();
 		boolean DEBUG = false;
@@ -29,5 +29,7 @@ public class itemLoader {
 					Integer.parseInt(d[i][4]), Integer.parseInt(d[i][5])));
 			
 		}
+		return map;
 	}
+	
 }
