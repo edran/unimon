@@ -29,7 +29,7 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 	private Player p;
 
 	public PickTeamPanel(Player p, FightGUI parent) {
-		setSize(500, 400);
+		setSize(500, 500);
 		setLocation(0, 0);
 		this.p = p;
 		this.parent = parent;
