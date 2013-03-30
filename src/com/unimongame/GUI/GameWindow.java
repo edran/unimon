@@ -70,8 +70,7 @@ public class GameWindow extends JFrame {
 	}
 	
 	public void joinClicked(String name, String IP, int port){
-		
-		
+	
 	}
 	
 	public void doAttack(int i){

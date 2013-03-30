@@ -1,6 +1,7 @@
 package com.unimongame;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import com.unimongame.attack.Attack;
 
@@ -10,6 +11,7 @@ public class Message implements Serializable{
  private String attack;
  private String item;
  private String turnMessage;
+ private ArrayList<Player> players = new ArrayList<Player>();
 // numbers are the position of unimon in players AliveUnimon list
  private int UnimonSelected; 
  private int itemUsedOn;
@@ -23,6 +25,12 @@ public class Message implements Serializable{
 	return mType; 
  }
  
+ public void setPlayers(ArrayList<Player> players){
+	 this.players = players;
+ }
+ public ArrayList<Player> getPlayers(){
+	 return players;
+ }
  public void setAttack(String attack){
 	 this.attack = attack;
  }
