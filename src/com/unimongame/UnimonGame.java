@@ -22,7 +22,7 @@ public class UnimonGame {
 		
 		System.out.println("starting server");
 		
-		join(player,"localhost",port);
+		//join(player,"localhost",port);
 	}
 
 	public void join(Player player, String iP, int port) {

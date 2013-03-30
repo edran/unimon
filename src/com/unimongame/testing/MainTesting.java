@@ -16,10 +16,10 @@ public class MainTesting {
 		boolean DEBUG = true;
 		
 		UnimonGame game1 = new UnimonGame();
-		UnimonGame game2 = new UnimonGame();
+		
 	
 		game1.run();
-		game2.run();
+		
 		
 
 }
