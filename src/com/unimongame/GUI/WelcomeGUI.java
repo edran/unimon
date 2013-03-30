@@ -6,7 +6,10 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.UnknownHostException;
+import java.util.Enumeration;
 
 import javax.swing.*;
 
@@ -31,6 +34,7 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 
 		this.requestFocus();
 
+		
 		// My IP
 		try {
 			myIP = Inet4Address.getLocalHost().getHostAddress();
@@ -38,7 +42,21 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
+		/*
+		Enumeration e=NetworkInterface.getNetworkInterfaces();
+        while(e.hasMoreElements())
+        {
+            NetworkInterface n=(NetworkInterface) e.nextElement();
+            Enumeration ee = n.getInetAddresses();
+            while(ee.hasMoreElements())
+            {
+                InetAddress i = (InetAddress) ee.nextElement();
+                System.out.println(i.getHostAddress()); //prints IP
+                System.out.println(i.getHostName()); //prints name of the connection
+            }
+        }
+*/
 		// ImagePanel
 		img = new ImageIcon("resources/img/UnimonLogo2.png").getImage();
 		unimon = new ImagePanel(img);
