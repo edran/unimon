@@ -11,7 +11,8 @@ public class Player implements Serializable {
 	private ArrayList<Unimon> unimonList;
 	private String name;
 	private Unimon activeUnimon;
-	private int money = 100; //Let's start with this, shall we?
+	private int startMoney = 200;
+	private int money = startMoney; //Let's start with this, shall we?
 	
 	//constructor
 	public Player(String name){
@@ -79,5 +80,9 @@ public class Player implements Serializable {
 	
 	public void spendMoney(int x){
 		money-=x;
+	}
+	
+	public void restoreMoney() {
+		money = startMoney;
 	}
 }
