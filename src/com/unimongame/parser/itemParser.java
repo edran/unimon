@@ -27,7 +27,7 @@ public class itemParser {
 		
 		try {
 			
-			buffer = new BufferedReader(new FileReader("attack_list"));
+			buffer = new BufferedReader(new FileReader("item_list"));
 			currentLine = buffer.readLine(); //$value line
 			int i = 0;
 			
