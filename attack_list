@@ -2,6 +2,6 @@ id,name,description,self_damage,self_status,target_damage,target_status
 01,Punch,Gives a punch,0,0,-50,0
 02,Recursion,Never stops,0,0,0,7
 03,Pizza,I'm HUNGRYYY!!,50,0,0,0
-04,Time Distortion,Fifty infinite minutes,0,0,0,7
+04,TimeDistortion,Fifty infinite minutes,0,0,0,7
 05,Monads,Adds complexity and makes the unimon feeling like a boss,30,0,0,0
 06,FelineScratch,Throw a CATNULLEXCEPTION,0,0,-50,0

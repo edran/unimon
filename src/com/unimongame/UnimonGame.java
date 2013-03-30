@@ -23,6 +23,7 @@ public class UnimonGame {
 		System.out.println("starting server");
 		
 		join("localhost",port);
+		window.showTeamPicker();
 	}
 
 	public void join(String iP, int port) {

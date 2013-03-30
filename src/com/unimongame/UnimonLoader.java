@@ -12,7 +12,7 @@ public class UnimonLoader {
 		HashMap<String,Unimon> unimonMap = new HashMap<String, Unimon>();
 		HashMap<String, Attack> attackMap = new HashMap<String, Attack>();
 		AttackLoader.load(attackMap);
-		boolean DEBUG = false;
+		boolean DEBUG = true;
 		String[][] d = unimonParser.getData();
 		for (int i = 0; i < d.length; i++){
 			Unimon uni = new Unimon(d[i][0],d[i][1],null,d[i][5],Integer.parseInt(d[i][3]),Integer.parseInt(d[i][4]));
@@ -23,6 +23,8 @@ public class UnimonLoader {
 
 			if(DEBUG){
 				System.out.println("##");
+				System.out.println(d[i][6]);
+				System.out.println(attackMap.get("TimeDistortion"));
 				System.out.println(uni.getName());
 				System.out.println(uni.getAttacks().get(0));
 				System.out.println(uni.getAttacks().get(1));

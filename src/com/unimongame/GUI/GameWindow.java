@@ -74,15 +74,15 @@ public class GameWindow extends JFrame {
 	
 	
 	public void hostClicked(String name, int port){
-		main.host(port);
 		playerSelf = new Player(name);
 		pickTeamPanel = new PickTeamPanel(this,playerSelf);
+		main.host(port);
  	}
 	
 	public void joinClicked(String name, String IP, int port){
-		main.join(IP,port);
 		playerSelf = new Player(name);
 		pickTeamPanel = new PickTeamPanel(this,playerSelf);
+		main.join(IP,port);
 	}
 	
 	
