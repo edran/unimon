@@ -8,8 +8,10 @@ import com.unimongame.attack.*;
 
 public class UnimonLoader {
 	
-	public static void load(HashMap<String,Unimon> UnimonMap, HashMap<String,Attack>attackMap){
-		
+	public static HashMap<String,Unimon> load(){
+		HashMap<String,Unimon> unimonMap = new HashMap<String, Unimon>();
+		HashMap<String, Attack> attackMap = new HashMap<String, Attack>();
+		AttackLoader.load(attackMap);
 		boolean DEBUG = false;
 		String[][] d = unimonParser.getData();
 		for (int i = 0; i < d.length; i++){
@@ -30,8 +32,10 @@ public class UnimonLoader {
 
 			}
 			
-			UnimonMap.put(d[i][0],uni);	
+			unimonMap.put(d[i][0],uni);	//id is key
+			
 		}
+		return unimonMap;
 		
 		
 	}
