@@ -11,7 +11,7 @@ public class Shock extends Attack {
 	@Override
 	public void doAttack(Unimon attacker, Unimon target) {
 		target.reduceHp(30);
-		target.distract(1);
+		target.distract();
 		
 	}
 

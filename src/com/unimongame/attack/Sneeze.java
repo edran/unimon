@@ -11,7 +11,7 @@ public class Sneeze extends Attack {
 	@Override
 	public void doAttack(Unimon attacker, Unimon target) {
 		target.reduceHp(5);
-		target.distract(1);
+		target.distract();
 	
 	}
 

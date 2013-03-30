@@ -11,7 +11,7 @@ public class TimeDistortion extends Attack {
 	@Override
 	public void doAttack(Unimon attacker, Unimon target) {
 		target.confuse();
-		target.distract(2);
+		target.distract();
 
 	}
 
