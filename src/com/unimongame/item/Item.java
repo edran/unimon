@@ -3,16 +3,16 @@ package com.unimongame.item;
 		private int 	id;
 		private String name;
 		private String description;
-		private int	Effect;
-		private int	Status;
+		private int	effect;
+		private int	status;
 
-		public Item(int id, String name, String description, int Effect, int Status){
+		public Item(int id, String name, String description, int effect, int status){
 
 			this.id = id;
 			this.name = name;
 			this.description = description;
-			this.Effect = Effect;
-			this.Status = Status;
+			this.effect = effect;
+			this.status = status;
 
 		}
 
@@ -44,11 +44,11 @@ package com.unimongame.item;
 		}
 
 		public int getEffect(){
-			return Effect;
+			return effect;
 		}
 
 		public int getStatus(){ 		//TODO: decide whether we want int or string
-			return Status;
+			return status;
 		}
 
 		public String toString(){
