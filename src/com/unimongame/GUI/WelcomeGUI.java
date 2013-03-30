@@ -62,7 +62,8 @@ public class WelcomeGUI extends JPanel implements ActionListener {
             while(ee.hasMoreElements())
             {
                 InetAddress i = (InetAddress) ee.nextElement();
-                myIP.add(i.getHostAddress());
+                if (i instanceof Inet4Address) myIP.add(i.getHostAddress());
+                
             }
         }
 
