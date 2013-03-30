@@ -11,8 +11,6 @@ public class UnimonLoader {
 	public static void load(HashMap<String,Unimon> UnimonMap, HashMap<String,Attack>attackMap){
 		
 		boolean DEBUG = false;
-		
-		ArrayList<Unimon> unimons = new ArrayList<Unimon>();
 		String[][] d = unimonParser.getData();
 		for (int i = 0; i < d.length; i++){
 			Unimon uni = new Unimon(d[i][0],d[i][1],null,d[i][5],Integer.parseInt(d[i][3]),Integer.parseInt(d[i][4]));

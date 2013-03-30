@@ -6,44 +6,47 @@ package com.unimongame.attack;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.unimongame.Unimon;
 import com.unimongame.attack.*;
+import com.unimongame.parser.attackParser;
 
-/**
- * TO DO, copied from UnimonLoader
- * WE NEED A PARSER.
+/*
+ * Get list from attack_list
+ * id,name,description,self_damage,self_status,target_damage,target_status
  */
 
 public class AttackLoader {
-
+	
 	public static void load(HashMap<String,Attack> map){
 		//while we have no parser.. dummy Unimon.
-		map.put("Punch",new Punch());
-		map.put("Jagerbomb", new Jagerbomb());
-		map.put("Recursion", new Recursion());
-		map.put("Monads", new Monads());
-		map.put("TimeDistortion", new TimeDistortion());
-		map.put("FelineScratch", new FelineScratch());
-		map.put("Locgiclessness", new Logiclessness());
-		map.put("Nesting", new Nesting());
-		map.put("Patrolling", new Patrolling());
-		map.put("Ploymorphism", new Polymorphism());
-		map.put("Regexplosion",new Regexplosion());
-		map.put("Salesman",new Salesman());
-		map.put("TreeDrawing",new TreeDrawing());
-		map.put("Pub", new Pub());
-		map.put("Rambling", new Rambling());
-		map.put("Sneeze", new Sneeze());
-		map.put("CompileError",new CompileError());
-		map.put("Donism",new Donism());
-		map.put("Horror",new Horror());
-		map.put("Shock",new Shock());
-		map.put("TeachingReschedule",new TeachingReschedule());
-		map.put("TutorialShift",new TutorialShift());
-		map.put("Github",new Github());
-		map.put("Series",new Series());
+		
+		boolean DEBUG = false;
+		
+		String[][] d = attackParser.getData();
+		for (int i = 0; i < d.length; i++){
+			
+			map.put(d[i][1],new Attack(Integer.parseInt(d[i][0]),d[i][1],d[i][2],Integer.parseInt(d[i][3]),
+					Integer.parseInt(d[i][4]),Integer.parseInt(d[i][5]),Integer.parseInt(d[i][6])));
+			
+
+			/*if(DEBUG){
+				System.out.println("##");
+				System.out.println(uni.getName());
+				System.out.println(uni.getAttacks().get(0));
+				System.out.println(uni.getAttacks().get(1));
+				System.out.println(uni.getAttacks().get(2));
+				System.out.println(uni.getAttacks().get(3));
+				System.out.println("##");
+
+			}
+			*/
+			//UnimonMap.put(d[i][0],uni);	
+		}
 		
 		
 	}
+	
+
+
 
 }
-
