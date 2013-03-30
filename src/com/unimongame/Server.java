@@ -113,6 +113,7 @@ public class Server implements Runnable {
 		System.out.println("setting"+player.getName());
 		if(players[0]!=null&&players[1]!=null){
 		battle = new Battle(players[0],players[1],this);
+		System.out.println("battle created");
 		}
 		
 	}

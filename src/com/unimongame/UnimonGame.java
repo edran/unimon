@@ -23,13 +23,15 @@ public class UnimonGame {
 		System.out.println("starting server");
 		
 		join("localhost",port);
-		window.showTeamPicker();
+		
 	}
 
 	public void join(String iP, int port) {
 		client = new Client(iP, port,window);
 		clientThread = new Thread(client);
 		clientThread.start();
+		window.setClient(client);
+		window.showTeamPicker();
 	}
 	
 	

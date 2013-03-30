@@ -116,7 +116,7 @@ public class GameWindow extends JFrame {
 	}
 	
 	public void teamPicked(Player p){
-		client.SetPlayer(p);
 		isTeamPicked = true;
+		client.SetPlayer(p);
 	}
 }

@@ -1,8 +1,14 @@
 package com.unimongame.attack;
 
+import java.io.Serializable;
+
 import com.unimongame.Unimon;
 
-public class MultipleTurnAttack {
+public class MultipleTurnAttack implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2662780983073504696L;
 	private int remainingTurns;
 	private Unimon attacker;
 	private Unimon target;

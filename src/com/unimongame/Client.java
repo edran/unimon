@@ -34,6 +34,7 @@ public class Client implements Runnable {
 	public void run() {
 		try {
 			socket = new Socket(server, port);
+			gameWindow.setTitle("Unimon Game - Hosted On"+socket.getInetAddress());
 			socketSetup = true;
 			System.out.println("socket setup");
 		}
@@ -108,7 +109,7 @@ public class Client implements Runnable {
 						break;
 					case CONNECTED_SEND_PLAYERS:
 						System.out.println("send player");
-						
+						sendPlayer();
 						break;
 					default:
 						break;
