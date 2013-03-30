@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 import com.unimongame.*;
 import com.unimongame.attack.Attack;
+import com.unimongame.item.Item;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -15,6 +16,9 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 
 	private DefaultListModel<String> model = new DefaultListModel<String>();
 	private DefaultListModel<String> unimonModel = new DefaultListModel<String>();
+	private DefaultListModel<String> teamModel = new DefaultListModel<String>();
+	private DefaultListModel<String> itemsModel = new DefaultListModel<String>();
+	
 	private JList<String> listAttacks, listUnimons, listTeam, listItems;
 	private JTextArea description;
 	private LifeBar lifeBar;
@@ -25,7 +29,7 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 	private ArrayList<Attack> unimonAttacks = new ArrayList<Attack>();
 	private ArrayList<Unimon> unimons = (ArrayList<Unimon>) UnimonLoader.load().values();
 	private ArrayList<Unimon> team = new ArrayList<Unimon>();
-
+	private ArrayList<Item> items = (ArrayList<Item>) ItemLoader.load().values();
 	private Player p;
 	private GameWindow window;
 
@@ -45,7 +49,9 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 		listUnimons.addListSelectionListener(this);
 		listUnimons.setSize(150, 180);
 		listUnimons.setLocation(20, 50);
-		add(listUnimons);
+		JScrollPane listUnimonsArea = new JScrollPane(listUnimons, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		add(listUnimonsArea);
 
 		listAttacks = new JList<String>(model);
 		listAttacks.setVisibleRowCount(4);
@@ -57,12 +63,23 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 		listAttacks.setLocation(330, 270);
 		this.add(listAttacks);
 
-		listTeam = new JList<String>(unimonModel);
+		listTeam = new JList<String>(teamModel);
 		listTeam.setFixedCellHeight(20);
 		listTeam.setFixedCellWidth(150);
 		listTeam.setSize(150, 100);
 		listTeam.setLocation(20, 400);
-		add(listTeam);
+		JScrollPane listTeamArea = new JScrollPane(listTeam, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		add(listTeamArea);
+	
+		listItems = new JList<String>(itemsModel);
+		listItems.setFixedCellHeight(20);
+		listItems.setFixedCellWidth(150);
+		listItems.setSize(150, 100);
+		listItems.setLocation(20, 400);
+		JScrollPane listItemsArea = new JScrollPane(listItems, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		add(listItemsArea);
 		
 		//Descriptions
 		description = new JTextArea("");
@@ -119,6 +136,15 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 		for(Unimon uni : unimons){
 			unimonModel.add(unimonModel.getSize(), uni.getCost() + " | " + uni.getName());
 		}
+		
+		for(Unimon uni : team) {
+			teamModel.add(teamModel.getSize(), (teamModel.getSize()+1) + ": " + uni.getName());
+		}
+		
+		for(Item item : items) {
+			itemsModel.add(itemsModel.getSize(), (itemsModel.getSize()+1) + ": " + item.getName());
+		}
+		
 		button.setVisible(true);
 		listUnimons.setSelectedIndex(0);
 
