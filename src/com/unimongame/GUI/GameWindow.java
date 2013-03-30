@@ -6,10 +6,9 @@ import javax.swing.JLabel;
 import com.unimongame.*;
 import com.unimongame.attack.Attack;
 
-
 @SuppressWarnings("serial")
 public class GameWindow extends JFrame {
-	
+
 	private FightGUI fightGUI;
 	private WelcomeGUI welcome = new WelcomeGUI(this);
 	private Player playerSelf;
@@ -19,88 +18,86 @@ public class GameWindow extends JFrame {
 	private HelpGUI helpGUI = new HelpGUI(this);
 	private UnimonGame main;
 	public boolean isTeamPicked = false;
-	
-	static{
+
+	static {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 	}
-	
-	
-	public GameWindow(UnimonGame main){
+
+	public GameWindow(UnimonGame main) {
 		super("Unimon Game");
 		this.main = main;
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
-		
+
 		showStartScreen();
 		setSize(510, 533);
-		
+
 		setResizable(false); // Only one size!
 		setVisible(true);
 	}
-	
-	public void setClient(Client client){
+
+	public void setClient(Client client) {
 		this.client = client;
 	}
-	
-	public void setPlayers(Player self, Player enemy){
-		fightGUI = new FightGUI(self, enemy, this); 
+
+	public void setPlayers(Player self, Player enemy) {
+		fightGUI = new FightGUI(self, enemy, this);
 		this.setTitle("Unimon Game: " + self.getName());
 		System.out.println("fightGui created");
-		
-		
+
 	}
-	
-	public void showTeamPicker(){
+
+	public void showTeamPicker() {
 		setContentPane(pickTeamPanel);
 	}
-	
-	public void setMessage(String msg){
+
+	public void setMessage(String msg) {
 		welcome.setMessage(msg);
 	}
-	
-	public void showStartScreen(){
+
+	public void showStartScreen() {
 		System.out.println("in showStartScreen");
 		setContentPane(welcome);
 		welcome.setVisible(true);
 		helpGUI.setVisible(false);
 	}
-	
-	public void helpClicked(){
+
+	public void helpClicked() {
 		setContentPane(helpGUI);
 		helpGUI.setVisible(true);
 		welcome.setVisible(false);
 	}
-	
-	
-	
-	public void hostClicked(String name, int port){
+
+	public void hostClicked(String name, int port) {
 		playerSelf = new Player(name);
-		pickTeamPanel = new PickTeamPanel(this,playerSelf);
+		pickTeamPanel = new PickTeamPanel(this, playerSelf);
 		main.host(port);
- 	}
-	
-	public void joinClicked(String name, String IP, int port){
+	}
+
+	public void joinClicked(String name, String IP, int port) {
 		playerSelf = new Player(name);
-		pickTeamPanel = new PickTeamPanel(this,playerSelf);
-		main.join(IP,port);
+		pickTeamPanel = new PickTeamPanel(this, playerSelf);
+		main.join(IP, port);
 	}
-	
-	
-	public void doAttack(int i){
-		client.doAttack(playerSelf,playerEnemy,i);
+
+	public void doAttack(int i) {
+		client.doAttack(playerSelf, playerEnemy, i);
 	}
-	
-	public void changeUnimon(Unimon uni){
+
+	public void changeUnimon(Unimon uni) {
 		client.selectUnimon(playerSelf, uni, true);
 	}
-	
-	public void updateInfo(Player self, Player enemy){
-		fightGUI.updateInfo(self, enemy);
+
+	public void updateInfo(Player self, Player enemy, String infoString) {
+		fightGUI.updateInfo(self, enemy, infoString);
+		System.out.println("Game window - updateInfo - hp = "
+				+ self.getActiveUnimon().getHp() + "hp of enemy"
+				+ enemy.getActiveUnimon().getHp());
 	}
-	
-	public void showFightGUI(){
+
+	public void showFightGUI() {
 		setContentPane(fightGUI);
-		this.getContentPane().setSize(500,500);
+		this.getContentPane().setSize(500, 500);
 		System.out.println("show Fight Gui");
 		welcome.setVisible(false);
 		fightGUI.setVisible(true);
@@ -110,12 +107,12 @@ public class GameWindow extends JFrame {
 	public void turn() {
 		fightGUI.turn();
 	}
-	
-	public void waitOnPlayer(){
+
+	public void waitOnPlayer() {
 		fightGUI.waitOnPlayer();
 	}
-	
-	public void teamPicked(Player p){
+
+	public void teamPicked(Player p) {
 		playerSelf = p;
 		isTeamPicked = true;
 		client.SetPlayer(p);

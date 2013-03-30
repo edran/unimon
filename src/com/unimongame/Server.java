@@ -76,10 +76,7 @@ public class Server implements Runnable {
 		// for connection 0;
 
 		Message msg = new Message(MessageType.SENDING_PLAYERS);
-		Player[] tempArr = new Player[2];
-		tempArr[0] = players[0];
-		tempArr[1] = players[1];
-		msg.setPlayers(tempArr);
+		msg.setPlayers(setupPlayerArray(0));
 		try {
 			outputStreams[0].writeObject(msg);
 		} catch (IOException e) {
@@ -87,9 +84,7 @@ public class Server implements Runnable {
 			e.printStackTrace();
 		}
 		msg = new Message(MessageType.SENDING_PLAYERS);
-		tempArr[0] = players[1];
-		tempArr[1] = players[0];
-		msg.setPlayers(tempArr);
+		msg.setPlayers(setupPlayerArray(1));
 		try {
 			outputStreams[1].writeObject(msg);
 		} catch (IOException e) {
@@ -98,10 +93,19 @@ public class Server implements Runnable {
 		}
 
 	}
+	
+	private Player[] setupPlayerArray(int num){
+		Player[] tempArr = new Player[2];
+		tempArr[0] = players[num];
+		tempArr[1] = players[(num+1)%2];
+		return tempArr;
+	}
 
 	public void doAttack(int attackNumber, int clientNumber){
-		battle.doAttack(players[clientNumber],players[((clientNumber +1)%2)],attackNumber);
+		battle.doAttack(clientNumber,(clientNumber+1)%2,attackNumber);
+		System.out.println("Server doAttack - target Hp"+players[(clientNumber+1)%2].getActiveUnimon().getHp());
 	}
+	
 	class ListenerFromClient extends Thread {
 
 		public int clientNumber;
@@ -117,6 +121,7 @@ public class Server implements Runnable {
 							.readObject();
 					switch (msg.getMessageType()) {
 					case ATTACK_SELECTED:
+						System.out.println("server - attack received");
 						doAttack(msg.getAttack(),clientNumber);
 						break;
 					case DO_TURN:
@@ -148,7 +153,7 @@ public class Server implements Runnable {
 	}
 
 	private void setPlayers(Player player, int num) {
-		this.players[num] = player;
+		players[num] = player;
 		System.out.println("setting" + player.getName());
 		if (playersReceived++ == 1) {
 			System.out.println("players in setPlayers server"
@@ -161,7 +166,20 @@ public class Server implements Runnable {
 	}
 
 	public void update(String infoString) {
-
+		for(int i =0; i<2;i++){
+			Message msg = new Message(MessageType.UPDATE);
+			msg.setPlayers(setupPlayerArray(i));
+			System.out.println("server msg.getPlayers...getHp() = "+msg.getPlayers()[0].getActiveUnimon().getHp());
+			msg.setTurnMessage(infoString);
+			try {
+				outputStreams[i].writeObject(msg);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
 	}
 
 	public void startTurn(int playerNumber) {

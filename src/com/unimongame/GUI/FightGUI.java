@@ -98,8 +98,9 @@ public class FightGUI extends JPanel {
 		showMenu();
 	}
 
-	public void updateInfo(Player self,Player enemy) {
+	public void updateInfo(Player self,Player enemy,String infoString) {
 		cbPanel.updateStats(self,enemy);
+		textArea.setText(infoString);
 		this.self = self;
 		this.enemy = enemy;
 	}

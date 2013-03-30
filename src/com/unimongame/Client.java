@@ -89,8 +89,10 @@ public class Client implements Runnable {
 	public void doAttack(Player playerSelf, Player playerEnemy, int i) {
 		Message msg = new Message(MessageType.ATTACK_SELECTED);
 		msg.setAttack(i);
+		System.out.println("client do attack- msg :"+msg.getAttack());
 		try {
 			sOutput.writeObject(msg);
+			System.out.println("client - sending attack");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -130,6 +132,11 @@ public class Client implements Runnable {
 					case WAIT:
 						gameWindow.waitOnPlayer();
 						break;
+					case UPDATE:
+						System.out.println("client calling update with turn message -"+msg.getTurnMessage());
+						System.out.println("client calling update with hp 0  = -"+msg.getPlayers()[0].getActiveUnimon().getHp());
+						System.out.println("client calling update with hp 1-"+msg.getPlayers()[1].getActiveUnimon().getHp());
+						updateWindow(msg.getPlayers()[0],msg.getPlayers()[1],msg.getTurnMessage());
 					default:
 						break;//starts chain which launch fightGUI
 					}
@@ -142,6 +149,11 @@ public class Client implements Runnable {
 				catch (ClassNotFoundException e2) {
 				}
 			}
+		}
+
+		private void updateWindow(Player self, Player enemy,String infoString) {
+			gameWindow.updateInfo(self, enemy,infoString);
+			
 		}
 	}
 

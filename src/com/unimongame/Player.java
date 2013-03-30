@@ -64,7 +64,7 @@ public class Player implements Serializable {
 	 */
 	public int numAlive(){
 		int i = getAliveUnimon().size();
-		System.out.println("nul alive = "+ i);
+		//System.out.println("nul alive = "+ i);
 		return i;
 	}
 	

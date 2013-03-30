@@ -30,7 +30,7 @@ public class Battle {
 		this.server = server;
 		players[0] = playerA;
 		players[1] = playerB;
-		flipCoin();
+		//flipCoin();
 	} 
 
 	
@@ -66,12 +66,15 @@ public class Battle {
 		System.out.println(winner.getName() + "is the winner");
 	}
 
-	public void doAttack(Player attacker,Player target ,int attackNum) {
-				System.out.println(attacker.getActiveUnimon()+" used "+attacker.getActiveUnimon().getAttacks().get(attackNum)
-						+"on "+target.getActiveUnimon().getName());
-				attacker.getActiveUnimon().attack(attackNum, target.getActiveUnimon());	
-				server.update(attacker.getActiveUnimon()+" used "+attacker.getActiveUnimon().getAttacks().get(attackNum)
-						+"on "+target.getActiveUnimon().getName());
+	public void doAttack(int attackerNumber,int targetNumber ,int attackNum) {
+				System.out.println("Battle : doAttack");
+				Player attacker = players[attackerNumber];
+				Player target = players[targetNumber];
+				attacker.getActiveUnimon().attack(attackNum, target.getActiveUnimon());
+				System.out.println("battle - tagets hp: "+target.getActiveUnimon().getHp());
+				server.update(attacker.getActiveUnimon().getName()+" used "+attacker.getActiveUnimon().getAttacks().get(attackNum).getName()
+						+"on "+target.getActiveUnimon().getName()
+						+ "his new hp is "+target.getActiveUnimon().getHp());
 				System.out.println("isTurnover = true");
 				endTurn();
 	}
