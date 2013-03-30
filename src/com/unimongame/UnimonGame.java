@@ -26,7 +26,7 @@ public class UnimonGame {
 	}
 
 	public void join(Player player, String iP, int port) {
-		client = new Client(iP, port);
+		client = new Client(iP, port,window);
 		clientThread = new Thread(client);
 		clientThread.start();
 	}

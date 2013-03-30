@@ -35,15 +35,26 @@ public class Server implements Runnable {
 				System.out.println("in numConnected <2 loop: numconnected = "
 						+ numConnect);
 				Socket socket = serverSocket.accept();
-				sockets[numConnect] = socket;
-				outputStreams[numConnect] = new ObjectOutputStream(socket.getOutputStream());
-				outputStreams[numConnect].writeObject(new Message(MessageType.WAITING_FOR_CONNECTION));
-				inputStreams[numConnect] = new ObjectInputStream(socket.getInputStream());
-				System.out.println("wait message sent to"+socket.getInetAddress());
 				numConnect++;
+				sockets[numConnect-1] = socket;
+				outputStreams[numConnect-1] = new ObjectOutputStream(socket.getOutputStream());
+				if(numConnect == 1){
+					outputStreams[numConnect-1].writeObject(new Message(MessageType.WAITING_FOR_CONNECTION));
+				}
+				inputStreams[numConnect-1] = new ObjectInputStream(socket.getInputStream());
+				System.out.println("wait message sent to"+socket.getInetAddress());
 			} catch (IOException e) {
 				System.out.println("Accept failed: on" + port);
 			}
+		}
+		for(ObjectOutputStream out : outputStreams){
+			try {
+				out.writeObject(new Message(MessageType.DO_TURN));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		
 	}

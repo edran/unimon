@@ -193,4 +193,10 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 		}
 	}
 
+	public void setMessage(String msg) {
+		welcome.setText(msg);
+		welcome.repaint();
+		
+	}
+
 }

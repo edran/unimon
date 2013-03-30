@@ -1,11 +1,9 @@
 package com.unimongame.GUI;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import com.unimongame.*;
-import com.unimongame.Client;
-import com.unimongame.Player;
-import com.unimongame.Unimon;
 import com.unimongame.attack.Attack;
 
 
@@ -48,6 +46,11 @@ public class GameWindow extends JFrame {
 		playerEnemy = enemy;
 		this.setTitle("Unimon Game: " + self.getName());
 		
+	}
+	
+	
+	public void setMessage(String msg){
+		welcome.setMessage(msg);
 	}
 	
 	public void showStartScreen(){
