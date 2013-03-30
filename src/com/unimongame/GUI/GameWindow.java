@@ -15,6 +15,7 @@ public class GameWindow extends JFrame {
 	private Player playerSelf;
 	private Player playerEnemy;
 	private Client client;
+	private PickTeamPanel pickTeamPanel;
 	private HelpGUI helpGUI = new HelpGUI(this);
 	private UnimonGame main;
 	public boolean isTeamPicked = false;
@@ -49,6 +50,9 @@ public class GameWindow extends JFrame {
 		
 	}
 	
+	public void showTeamPicker(){
+		setContentPane(pickTeamPanel);
+	}
 	
 	public void setMessage(String msg){
 		welcome.setMessage(msg);
@@ -71,13 +75,16 @@ public class GameWindow extends JFrame {
 	
 	public void hostClicked(String name, int port){
 		main.host(port);
-	}
+		playerSelf = new Player(name);
+		pickTeamPanel = new PickTeamPanel(this,playerSelf);
+ 	}
 	
 	public void joinClicked(String name, String IP, int port){
 		main.join(IP,port);
-		
-		
+		playerSelf = new Player(name);
+		pickTeamPanel = new PickTeamPanel(this,playerSelf);
 	}
+	
 	
 	public void doAttack(int i){
 		client.doAttack(playerSelf,playerEnemy,i);
