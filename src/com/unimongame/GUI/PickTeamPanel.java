@@ -15,33 +15,35 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 
 	private DefaultListModel<String> model = new DefaultListModel<String>();
 	private DefaultListModel<String> unimonModel = new DefaultListModel<String>();
-	private JList<String> listAttacks;
-	private JList<String> listUnimons;
+	private JList<String> listAttacks, listUnimons, listTeam, listItems;
 	private JTextArea description;
 	private LifeBar lifeBar;
 	private JLabel hp, type;
-	private JButton button;
+	private JButton button, clear, done;
 	private Unimon selected;
 	private Attack selectedAttack;
 	private ArrayList<Attack> unimonAttacks = new ArrayList<Attack>();
-	private FightGUI parent;
+	private ArrayList<Unimon> unimons = (ArrayList<Unimon>) UnimonLoader.load().values();
+	private ArrayList<Unimon> team = new ArrayList<Unimon>();
 
 	private Player p;
+	private GameWindow window;
 
-	public PickTeamPanel(Player p, FightGUI parent) {
+	public PickTeamPanel(GameWindow window, Player p) {
 		setSize(500, 500);
 		setLocation(0, 0);
 		this.p = p;
-		this.parent = parent;
+		this.window = window;
 		setLayout(null);
 		System.out.println("chooseUnimonPanel constructor");
 	
+		//Jlists
 		listUnimons = new JList<String>(unimonModel);
 		listUnimons.setFixedCellHeight(20);
 		listUnimons.setFixedCellWidth(150);
 		listUnimons.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listUnimons.addListSelectionListener(this);
-		listUnimons.setSize(150, 300);
+		listUnimons.setSize(150, 180);
 		listUnimons.setLocation(20, 50);
 		add(listUnimons);
 
@@ -55,6 +57,14 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 		listAttacks.setLocation(330, 270);
 		this.add(listAttacks);
 
+		listTeam = new JList<String>(unimonModel);
+		listTeam.setFixedCellHeight(20);
+		listTeam.setFixedCellWidth(150);
+		listTeam.setSize(150, 100);
+		listTeam.setLocation(20, 400);
+		add(listTeam);
+		
+		//Descriptions
 		description = new JTextArea("");
 		description.setEditable(false);
 		description.setLineWrap(true);
@@ -75,7 +85,7 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 		hp.setVisible(false);
 		this.add(hp);
 
-		type = new JLabel("type");
+		type = new JLabel("Type");
 		type.setSize(120, 15);
 		type.setLocation(190, 330);
 		type.setVisible(false);
@@ -86,7 +96,19 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 		button.setLocation(330, 365);
 		button.addActionListener(this);
 		this.add(button);
-
+		
+		clear = new JButton("Clear");
+		clear.setSize(150, 20);
+		clear.setLocation(330, 420);
+		clear.addActionListener(this);
+		this.add(clear);
+		
+		done = new JButton("Done");
+		done.setSize(150, 20);
+		done.setLocation(330, 460);
+		done.addActionListener(this);
+		this.add(done);
+		
 		// sets the default selection
 		updateValues();
 	}
@@ -94,8 +116,8 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 	public void updateValues(){
 		System.out.println("updating values");
 		System.out.println("model size"+unimonModel.size());
-		for(Unimon uni :p.getAliveUnimon()){
-			unimonModel.add(unimonModel.getSize(), uni.getName());
+		for(Unimon uni : unimons){
+			unimonModel.add(unimonModel.getSize(), uni.getCost() + " | " + uni.getName());
 		}
 		button.setVisible(true);
 		listUnimons.setSelectedIndex(0);
@@ -108,6 +130,10 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 		unimonModel.clear();
 		model.clear();
 	}
+	
+	public void addToTeam(Unimon uni) {
+		team.add(team.size(), uni);
+	}
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
@@ -117,7 +143,7 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 				System.out.println("unimon list value change");
 				model.clear();
 				int selectedNumber = listUnimons.getSelectedIndex();
-				selected = p.getAliveUnimon().get(selectedNumber);
+				selected = unimons.get(selectedNumber);
 				description.setText(selected.getDescription());
 
 				unimonAttacks = selected.getAttacks();
@@ -156,7 +182,16 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button) {
-			parent.unimonSelected(selected);
+			addToTeam(selected);
+		} else if (e.getSource() == clear) {
+			team.clear();
+		} else if (e.getSource() == done) {
+			
+			for (Unimon uni : team) {
+				p.addUnimon(uni);
+			}
+			
+			window.teamPicked();
 		}
 
 	}
