@@ -40,7 +40,7 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 		}
 
 		// ImagePanel
-		img = new ImageIcon("UnimonLogo2.png").getImage();
+		img = new ImageIcon("resources/img/UnimonLogo2.png").getImage();
 		unimon = new ImagePanel(img);
 		unimon.setSize(450, 156);
 		unimon.setLocation(25, 20);
@@ -126,7 +126,7 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 		credits.setLocation(0, 430);
 		add(credits);
 
-		date = new JLabel("Inf1-OOP 2013");
+		date = new JLabel("Inf1-OOP - 2013., GPLv2");
 		date.setLocation(200, 480);
 		date.setSize(100, 20);
 		add(date);
