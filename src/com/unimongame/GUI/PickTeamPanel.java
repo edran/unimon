@@ -8,6 +8,7 @@ import com.unimongame.attack.Attack;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Collection;
 
 @SuppressWarnings("serial")
 public class PickTeamPanel extends JPanel implements ListSelectionListener,
@@ -23,7 +24,7 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 	private Unimon selected;
 	private Attack selectedAttack;
 	private ArrayList<Attack> unimonAttacks = new ArrayList<Attack>();
-	private ArrayList<Unimon> unimons = (ArrayList<Unimon>) UnimonLoader.load().values();
+	private ArrayList<Unimon> unimons = new ArrayList<Unimon>();
 	private ArrayList<Unimon> team = new ArrayList<Unimon>();
 
 	private Player p;
@@ -36,7 +37,12 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 		this.window = window;
 		setLayout(null);
 		System.out.println("chooseUnimonPanel constructor");
-	
+		
+		Collection<Unimon> c = UnimonLoader.load().values();
+		for(Unimon uni : c){
+			unimons.add(uni);
+		}
+		
 		//Jlists
 		listUnimons = new JList<String>(unimonModel);
 		listUnimons.setFixedCellHeight(20);
