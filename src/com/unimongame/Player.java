@@ -1,8 +1,13 @@
 package com.unimongame;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Player {
+public class Player implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3230150172561612497L;
 	private ArrayList<Unimon> unimonList;
 	private String name;
 	private Unimon activeUnimon;

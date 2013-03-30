@@ -17,6 +17,7 @@ public class GameWindow extends JFrame {
 	private Client client;
 	private HelpGUI helpGUI = new HelpGUI(this);
 	private UnimonGame main;
+	public boolean isTeamPicked = false;
 	
 	static{
 		JFrame.setDefaultLookAndFeelDecorated(true);
@@ -69,13 +70,12 @@ public class GameWindow extends JFrame {
 	
 	
 	public void hostClicked(String name, int port){
-
-		main.host(new Player(name),port);
+		main.host(port);
 	}
 	
 	public void joinClicked(String name, String IP, int port){
-		main.join(new Player(name),IP,port);
-
+		main.join(IP,port);
+		
 		
 	}
 	
@@ -106,5 +106,10 @@ public class GameWindow extends JFrame {
 	
 	public void waitOnPlayer(){
 		fightGUI.waitOnPlayer();
+	}
+	
+	public void teamPicked(Player p){
+		client.SetPlayer(p);
+		isTeamPicked = true;
 	}
 }

@@ -22,34 +22,26 @@ public class Battle {
 	private GameWindow[] windows;
 	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	private boolean isFinished = false;
+	private Server server;
 	
 	//private boolean isTurnOver = false;
 	private int playerNum = 0;
 	
 	
 
-	public Battle(Player playerA, Player playerB) {
+	public Battle(Player playerA, Player playerB, Server server) {
 		players = new Player[2];
-		windows = new GameWindow[2];
+		this.server = server;
 		players[0] = playerA;
 		players[1] = playerB;
 		flipCoin(playerA, playerB);
-		attackList = new HashMap<String, Attack>();
-		unimonList = new HashMap<String, Unimon>();
-		loadUnimon();
 	} 
 
 	public void run() {
-		pickTeam(players[0]);
-		pickTeam(players[1]);
-		
 		//windows[0] = new GameWindow(this);
 		//windows[1]= new GameWindow(this);
 		selectUnimon(players[0],players[0].getAliveUnimon().get(0),false);
 		selectUnimon(players[1],players[1].getAliveUnimon().get(0),false);
-		
-		
-	
 	}
 	
 	public void start(){

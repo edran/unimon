@@ -1,15 +1,20 @@
 package com.unimongame;
 import com.unimongame.attack.*;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Unimon implements Cloneable{
+public class Unimon implements Cloneable, Serializable{
 
 	/*
 	 * MAX_*_TURNS  refers to the max turns a signal attack can 
 	 * add. A unimon could have longer after multiple attacks;
 	 */
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 248512478196705557L;
 	private static final int MAX_DISTRACT_TURNS 	= 3;
 	private static final int MAX_CONFUSE_TURNS  	= 5;
 	private static final int MAX_HUNGOVER_TURNS 	= 3;

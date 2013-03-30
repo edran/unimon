@@ -14,7 +14,7 @@ public class UnimonGame {
 		
 	}
 
-	public void host(Player player, int port) {
+	public void host(int port) {
 	
 		server = new Server(port);
 		serverThread = new Thread(server);
@@ -22,10 +22,10 @@ public class UnimonGame {
 		
 		System.out.println("starting server");
 		
-		join(player,"localhost",port);
+		join("localhost",port);
 	}
 
-	public void join(Player player, String iP, int port) {
+	public void join(String iP, int port) {
 		client = new Client(iP, port,window);
 		clientThread = new Thread(client);
 		clientThread.start();

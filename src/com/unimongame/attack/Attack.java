@@ -1,5 +1,7 @@
 package com.unimongame.attack;
 
+import java.io.Serializable;
+
 import com.unimongame.*;
 
 /*
@@ -7,7 +9,11 @@ import com.unimongame.*;
  * id,name,description,self_damage,self_status,target_damage,target_status
  */
 
-public class Attack{
+public class Attack implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 871369168046242838L;
 	private int 	id;
 	private String name;
 	private String description;

@@ -52,7 +52,7 @@ public class Server implements Runnable {
 		}
 		for(ObjectOutputStream out : outputStreams){
 			try {
-				out.writeObject(new Message(MessageType.DO_TURN));
+				out.writeObject(new Message(MessageType.CONNECTED_SEND_PLAYERS));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -64,6 +64,7 @@ public class Server implements Runnable {
 	
 	public void run() {
 		getConnections();
+		
 	}
 	
 	class ListenerFromClient extends Thread {
@@ -87,6 +88,7 @@ public class Server implements Runnable {
 					case LEAVING_GAME:
 						break;
 					case SENDING_PLAYERS:
+						setPlayers(msg.getPlayers().get(0),clientNumber);
 						break;
 					case UNIMON_CHANGED:
 						break;
@@ -102,6 +104,17 @@ public class Server implements Runnable {
 				}
 			}
 		}
+	}
+
+	
+	
+	private void setPlayers(Player player, int num) {
+		players[num] = player;
+		System.out.println("setting"+player.getName());
+		if(players[0]!=null&&players[1]!=null){
+		battle = new Battle(players[0],players[1],this);
+		}
+		
 	}
 
 	

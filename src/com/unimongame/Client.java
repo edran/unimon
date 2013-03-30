@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import com.unimongame.GUI.GameWindow;
 
@@ -24,6 +25,10 @@ public class Client implements Runnable {
 		this.gameWindow = window;
 		this.server = server;
 		this.port = port;
+	}
+	
+	public void SetPlayer(Player p){
+		self = p;
 	}
 
 	public void run() {
@@ -65,7 +70,19 @@ public class Client implements Runnable {
 	}
 
 	public void sendPlayer() {
-
+		while(!gameWindow.isTeamPicked){
+			//wait till team is picked
+		}
+		Message msg = new Message(MessageType.SENDING_PLAYERS);
+		ArrayList<Player> list = new ArrayList<Player>();
+		list.add(self);
+		msg.setPlayers(list);
+		try {
+			sOutput.writeObject(msg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void doAttack(Player playerSelf, Player playerEnemy, int i) {
@@ -87,11 +104,13 @@ public class Client implements Runnable {
 					System.out.println(msg.getMessageType());
 					switch (msg.getMessageType()) {
 					case WAITING_FOR_CONNECTION:
-						gameWindow
-								.setMessage("wait for an opponet to connect! ");
+						gameWindow.setMessage("wait for an opponet to connect! ");
 						break;
-					case DO_TURN:
-						gameWindow.setMessage("every one connected do turn");
+					case CONNECTED_SEND_PLAYERS:
+						System.out.println("send player");
+						
+						break;
+					default:
 						break;
 					}
 					
