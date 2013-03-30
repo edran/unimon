@@ -34,7 +34,7 @@ public class Client implements Runnable {
 	public void run() {
 		try {
 			socket = new Socket(server, port);
-			gameWindow.setTitle("Unimon Game - Hosted On"+socket.getInetAddress());
+			//gameWindow.setTitle("Unimon Game - Hosted On"+socket.getInetAddress());
 			socketSetup = true;
 			System.out.println("socket setup");
 		}
@@ -73,6 +73,7 @@ public class Client implements Runnable {
 	public void sendPlayer() {
 		while(!gameWindow.isTeamPicked){
 			//wait till team is picked
+			System.out.println("not picked");
 		}
 		Message msg = new Message(MessageType.SENDING_PLAYERS);
 		ArrayList<Player> list = new ArrayList<Player>();
@@ -80,6 +81,7 @@ public class Client implements Runnable {
 		msg.setPlayers(list);
 		try {
 			sOutput.writeObject(msg);
+			System.out.println(msg.getMessageType()+" Sent");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
