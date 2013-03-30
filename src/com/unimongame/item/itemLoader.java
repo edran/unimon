@@ -16,8 +16,9 @@ import com.unimongame.item.*;
 
 public class itemLoader {
 	
-	public static void load(HashMap<String,Item> map){
+	public static void load(){
 		
+		HashMap<String,Item> map = new HashMap<String,Item>();
 		boolean DEBUG = false;
 		
 		String[][] d = itemParser.getData();
