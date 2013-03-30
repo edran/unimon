@@ -22,7 +22,8 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 	private JButton local, host, join, help;
 	private JLabel enterName;
 	private JTextField name, hostPort, joinIP, joinPort;
-	private JComboBox<String> hostIP;
+//	private JComboBox<String> hostIP;
+	private JComboBox hostIP;
 	private GameWindow window;
 	private Image img;
 	private ArrayList<String> myIP = new ArrayList<String>();
