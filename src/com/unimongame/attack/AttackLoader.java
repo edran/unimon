@@ -19,21 +19,15 @@ public class AttackLoader {
 	
 	public static void load(HashMap<String,Attack> map){
 		
-		
 		boolean DEBUG = false;
 		
 		String[][] d = attackParser.getData();
 		for (int i = 0; i < d.length; i++){
 			
-			map.put(d[i][1],new Attack(Integer.parseInt(d[i][0]),d[i][1],d[i][2],Integer.parseInt(d[i][3]),
+			//id is key
+			map.put(d[i][0],new Attack(Integer.parseInt(d[i][0]),d[i][1],d[i][2],Integer.parseInt(d[i][3]),
 					Integer.parseInt(d[i][4]),Integer.parseInt(d[i][5]),Integer.parseInt(d[i][6])));
 			
 		}
-		
-		
 	}
-	
-
-
-
 }
