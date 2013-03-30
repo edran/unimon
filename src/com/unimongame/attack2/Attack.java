@@ -3,16 +3,27 @@ package com.unimongame.attack2;
 import com.unimongame.*;
 
 public abstract class Attack{
-	private int id;
+	private int 	id;
 	private String name;
 	private String description;
 	private int	selfEffect;
-	private String	selfStatus;
+	private int	selfStatus;
 	private int 	targetEffect;
-	private String targetStatus;
+	private int	targetStatus;
+	
+	/*
+	 * NOTE WELL for selfStatus and targetStatus: 
+	 *		
+	 *		-1 = dead 
+	 * 		0  = nothing		
+	 * 		3  = distract
+	 * 		5  = hungover
+	 *		7  = confuse
+	 *
+	 */
 	
 	public Attack(int id, String name, String description, int selfEffect, 
-			String selfStatus, int targetEffect, String targetStatus){
+			int selfStatus, int targetEffect, int targetStatus){
 
 		this.id = id;
 		this.name = name;
@@ -33,7 +44,20 @@ public abstract class Attack{
 	 * 
 	 */
 	
-	public abstract void doAttack(Unimon attacker, Unimon target);
+	public void doAttack(Unimon attacker, Unimon target){
+		
+		attacker.modifyHp(selfEffect);
+		if(selfStatus == 3) attacker.distract();
+		if(selfStatus == 5) attacker.hungover();
+		if(selfStatus == 7) attacker.confuse();
+		
+		target.modifyHp(targetEffect);
+		if(targetStatus == 3) target.distract();
+		if(targetStatus == 5) target.hungover();
+		if(targetStatus == 7) target.confuse();
+		
+		
+	}
 
 	
 	public int getId(){
@@ -52,7 +76,7 @@ public abstract class Attack{
 		return selfEffect;
 	}
 	
-	public String getSelfStatus(){
+	public int getSelfStatus(){ 		//TODO: decide whether we want int or string
 		return selfStatus;
 	}
 	
@@ -60,7 +84,7 @@ public abstract class Attack{
 		return targetEffect;
 	}
 
-	public String getTargetStatus(){
+	public int getTargetStatus(){ 		//TODO: decide whether we want int or string
 		return targetStatus;
 	}
 	

@@ -77,8 +77,19 @@ public class Unimon implements Cloneable{
 	public int getMaxHp(){
 		return maxHp;
 	}
-
-
+	
+	/*
+	 * amount > 0, increaseHp
+	 * amount < 0, reduceHp
+	 */
+	public void modifyHp(int amount){
+		hp += amount;
+		if(hp <= 0){
+			hp = 0;
+			status = -1;
+		}
+	}	
+	
 	/*
 	 * Decreases the the health points of the unimon
 	 */
@@ -112,7 +123,7 @@ public class Unimon implements Cloneable{
 	 * Distracted unimon distracted unimon don't attack DISTRACT_PERCENTAGE of the time.
 	 * Distract the unimon for between 1 and MAX_DISTRACT_TURNS
 	 */
-	public void distract(int turns){
+	public void distract(){
 		status *=3;
 		turnsUntilNotDistracted += rand.nextInt(MAX_DISTRACT_TURNS)+1;	
 	}
