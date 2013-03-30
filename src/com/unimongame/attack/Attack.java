@@ -19,8 +19,8 @@ public class Attack{
 	/*
 	 * NOTE WELL for selfStatus and targetStatus: 
 	 *		
-	 *		-1 = dead 
-	 * 		0  = nothing		
+	 *	   -1	= dead 
+	 * 	 (0)1  = nothing		
 	 * 		3  = distract
 	 * 		5  = hungover
 	 *		7  = confuse
