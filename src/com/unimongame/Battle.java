@@ -62,8 +62,7 @@ public class Battle {
 	}
 
 	public void loadUnimon() {
-		AttackLoader.load(attackList);
-		UnimonLoader.load(unimonList,attackList);
+		UnimonLoader.load(unimonList);
 	}
 
 	private void flipCoin(Player a, Player b) {

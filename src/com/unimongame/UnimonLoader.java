@@ -8,8 +8,9 @@ import com.unimongame.attack.*;
 
 public class UnimonLoader {
 	
-	public static void load(HashMap<String,Unimon> UnimonMap, HashMap<String,Attack>attackMap){
-		
+	public static void load(HashMap<String,Unimon> UnimonMap){
+		HashMap<String, Attack> attackMap = new HashMap<String, Attack>();
+		AttackLoader.load(attackMap);
 		boolean DEBUG = false;
 		String[][] d = unimonParser.getData();
 		for (int i = 0; i < d.length; i++){
