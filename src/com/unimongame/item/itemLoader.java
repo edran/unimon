@@ -6,9 +6,7 @@ package com.unimongame.item;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.unimongame.Unimon;
-import com.unimongame.attack.*;
-import com.unimongame.parser.attackParser;
+import com.unimongame.parser.*;
 import com.unimongame.item.*;
 
 /*
@@ -22,7 +20,7 @@ public class itemLoader {
 		
 		boolean DEBUG = false;
 		
-		String[][] d = attackParser.getData();
+		String[][] d = itemParser.getData();
 		for (int i = 0; i < d.length; i++){
 			
 			//name is key, because of item_list
