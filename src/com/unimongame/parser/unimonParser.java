@@ -12,17 +12,19 @@ import java.io.IOException;
  
 public class unimonParser {
  
-  /*
-	 * Get list from parser/unimon_list
-	 * 
-	 */
+	 /*
+	  * Get list from unimon_list
+	  * id,name,type,hp,cost,description,attack,attack,attack,attack
+	  */
 	
 	
 	public static String[][] getData() {
- 
+		
+		int n = 10; //modify accordingly 
+		
 		BufferedReader buffer = null;
 		String currentLine;
-		String[][] data = new String[100][10];
+		String[][] data = new String[100][n];
 		
 		try {
 			
@@ -35,7 +37,7 @@ public class unimonParser {
 				i++;
 			}
 			
-			String[][] finalData = new String[i][10];
+			String[][] finalData = new String[i][n];
 			System.arraycopy(data, 0, finalData, 0, i); //makes length usable.
 			return finalData;
 			
