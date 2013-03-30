@@ -13,9 +13,9 @@ import java.io.IOException;
 public class attackParser {
  
   /*
-	 * Get list from attack_list
-	 * id,name,description,self_damage,self_status,target_damage,target_status
-	 */
+   * Get list from attack_list
+   * id,name,description,self_damage,self_status,target_damage,target_status
+   */
 	
 	
 	public static String[][] getData() {

@@ -7,29 +7,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.unimongame.Unimon;
-import com.unimongame.attack.Attack;
-import com.unimongame.parser.unimonParser;
+import com.unimongame.attack2.*;
+import com.unimongame.parser.attackParser;
+
+/*
+ * Get list from attack_list
+ * id,name,description,self_damage,self_status,target_damage,target_status
+ */
 
 public class AttackLoader {
 	
-	public static void load(HashMap<String,Unimon> UnimonMap, HashMap<String,Attack>attackMap){
+	public static void load(HashMap<String,Attack> map){
 		//while we have no parser.. dummy Unimon.
 		
 		boolean DEBUG = false;
 		
-		ArrayList<Unimon> unimons = new ArrayList<Unimon>();
-		String[][] d = unimonParser.getData();
+		String[][] d = attackParser.getData();
 		for (int i = 0; i < d.length; i++){
 			
-			Unimon uni = new Unimon(d[i][0],d[i][1],null,d[i][5],
-					Integer.parseInt(d[i][3]),Integer.parseInt(d[i][4]));
+			map.put(d[i][1],new Attack(Integer.parseInt(d[i][0]),d[i][1],d[i][2],Integer.parseInt(d[i][3]),
+					Integer.parseInt(d[i][4]),Integer.parseInt(d[i][5]),Integer.parseInt(d[i][6])));
 			
-			uni.addAttack(attackMap.get(d[i][6]));
-			uni.addAttack(attackMap.get(d[i][7]));
-			uni.addAttack(attackMap.get(d[i][8]));
-			uni.addAttack(attackMap.get(d[i][9]));
 
-			if(DEBUG){
+			/*if(DEBUG){
 				System.out.println("##");
 				System.out.println(uni.getName());
 				System.out.println(uni.getAttacks().get(0));
@@ -39,8 +39,8 @@ public class AttackLoader {
 				System.out.println("##");
 
 			}
-			
-			UnimonMap.put(d[i][0],uni);	
+			*/
+			//UnimonMap.put(d[i][0],uni);	
 		}
 		
 		

@@ -2,7 +2,12 @@ package com.unimongame.attack2;
 
 import com.unimongame.*;
 
-public abstract class Attack{
+/*
+ * Get list from attack_list
+ * id,name,description,self_damage,self_status,target_damage,target_status
+ */
+
+public class Attack{
 	private int 	id;
 	private String name;
 	private String description;
