@@ -71,7 +71,7 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 		listUnimonsArea = new JScrollPane(listUnimons, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		listUnimonsArea.setBackground(Color.blue);
-		listUnimonsArea.setSize(150, 180);
+		listUnimonsArea.setSize(150, 185);
 		listUnimonsArea.setLocation(20, 50);
 		add(listUnimonsArea);
 
@@ -102,7 +102,7 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 		listItems.addListSelectionListener(this);
 		listItemsArea = new JScrollPane(listItems, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		listItemsArea.setSize(150, 100);
+		listItemsArea.setSize(150, 95);
 		listItemsArea.setLocation(20, 270);
 		add(listItemsArea);
 
