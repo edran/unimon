@@ -13,10 +13,14 @@ import java.util.ArrayList;
 public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 		ActionListener {
 
-	private DefaultListModel<String> model = new DefaultListModel<String>();
-	private DefaultListModel<String> unimonModel = new DefaultListModel<String>();
-	private JList<String> listAttacks;
-	private JList<String> listUnimons;
+//	private DefaultListModel<String> model = new DefaultListModel<String>();
+//	private DefaultListModel<String> unimonModel = new DefaultListModel<String>();
+	private DefaultListModel model = new DefaultListModel();
+	private DefaultListModel unimonModel = new DefaultListModel();
+//	private JList<String> listAttacks;
+//	private JList<String> listUnimons;
+	private JList listAttacks;
+	private JList listUnimons;
 	private JTextArea description;
 	private LifeBar lifeBar;
 	private JLabel hp, type;
@@ -36,7 +40,8 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 		setLayout(null);
 		System.out.println("chooseUnimonPanel constructor");
 	
-		listUnimons = new JList<String>(unimonModel);
+//		listUnimons = new JList<String>(unimonModel);
+		listUnimons = new JList(unimonModel);
 		listUnimons.setFixedCellHeight(20);
 		listUnimons.setFixedCellWidth(150);
 		listUnimons.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -45,7 +50,8 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 		listUnimons.setLocation(20, 50);
 		add(listUnimons);
 
-		listAttacks = new JList<String>(model);
+//		listAttacks = new JList<String>(model);
+		listAttacks = new JList(model);
 		listAttacks.setVisibleRowCount(4);
 		listAttacks.setFixedCellHeight(20);
 		listAttacks.setFixedCellWidth(150);
