@@ -66,19 +66,14 @@ public class GameWindow extends JFrame {
 	
 	
 	public void hostClicked(String name, int port){
-<<<<<<< HEAD
+
 		main.host(new Player(name),port);
 	}
 	
 	public void joinClicked(String name, String IP, int port){
 		main.join(new Player(name),IP,port);
-=======
+
 		
-	}
-	
-	public void joinClicked(String name, String IP, int port){
-		
->>>>>>> d8a0c06f525e37e437657b8d1a4f6a22d295b953
 	}
 	
 	public void doAttack(int i){
