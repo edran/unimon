@@ -29,8 +29,7 @@ public class Server implements Runnable {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	public void run() {
+	private void getConnections(){
 		while (numConnect < 2) {
 			try {
 				System.out.println("in numConnected <2 loop: numconnected = "
@@ -38,41 +37,20 @@ public class Server implements Runnable {
 				Socket socket = serverSocket.accept();
 				sockets[numConnect] = socket;
 				outputStreams[numConnect] = new ObjectOutputStream(socket.getOutputStream());
-				outputStreams[numConnect].writeUTF("hello from server");
+				outputStreams[numConnect].writeObject(new Message(MessageType.WAITING_FOR_CONNECTION));
+				inputStreams[numConnect] = new ObjectInputStream(socket.getInputStream());
 				System.out.println("wait message sent to"+socket.getInetAddress());
 				numConnect++;
 			} catch (IOException e) {
 				System.out.println("Accept failed: on" + port);
 			}
 		}
-
-//		try {
-//			outputStreams[0].writeObject("hello client 0 from server");
-//			outputStreams[1].writeObject("hello client 1from server");
-//		} catch (IOException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//
-//		try {
-//			players[0] = ((ArrayList<Player>) inputStreams[0].readObject())
-//					.get(0);
-//			players[1] = ((ArrayList<Player>) inputStreams[1].readObject())
-//					.get(0);
-//		} catch (ClassNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		for (Player p : players) {
-//			System.out.println("player = " + p.getName());
-//		}
-
+		
 	}
 	
+	public void run() {
+		getConnections();
+	}
 
 
 }

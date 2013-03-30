@@ -16,6 +16,7 @@ public class Client implements Runnable {
 	private GameWindow gameWindow;
 	private ObjectInputStream sInput;
 	private ObjectOutputStream sOutput;
+	private ListenFromServer listener;
 	public  boolean isConnected = false;
 	public boolean socketSetup = false;
 	
@@ -47,16 +48,19 @@ public class Client implements Runnable {
 		catch (IOException eIO) {
 			System.out.println("Exception creating new Input/output Streams: " + eIO);
 		}
+			
+		listener = new ListenFromServer();
+		new Thread(listener).start();
 		
-		try {
-			System.out.print("trying to read, socket is connect?"+socket.isConnected());
-			Object obj = sInput.readObject();
-			System.out.println("message =" +obj.toString());
-			//gameWindow.setTitle(msg.getMessageType().toString());
-		} catch (IOException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.println("error in read()");
-		}
+//		try {
+//			System.out.print("trying to read, socket is connect?"+socket.isConnected());
+//			Object obj = sInput.readObject();
+//			System.out.println("message =" +obj.toString());
+//			//gameWindow.setTitle(msg.getMessageType().toString());
+//		} catch (IOException | ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			System.out.println("error in read()");
+//		}
 		
 		
 	}
@@ -73,6 +77,25 @@ public class Client implements Runnable {
 	public void selectUnimon(Player playerSelf, Unimon uni, boolean b) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	class ListenFromServer extends Thread {
+
+		public void run() {
+			while(true) {
+				try {
+					Message msg = (Message) sInput.readObject();
+					System.out.println(msg.getMessageType());
+				}
+				catch(IOException e) {
+					System.out.println("Server has close the connection: " + e);
+					break;
+				}
+				// can't happen with a String object but need the catch anyhow
+				catch(ClassNotFoundException e2) {
+				}
+			}
+		}
 	}
 
 }
