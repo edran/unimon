@@ -25,7 +25,7 @@ public class itemLoader {
 			
 			//name is key, because of item_list
 			map.put(d[i][0],new Item(Integer.parseInt(d[i][0]),d[i][1],d[i][2],Integer.parseInt(d[i][3]),
-					Integer.parseInt(d[i][4])));
+					Integer.parseInt(d[i][4]), Integer.parseInt(d[i][5])));
 			
 		}
 	}

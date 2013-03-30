@@ -19,7 +19,7 @@ public class itemParser {
 	
 	public static String[][] getData() {
 		
-		int n = 4; //modify accordingly to data
+		int n = 5; //modify accordingly to data
 		
 		BufferedReader buffer = null;
 		String currentLine;
@@ -63,7 +63,7 @@ public class itemParser {
 		String[][] data = getData();
 		for (int k = 0; k < data.length; k++){
 			System.out.println(data[k][0] + " = " + data[k][1] + 
-					" " + data[k][2] + " " + data[k][3]);
+					" " + data[k][2] + " " + data[k][3] + " " + data[k][4] + " " + data[k][5]);
 		}
 		
 	}
