@@ -11,7 +11,7 @@ public class Message implements Serializable{
  private String attack;
  private String item;
  private String turnMessage;
- private ArrayList<Player> players = new ArrayList<Player>();
+ private Player[] players = new Player[2];
 // numbers are the position of unimon in players AliveUnimon list
  private int UnimonSelected; 
  private int itemUsedOn;
@@ -25,10 +25,10 @@ public class Message implements Serializable{
 	return mType; 
  }
  
- public void setPlayers(ArrayList<Player> players){
+ public void setPlayers(Player[] players){
 	 this.players = players;
  }
- public ArrayList<Player> getPlayers(){
+ public Player[] getPlayers(){
 	 return players;
  }
  public void setAttack(String attack){

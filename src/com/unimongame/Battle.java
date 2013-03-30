@@ -34,22 +34,12 @@ public class Battle {
 		this.server = server;
 		players[0] = playerA;
 		players[1] = playerB;
-		flipCoin(playerA, playerB);
+		flipCoin();
 	} 
 
-	public void run() {
-		//windows[0] = new GameWindow(this);
-		//windows[1]= new GameWindow(this);
-		selectUnimon(players[0],players[0].getAliveUnimon().get(0),false);
-		selectUnimon(players[1],players[1].getAliveUnimon().get(0),false);
-	}
+	
 	
 	public void start(){
-		System.out.println("in start");
-		windows[0].setPlayers(players[0],players[1]);
-		windows[1].setPlayers(players[1],players[0]);
-		windows[0].showFightGUI();
-		windows[1].showFightGUI();
 		turn(playerNum);
 	}
 
@@ -57,16 +47,8 @@ public class Battle {
 		UnimonLoader.load();
 	}
 
-	private void flipCoin(Player a, Player b) {
-
-		if (rand.nextBoolean()) {
-			players[0] = a;
-			players[1] = b;
-		} else {
-			players[0] = b;
-			players[1] = a;
-		}
-
+	private void flipCoin(){
+		playerNum  = Math.abs(rand.nextInt())%2;
 	}
 
 	/*

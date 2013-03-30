@@ -44,9 +44,9 @@ public class GameWindow extends JFrame {
 	
 	public void setPlayers(Player self, Player enemy){
 		fightGUI = new FightGUI(self, enemy, this); 
-		playerSelf = self;
-		playerEnemy = enemy;
 		this.setTitle("Unimon Game: " + self.getName());
+		System.out.println("fightGui created");
+		
 		
 	}
 	
@@ -116,6 +116,7 @@ public class GameWindow extends JFrame {
 	}
 	
 	public void teamPicked(Player p){
+		playerSelf = p;
 		isTeamPicked = true;
 		client.SetPlayer(p);
 	}

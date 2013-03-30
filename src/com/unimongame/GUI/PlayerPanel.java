@@ -64,7 +64,10 @@ public class PlayerPanel extends JPanel {
 	}
 
 	private String getImagePath() {
-		return "resources/img/unimon/" + player.getActiveUnimon().getName() + ".png";
+//		System.out.println("player = "+player.getName());
+//		System.out.println("active unimon = "+player.getActiveUnimon().getName());
+//		System.out.println("path =="+"resources/img/unimon/" + player.getActiveUnimon().getName() + ".png");
+		return "resources/img/unimon/a.png";
 	}
 
 	private void setIcon() {

@@ -32,6 +32,10 @@ public class FightGUI extends JPanel {
 
 	public FightGUI(Player self, Player enemy,GameWindow window) {
 		// init variables
+		//System.out.println("self : "+self.getName());
+		assert(enemy != null);
+		assert(enemy.getName() != null);
+		System.out.println("enemy : "+enemy.getName());
 		this.self = self;
 		this.enemy = enemy;
 		cbPanel = new CombatPanel(self, enemy, seed);
