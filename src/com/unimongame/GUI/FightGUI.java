@@ -75,7 +75,7 @@ public class FightGUI extends JPanel {
 
 		// add
 		showCombatPanel();
-		//showMenu();
+		showMenu();
 
 	}
 

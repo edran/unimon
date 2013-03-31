@@ -103,8 +103,6 @@ public class InfoPanel extends JPanel{
 		
 		status.setText(statusShort);
 		status.setToolTipText(statusText);
-		
-		repaint();
 	}
 	
 

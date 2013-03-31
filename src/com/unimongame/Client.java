@@ -142,7 +142,6 @@ public void applyItem(Player playerSelf, int item) {
 					System.out.println("client - run : msg type = "+msg.getMessageType());
 					switch (msg.getMessageType()) {
 					case WAITING_FOR_CONNECTION:
-						gameWindow.setMessage("wait for an opponet to connect! ");
 						
 						break;
 					case CONNECTED_SEND_PLAYERS:
