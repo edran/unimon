@@ -17,7 +17,7 @@ public class WaitPanel extends JPanel {
 		setSize(500,500);
 		setLocation(0,23);
 		
-		waitString = "<html><body style=\"text-align: center;\">Please wait while other player selects their Unimon.<br>If they take too long throw stuff at them ;)</body></html>";
+		waitString = "<html style=\"text-align: center;\">Please wait while other player selects their Unimon.<br>If they take too long throw stuff at them ;)</html>";
 		
 		wait = new JLabel(waitString);
 		wait.setHorizontalAlignment(0);

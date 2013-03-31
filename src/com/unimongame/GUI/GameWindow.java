@@ -11,7 +11,6 @@ public class GameWindow extends JFrame {
 
 	private FightGUI fightGUI;
 	private WelcomeGUI welcome = new WelcomeGUI(this);
-	private WaitPanel wait = new WaitPanel(this);
 	private Player playerSelf;
 	private Player playerEnemy;
 	private Client client;
@@ -102,8 +101,9 @@ public class GameWindow extends JFrame {
 
 	public void showFightGUI() {
 		setContentPane(fightGUI);
+		this.getContentPane().setSize(500, 500);
 		System.out.println("show Fight Gui");
-		wait.setVisible(false);
+		welcome.setVisible(false);
 		fightGUI.setVisible(true);
 		repaint();
 	}
@@ -118,10 +118,6 @@ public class GameWindow extends JFrame {
 
 	public void teamPicked(Player p) {
 		playerSelf = p;
-		welcome.setVisible(false);
-		setContentPane(wait);
-		wait.setVisible(true);
-		repaint();
 		isTeamPicked = true;
 		client.SetPlayer(p);
 	}
