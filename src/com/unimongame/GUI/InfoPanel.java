@@ -70,7 +70,7 @@ public class InfoPanel extends JPanel{
         status = new JLabel();
         status.setSize(120, 20);
         status.setLocation(10, 45);
-        status.setHorizontalAlignment(JLabel.RIGHT);
+        status.setHorizontalAlignment(JLabel.LEFT);
         this.add(status);
         
         updateInfo(player);
@@ -81,7 +81,7 @@ public class InfoPanel extends JPanel{
 		currentUni =player.getActiveUnimon();
 		lifeBar.setMaximum(currentUni.getMaxHp());
 		nameLabel.setText(currentUni.getName());
-		typeLabel.setText("Type");
+		typeLabel.setText(currentUni.getType().getName());
 		numUnimonLabel.setText(player.numAlive()+"/"+player.getUnimon().size());
 		lifeBar.setValue(currentUni.getHp());
 		lifeBar.repaint();

@@ -298,7 +298,7 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 				lifeBar.setVisible(true);
 				hp.setText("MaxHp: " + selected.getMaxHp() + " HP");
 				hp.setVisible(true);
-				type.setText("Type");
+				type.setText(selected.getType().getName());
 				type.setVisible(true);
 
 			} else if (e.getSource() == listAttacks

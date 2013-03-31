@@ -6,7 +6,10 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import com.unimongame.Player;
@@ -20,7 +23,8 @@ public class FightGUI extends JPanel {
 	private CombatPanel cbPanel;
 	private ChooseUnimonPanel chPanel;
 	private ItemPanel itPanel;
-	private JTextField textArea;
+	private JTextArea textArea;
+	JScrollPane textAreaScroll;
 	private JButton attack1, attack2, attack3, attack4, givingUp;
 	private JSeparator sep;
 	private Player self;
@@ -57,15 +61,17 @@ public class FightGUI extends JPanel {
 		add(sep);
 
 		// add TextArea
-		textArea = new JTextField();
-		textArea.setHorizontalAlignment(JTextField.CENTER);
-		textArea.setText("Get Ready to Battle!");
+		textArea = new JTextArea();
+		textArea.append("Get ready to battle!\n");
 		textArea.setEditable(false);
-		textArea.setLayout(null);
-		textArea.setLocation(0, 400);
 		textArea.setSize(300, 100);
-		textArea.setVisible(true);
-		add(textArea);
+		textAreaScroll = new JScrollPane(textArea,
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		textAreaScroll.setSize(300,100);
+		textAreaScroll.setLocation(0, 400);
+		textAreaScroll.setVisible(true);
+		add(textAreaScroll);
 
 		// add
 		showCombatPanel();
@@ -103,19 +109,19 @@ public class FightGUI extends JPanel {
 	}
 
 	public void waitOnPlayer() {
-		textArea.setText("waiting for opponent to make a move");
+		textArea.append("waiting for opponent to make a move");
 		hideMenu();
 	}
 
 	public void turn() {
-		textArea.setText("its your turn ! make a move..");
+		textArea.append("its your turn ! make a move..");
 		showMenu();
 	}
 
 	public void updateInfo(Player self,Player enemy,String infoString) {
 		cbPanel.updateStats(self,enemy);
 		chPanel.updateValues(self);
-		textArea.setText(infoString);
+		textArea.append(infoString);
 		this.self = self;
 		this.enemy = enemy;
 	}
@@ -134,32 +140,32 @@ public class FightGUI extends JPanel {
 		remove(attackMenu);
 		add(attackMenu);
 		attackMenu.setVisible(true);
-		textArea.setVisible(false);
+		textAreaScroll.setVisible(false);
 		
 	}
 	public void hideAttacksMenu(){
 		attackMenu.setVisible(false);
-		textArea.setVisible(true);
+		textAreaScroll.setVisible(true);
 	}
 
 	public void abandonClicked() {
 		showCombatPanel();
 		chPanel.reset();
-		textArea.setText("Are you sure you want to leave?");
+		textArea.append("Are you sure you want to leave?\n");
 		hideAttacksMenu();
 	}
 
 	public void chooseUnimonClicked() {
 		chPanel.reset();
 		showChoosePanel();
-		textArea.setText("Choose a Unimon, this will end your turn!");
+		textArea.append("Choose a Unimon, this will end your turn!\n");
 		hideAttacksMenu();
 	}
 
 	public void showBagClicked() {
 		showItemPanel();
 		chPanel.reset();
-		textArea.setText("Choose an Item to use!");
+		textArea.append("Choose an Item to use!\n");
 		hideAttacksMenu();
 	}
 
