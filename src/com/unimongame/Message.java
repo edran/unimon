@@ -9,7 +9,7 @@ public class Message implements Serializable{
  static final long serialVersionUID = 8031047968928742647L;
  private final MessageType mType;
  private int attack;
- private String item;
+ private int item;
  private String turnMessage;
  private Player[] players = new Player[2];
 // numbers are the position of unimon in players AliveUnimon list
@@ -47,11 +47,11 @@ public class Message implements Serializable{
  }
  
 
-public void setItem(String item) {
+public void setItem(int item) {
 	this.item = item;
 }
 
-public String getItem() {
+public int getItem() {
 	return item;
 }
 

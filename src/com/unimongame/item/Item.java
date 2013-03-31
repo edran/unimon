@@ -1,6 +1,8 @@
 package com.unimongame.item;
 
 import java.io.Serializable;
+
+import com.unimongame.Unimon;
 	public class Item implements Serializable{
 		/**
 		 * 
@@ -66,5 +68,9 @@ import java.io.Serializable;
 
 		public String toString(){
 			return name + " : " + cost + " : " + description;
+		}
+		
+		public void use(Unimon uni){
+			uni.modifyHp(effect);
 		}
 	}

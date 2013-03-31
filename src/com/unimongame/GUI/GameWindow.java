@@ -89,7 +89,7 @@ public class GameWindow extends JFrame {
 	}
 	
 	public void applyItem(int item) {
-		//client.applyItem(playerSelf, item, true);
+		client.applyItem(playerSelf, item);
 	}
 
 	public void updateInfo(Player self, Player enemy, String infoString) {

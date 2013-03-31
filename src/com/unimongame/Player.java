@@ -103,6 +103,8 @@ public class Player implements Serializable {
 	}
 	
 	public void useItem(Item item) {
+		item.use(getActiveUnimon());
 		items.remove(items.indexOf(item));
+		
 	}
 }

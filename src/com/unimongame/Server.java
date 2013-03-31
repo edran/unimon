@@ -103,6 +103,10 @@ public class Server implements Runnable {
 		tempArr[1] = players[(num+1)%2];
 		return tempArr;
 	}
+	
+	private void useItem(int item, int clientNumber) {
+		battle.userItem(clientNumber,item);
+	}
 
 	public void doAttack(int attackNumber, int clientNumber){
 		battle.doAttack(clientNumber,(clientNumber+1)%2,attackNumber);
@@ -127,9 +131,8 @@ public class Server implements Runnable {
 						System.out.println("server - attack received");
 						doAttack(msg.getAttack(),clientNumber);
 						break;
-					case DO_TURN:
-						break;
 					case ITEM_USED:
+						useItem(msg.getItem(),clientNumber);
 						break;
 					case LEAVING_GAME:
 						break;
@@ -154,6 +157,8 @@ public class Server implements Runnable {
 				}
 			}
 		}
+
+	
 	}
 
 	private void setPlayers(Player player, int num) {

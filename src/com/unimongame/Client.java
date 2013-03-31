@@ -117,6 +117,21 @@ public class Client implements Runnable {
 		}
 
 	}
+	
+public void applyItem(Player playerSelf, int item) {
+	Message msg = new Message(MessageType.ITEM_USED);
+	msg.setItemUsedOn(item);
+	System.out.println("client use item unimon- msg :"+msg.getItem());
+	try {
+		sOutput.writeObject(msg);
+		System.out.println("client - sending uni");
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		
+	}
+
 
 	class ListenFromServer extends Thread {
 
@@ -173,4 +188,5 @@ public class Client implements Runnable {
 		}
 	}
 
+	
 }

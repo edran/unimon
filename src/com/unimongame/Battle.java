@@ -13,6 +13,7 @@ import com.unimongame.GUI.FightGUI;
 import com.unimongame.GUI.GameWindow;
 import com.unimongame.attack.Attack;
 import com.unimongame.attack.AttackLoader;
+import com.unimongame.item.Item;
 
 public class Battle {
 	private Player[] players;
@@ -96,6 +97,16 @@ public class Battle {
 		} else if (players[1].numAlive() == 0) {
 			end(players[0]);
 		}
+	}
+
+
+
+	public void userItem(int clientNumber, int item) {
+		Item selectedItem = players[clientNumber].getItems().get(item);
+		String infoString = players[clientNumber].getName() +" used "+selectedItem.getName();
+		players[clientNumber].useItem(selectedItem);
+		server.update(players[0], players[1], infoString);
+		endTurn();
 	}
 
 }
