@@ -81,7 +81,7 @@ public class FightGUI extends JPanel {
 	
 	private void showChoosePanel(){
 		remove(cbPanel);
-		chPanel.updateValues();
+		chPanel.updateValues(self);
 		add(chPanel);
 		chPanel.setVisible(true);
 		System.out.println("adding chPanel");
@@ -100,7 +100,7 @@ public class FightGUI extends JPanel {
 
 	public void updateInfo(Player self,Player enemy,String infoString) {
 		cbPanel.updateStats(self,enemy);
-		chPanel.updateValues();
+		chPanel.updateValues(self);
 		textArea.setText(infoString);
 		this.self = self;
 		this.enemy = enemy;

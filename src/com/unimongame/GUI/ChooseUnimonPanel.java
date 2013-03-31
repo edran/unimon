@@ -36,7 +36,6 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 	public ChooseUnimonPanel(Player p, FightGUI parent) {
 		setSize(500, 400);
 		setLocation(0, 0);
-		this.p = p;
 		this.parent = parent;
 		setLayout(null);
 		System.out.println("chooseUnimonPanel constructor");
@@ -96,14 +95,16 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 		this.add(button);
 
 		// sets the default selection
-		updateValues();
+		updateValues(p);
 	}
 
-	public void updateValues(){
+	public void updateValues(Player player){
+		reset();
+		this.p = player;
 		System.out.println("updating values");
-		System.out.println("model size"+unimonModel.size());
 		for(Unimon uni :p.getAliveUnimon()){
 			unimonModel.add(unimonModel.getSize(), uni.getName());
+			System.out.println("model size"+unimonModel.size());
 		}
 		button.setVisible(true);
 		listUnimons.setSelectedIndex(0);
