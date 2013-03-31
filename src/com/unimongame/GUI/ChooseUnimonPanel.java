@@ -26,6 +26,7 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 	private JLabel hp, type;
 	private JButton button;
 	private Unimon selected;
+	private int selectedNum;
 	private Attack selectedAttack;
 	private ArrayList<Attack> unimonAttacks = new ArrayList<Attack>();
 	private FightGUI parent;
@@ -195,7 +196,7 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button) {
-			parent.unimonSelected(selected);
+			parent.unimonSelected(p.getAliveUnimon().indexOf(selected));
 		}
 
 	}

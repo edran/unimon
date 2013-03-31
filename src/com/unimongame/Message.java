@@ -38,8 +38,8 @@ public class Message implements Serializable{
 	 return attack;
  }
  
- public void setSelectUnimon(){
-	 
+ public void setSelectUnimon(int uni){
+	this.UnimonSelected = uni; 
  }
  
  public int getSelectedUnimon(){

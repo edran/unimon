@@ -84,15 +84,15 @@ public class GameWindow extends JFrame {
 		client.doAttack(playerSelf, playerEnemy, i);
 	}
 
-	public void changeUnimon(Unimon uni) {
+	public void changeUnimon(int uni) {
 		client.selectUnimon(playerSelf, uni, true);
 	}
 
 	public void updateInfo(Player self, Player enemy, String infoString) {
 		fightGUI.updateInfo(self, enemy, infoString);
-		System.out.println("Game window - updateInfo - hp = "
-				+ self.getActiveUnimon().getHp() + "hp of enemy"
-				+ enemy.getActiveUnimon().getHp());
+		System.out.println("Game window - updateInfo - unimon = "
+				+ self.getActiveUnimon().getName() + ", enemy ="
+				+ enemy.getActiveUnimon().getName());
 	}
 
 	public void showFightGUI() {

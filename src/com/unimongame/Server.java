@@ -137,9 +137,10 @@ public class Server implements Runnable {
 						System.out.println("server : clientNumber"
 								+ clientNumber);
 						setPlayers(msg.getPlayers()[0], clientNumber);
-
 						break;
 					case UNIMON_CHANGED:
+						System.out.println("battle changed");
+						battle.selectUnimon(players[clientNumber], msg.getSelectedUnimon(),true);
 						break;
 					default:
 						break;
@@ -191,8 +192,8 @@ public class Server implements Runnable {
 		Message msg = new Message(MessageType.UPDATE);
 		Player[] arr = {a,b};
 		msg.setPlayers(arr);
-		System.out.println("server msg.getPlayers...getHp() = "+msg.getPlayers()[0].getActiveUnimon().getHp());
-		System.out.println("server msg.getPlayers...getHp() = "+msg.getPlayers()[1].getActiveUnimon().getHp());
+		System.out.println("server msg.getPlayers... = "+msg.getPlayers()[0].getActiveUnimon().getName());
+		System.out.println("server msg.getPlayers... = "+msg.getPlayers()[1].getActiveUnimon().getName());
 		msg.setTurnMessage(infoString);
 		try {
 			outputStreams[0].reset();

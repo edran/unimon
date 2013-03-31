@@ -100,6 +100,7 @@ public class FightGUI extends JPanel {
 
 	public void updateInfo(Player self,Player enemy,String infoString) {
 		cbPanel.updateStats(self,enemy);
+		chPanel.updateValues();
 		textArea.setText(infoString);
 		this.self = self;
 		this.enemy = enemy;
@@ -156,7 +157,7 @@ public class FightGUI extends JPanel {
 
 	
 	
-	public void unimonSelected(Unimon selected) {
+	public void unimonSelected(int selected) {
 		window.changeUnimon(selected);
 		showCombatPanel();
 	}

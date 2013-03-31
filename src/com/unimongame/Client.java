@@ -65,7 +65,7 @@ public class Client implements Runnable {
 	}
 	
 	public void sendPlayer() {
-		boolean a;
+		
 		while(!gameWindow.isTeamPicked){
 			System.out.println("waiting");	//HERE BE DRAGON, DO NOT DELETE
 		}
@@ -101,8 +101,17 @@ public class Client implements Runnable {
 		}
 	}
 
-	public void selectUnimon(Player playerSelf, Unimon uni, boolean b) {
-		// TODO Auto-generated method stub
+	public void selectUnimon(Player playerSelf, int uni, boolean b) {
+		Message msg = new Message(MessageType.UNIMON_CHANGED);
+		msg.setSelectUnimon(uni);
+		System.out.println("client do changing unimon- msg :"+msg.getSelectedUnimon());
+		try {
+			sOutput.writeObject(msg);
+			System.out.println("client - sending uni");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -158,7 +167,6 @@ public class Client implements Runnable {
 
 		private void updateWindow(Player self, Player enemy,String infoString) {
 			gameWindow.updateInfo(self, enemy,infoString);
-			
 		}
 	}
 
