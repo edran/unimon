@@ -162,7 +162,7 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 				lifeBar.setVisible(true);
 				hp.setText("MaxHp: " + selected.getMaxHp() + " HP");
 				hp.setVisible(true);
-				type.setText("type");
+				type.setText("Type");
 				type.setVisible(true);
 
 			} else if (e.getSource() == listAttacks &&listAttacks.getSelectedIndex()>=0) {

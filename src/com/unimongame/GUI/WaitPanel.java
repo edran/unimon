@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class WaitPanel extends JPanel {
 
-	JTextArea wait;
+	JLabel wait;
 	String waitString;
 	GameWindow window;
 	
@@ -17,14 +17,12 @@ public class WaitPanel extends JPanel {
 		setSize(500,500);
 		setLocation(0,23);
 		
-		waitString = "Please wait while other player selects their Unimon. If they take too long throw stuff at them ;)";
+		waitString = "<html style=\"text-align: center;\">Please wait while other player selects their Unimon.<br>If they take too long throw stuff at them ;)</html>";
 		
-		wait = new JTextArea(waitString);
-		wait.setLineWrap(true);
-		wait.setWrapStyleWord(true);
-		wait.setEditable(false);
-		wait.setSize(400,350);
-		wait.setLocation(50, 50);
+		wait = new JLabel(waitString);
+		wait.setHorizontalAlignment(0);
+		wait.setSize(500,500);
+		wait.setLocation(0, 0);
 		add(wait);
 	}
 

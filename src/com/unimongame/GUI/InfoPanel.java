@@ -29,10 +29,10 @@ public class InfoPanel extends JPanel{
     protected int shadowAlpha = 150;
 	private Unimon currentUni;
 	private LifeBar lifeBar;
-	JLabel nameLabel;
-	JLabel typeLabel;
-	JLabel numUnimonLabel;
+	JLabel nameLabel, status, typeLabel, numUnimonLabel;
 	Player player;
+	String statusText;
+	String statusShort;
 	
 	
 	public InfoPanel(Player player) {
@@ -67,6 +67,12 @@ public class InfoPanel extends JPanel{
         lifeBar.setLocation(50,30);
         this.add(lifeBar);
         
+        status = new JLabel();
+        status.setSize(120, 20);
+        status.setLocation(10, 45);
+        status.setHorizontalAlignment(JLabel.RIGHT);
+        this.add(status);
+        
         updateInfo(player);
 	}
 	
@@ -79,6 +85,26 @@ public class InfoPanel extends JPanel{
 		numUnimonLabel.setText(player.numAlive()+"/"+player.getUnimon().size());
 		lifeBar.setValue(currentUni.getHp());
 		lifeBar.repaint();
+		
+		statusShort = "";
+		statusText = "The unimon is ";
+		if (currentUni.isConfused()) {
+			statusShort += "CON ";
+			statusText += "confused ";
+		}
+		if (currentUni.isDistracted()) {
+			statusShort += "DIS ";
+			statusText += "distracted ";
+		}
+		if (currentUni.isHungover()) {
+			statusShort += "HUN ";
+			statusText += "hungover ";
+		}
+		
+		status.setText(statusShort);
+		status.setToolTipText(statusText);
+		
+		repaint();
 	}
 	
 

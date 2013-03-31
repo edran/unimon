@@ -71,7 +71,7 @@ public class ItemPanel extends JPanel implements ListSelectionListener,
 		description.setLocation(190, 50);
 		add(description);
 
-		button = new JButton("Select");
+		button = new JButton("Use");
 		button.setSize(150, 20);
 		button.setLocation(330, 365);
 		button.addActionListener(this);
