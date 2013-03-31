@@ -158,7 +158,7 @@ public class FightGUI extends JPanel {
 	public void chooseUnimonClicked() {
 		chPanel.reset();
 		showChoosePanel();
-		textArea.append("Choose a Unimon, this will end your turn!\n");
+		textArea.append("Choose a Unimon\n");
 		hideAttacksMenu();
 	}
 
@@ -191,6 +191,13 @@ public class FightGUI extends JPanel {
 		hideMenu();
 		hideAttacksMenu();
 		window.doAttack(i);
+	}
+
+	public void unimonDied(String infoString) {
+		textArea.append(infoString+"uni died \n");
+		hideMenu();
+		chooseUnimonClicked();
+		
 	}
 
 }

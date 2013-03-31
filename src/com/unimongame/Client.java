@@ -106,7 +106,10 @@ public class Client implements Runnable {
 	public void selectUnimon(Player playerSelf, int uni, boolean b) {
 		Message msg = new Message(MessageType.UNIMON_CHANGED);
 		msg.setSelectUnimon(uni);
-		System.out.println("client do changing unimon- msg :"+msg.getSelectedUnimon());
+		if(!playerSelf.getActiveUnimon().isAlive()){
+			msg.setEndTurn(true);
+		}
+		//ystem.out.println("client do changing unimon- msg :"+msg.getSelectedUnimon());
 		try {
 			sOutput.writeObject(msg);
 			System.out.println("client - sending uni");
@@ -167,6 +170,9 @@ public void applyItem(Player playerSelf, int item) {
 						System.out.println("client calling update with hp 0  = "+msg.getPlayers()[0].getActiveUnimon().getHp());
 						System.out.println("client calling update with hp 1 = "+msg.getPlayers()[1].getActiveUnimon().getHp());
 						updateWindow(msg.getPlayers()[0],msg.getPlayers()[1],msg.getTurnMessage());
+					break;
+					case UNIMON_DIED:
+						gameWindow.unimonDied(msg.getTurnMessage());
 					default:
 						break;//starts chain which launch fightGUI
 					}

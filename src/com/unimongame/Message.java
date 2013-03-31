@@ -11,6 +11,7 @@ public class Message implements Serializable{
  private int attack;
  private int item;
  private String turnMessage;
+ private boolean endTurn = true;
  private Player[] players = new Player[2];
 // numbers are the position of unimon in players AliveUnimon list
  private int UnimonSelected; 
@@ -36,6 +37,13 @@ public class Message implements Serializable{
  }
  public int getAttack(){
 	 return attack;
+ }
+ 
+ public boolean getEndTurn(){
+	 return endTurn;
+ }
+ public void setEndTurn(boolean endTurn){
+	 this.endTurn = endTurn;
  }
  
  public void setSelectUnimon(int uni){

@@ -44,6 +44,7 @@ public class GameWindow extends JFrame {
 	public void setPlayers(Player self, Player enemy) {
 		fightGUI = new FightGUI(self, enemy, this);
 		this.setTitle("Unimon Game: " + self.getName());
+		fightGUI.setVisible(false);
 		System.out.println("fightGui created");
 
 	}
@@ -104,8 +105,8 @@ public class GameWindow extends JFrame {
 		setContentPane(fightGUI);
 		System.out.println("show Fight Gui");
 		wait.setVisible(false);
-		fightGUI.setVisible(true);
 		repaint();
+		fightGUI.setVisible(true);
 	}
 
 	public void turn() {
@@ -123,5 +124,9 @@ public class GameWindow extends JFrame {
 		wait.setVisible(true);
 		repaint();
 		client.SetPlayer(p);
+	}
+
+	public void unimonDied(String infoString) {
+		fightGUI.unimonDied(infoString);
 	}
 }
