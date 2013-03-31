@@ -19,7 +19,7 @@ public class Attack implements Serializable{
 	private String description;
 	private int	selfEffect;
 	private int	selfStatus;
-	private int 	targetEffect;
+	private int targetEffect;
 	private int	targetStatus;
 	
 	/*
