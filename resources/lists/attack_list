@@ -10,7 +10,7 @@ id,name,description,self_damage,self_status,target_damage,target_status
 09,FunctionalParadigm,WHOOSH!,0,0,-60,0
 10,EvilSyntax,Brackets - brackets everywhere!,0,0,-10,7
 11,Versioncontrol,To see the past the present and the future!,50,0,0,0
-12,Lisp!,You ain't seen anything like this yet,20,0,-40,0
+12,Lisp,You ain't seen anything like this yet,20,0,-40,0
 13,Horror,It's soooo small,25,0,-25,0
 14,Jagerbomb,Druuuuuunk,0,0,-10,5
 15,LastMinCram,Redbull haze - it doesn't give you wings,50,7,0,0
@@ -29,3 +29,6 @@ id,name,description,self_damage,self_status,target_damage,target_status
 28,TeachingReschedule,Deal with it,0,0,-45,0
 29,TreeDrawing,Be green with data as well!,40,0,0,0
 30,TutorialShift,The hidden surprise...,0,0,-10,7
+31,Stackoverflow,So someone told me you understood pointers!,0,0,70,0
+32,EditorWar,Emacs or Vim?,-30,7,-30,7
+42,Robocalipse,Not even Asimov would be able to stop Skynet now,0,0,-80,0

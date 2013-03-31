@@ -1,8 +1,12 @@
 id,name,type,hp,cost,description,attack,attack,attack,attack
-01,a,Professor,200,100,Best prog ever,TimeDistortion,Recursion,Monads,FelineScratch
-05,f,Professor,204,80,Best professor ever,TimeDistortion,Recursion,Monads,FelineScratch
-06,g,Professor,205,10,Best professor ever,TimeDistortion,Recursion,Monads,FelineScratch
-07,h,Professor,206,20,Best professor ever,TimeDistortion,Recursion,Monads,FelineScratch
-08,I,Professor,207,80,Best professor ever,TimeDistortion,Recursion,Monads,FelineScratch
-09,j,Professor,208,30,Best professor ever,TimeDistortion,Recursion,Monads,FelineScratch
-10,k,Professor,209,80,Best professor ever,TimeDistortion,Recursion,Monads,FelineScratch
+01,Donmon,Professor,200,80,Best professor ever,TimeDistortion,Recursion,Monads,FelineScratch
+02,Ianmon,Professor,200,80,Master of the databases,Salesman,EvilSyntax,TreeDrawing,Punch
+03,Perditamon,Professor,200,80,Can't recognize you - attacks you regardless,Punch,Nesting,Patrolling,Polymorphism
+04,Robertsonmon,Professor,200,80,Head of the school,FelineScratch,Logiclessness,TimeDistortion,Regexplosion
+05,KKmon,Professor,200,80,YOU SHALL NOT PASS,Punch,Recursion,Jagerbomb,Monads
+06,Starkmon,Professor,200,80,Head of the school,Punch,Recursion,Jagerbomb,Monads
+10,Nantasmon,Student,100,40,Made robots before it was cool,Robocalipse,Lisp,EditorWar,Stackoverflow
+11,Lukemon,Student,100,40,Wannabe Caltecher,Punch,Recursion,Jagerbomb,Monads
+12,Basilemon,Student,100,40,null,Punch,Recursion,Jagerbomb,Monads
+13,Caterinamon,Student,100,40,null,Punch,Recursion,Jagerbomb,Monads
+14,Josephmon,Student,100,40,null,Punch,Recursion,Jagerbomb,Monads

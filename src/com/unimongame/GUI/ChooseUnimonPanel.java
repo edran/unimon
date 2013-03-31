@@ -125,7 +125,7 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 				model.clear();
 				int selectedNumber = listUnimons.getSelectedIndex();
 				selected = p.getAliveUnimon().get(selectedNumber);
-				description.setText(selected.getDescription());
+				description.setText(selected.getDescription()); //Label for Unimon Description
 
 				unimonAttacks = selected.getAttacks();
 
@@ -137,6 +137,7 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 
 				}
 
+				//TODO: Lifebar doesn't change value
 				lifeBar.setValues(selected.getMaxHp(), selected.getHp());
 				lifeBar.setVisible(true);
 				hp.setText("MaxHp: " + selected.getMaxHp() + " HP");
@@ -149,7 +150,38 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 				int i = listAttacks.getSelectedIndex();
 
 				selectedAttack = unimonAttacks.get(i);
-				description.setText(selectedAttack.getDescription());
+				
+				/*Description Box thingie
+				 * 
+				 * - Description
+				 * - +/- HP to you
+				 * - make your unimon $status
+				 * - +/- HP to your opponent
+				 * - make your opponent $status 
+				 */
+				
+				String descr = selectedAttack.getDescription() + "\n";
+				String se = selectedAttack.getSelfEffect() + " to your unimon\n";
+				String ss = "";
+				System.out.println("ss = " + selectedAttack.getSelfStatus());
+				if(selectedAttack.getSelfStatus() == 0) ss = "Doesn't alter your status\n";
+				if(selectedAttack.getSelfStatus() == 3) ss = "Makes your unimon distracted\n";
+				if(selectedAttack.getSelfStatus() == 5) ss = "Makes your unimon hungover\n";
+				if(selectedAttack.getSelfStatus() == 7) ss = "Makes your unimon confused\n";
+				
+				String te = selectedAttack.getTargetEffect() + " to your opponent\n";
+				String ts = "";
+				System.out.println("ts = " + selectedAttack.getTargetStatus());
+				if(selectedAttack.getTargetStatus() == 0) ts = "Doesn't alter opponent's status\n";
+				if(selectedAttack.getTargetStatus() == 3) ts = "Makes your opponent distracted\n";
+				if(selectedAttack.getTargetStatus() == 5) ts = "Makes your opponent hungover\n";
+				if(selectedAttack.getTargetStatus() == 7) ts = "Makes your opponent confused\n";
+				
+				description.setText("# " + descr + 
+									"# " + se + 
+									"# " + ss +
+									"# " + te +
+									"# " + ts); // Item Description
 				System.out.println("selected Attack = "
 						+ selectedAttack.getName());
 			}

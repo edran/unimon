@@ -166,14 +166,14 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 		hp.setVisible(false);
 		this.add(hp);
 
-		type = new JLabel("Type");
+		type = new JLabel("Type:");
 		type.setSize(120, 15);
 		type.setLocation(190, 280);
 		type.setVisible(false);
 		this.add(type);
 		
 		//Money left
-		moneyLabel = new JLabel("You have �" + p.getMoney() + " left.");
+		moneyLabel = new JLabel("You have £" + p.getMoney() + " left.");
 		moneyLabel.setSize(200, 20);
 		moneyLabel.setLocation(190, 320);
 		this.add(moneyLabel);
@@ -217,7 +217,7 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 	public void updateValues(){
 		
 		for(Unimon uni : unimons){
-			unimonModel.add(unimonModel.getSize(), "�" + uni.getCost() + littleString(uni.getCost()) + uni.getName());
+			unimonModel.add(unimonModel.getSize(), "£" + uni.getCost() + littleString(uni.getCost()) + uni.getName());
 		}
 		
 		for(Unimon uni : team) {
@@ -225,7 +225,7 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 		}
 		
 		for(Item item : items) {
-			itemsModel.add(itemsModel.getSize(), "�" + item.getCost() + littleString(item.getCost()) + item.getName());
+			itemsModel.add(itemsModel.getSize(), "£" + item.getCost() + littleString(item.getCost()) + item.getName());
 		}
 		
 		for(Item item : itemsSelected) {
@@ -235,7 +235,7 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 		button.setVisible(true);
 		button2.setVisible(true);
 		
-		moneyLabel.setText("You have �" + p.getMoney() + " left.");
+		moneyLabel.setText("You have £" + p.getMoney() + " left.");
 	}
 	
 	public void reset() {
@@ -288,8 +288,42 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 				int i = listAttacks.getSelectedIndex();
 
 				selectedAttack = unimonAttacks.get(i);
-				description.setText(selectedAttack.getDescription());
-
+				//description.setText(selectedAttack.getDescription());
+				
+				/*Description Box thingie
+				 * 
+				 * - Description
+				 * - +/- HP to you
+				 * - make your unimon $status
+				 * - +/- HP to your opponent
+				 * - make your opponent $status 
+				 */
+				
+				String descr = selectedAttack.getDescription() + "\n";
+				String se = selectedAttack.getSelfEffect() + " to your unimon\n";
+				String ss = "";
+				System.out.println("ss = " + selectedAttack.getSelfStatus());
+				if(selectedAttack.getSelfStatus() == 0) ss = "Doesn't alter your status\n";
+				if(selectedAttack.getSelfStatus() == 3) ss = "Makes your unimon distracted\n";
+				if(selectedAttack.getSelfStatus() == 5) ss = "Makes your unimon hungover\n";
+				if(selectedAttack.getSelfStatus() == 7) ss = "Makes your unimon confused\n";
+				
+				String te = selectedAttack.getTargetEffect() + " to your opponent\n";
+				String ts = "";
+				System.out.println("ts = " + selectedAttack.getTargetStatus());
+				if(selectedAttack.getTargetStatus() == 0) ts = "Doesn't alter opponent's status\n";
+				if(selectedAttack.getTargetStatus() == 3) ts = "Makes your opponent distracted\n";
+				if(selectedAttack.getTargetStatus() == 5) ts = "Makes your opponent hungover\n";
+				if(selectedAttack.getTargetStatus() == 7) ts = "Makes your opponent confused\n";
+				
+				description.setText("# " + descr + 
+									"# " + se + 
+									"# " + ss +
+									"# " + te +
+									"# " + ts); // Item Description
+				System.out.println("selected Attack = "
+						+ selectedAttack.getName());
+				
 			} else if (e.getSource() == listItems && listItems.getSelectedIndex()>=0) {
 				
 				int j = listItems.getSelectedIndex();
