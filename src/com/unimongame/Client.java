@@ -172,6 +172,12 @@ public void applyItem(Player playerSelf, int item) {
 					break;
 					case UNIMON_DIED:
 						gameWindow.unimonDied(msg.getTurnMessage());
+						break;
+					case WINNER:
+						gameWindow.winner();
+						break;
+					case LOSER:
+						gameWindow.loser();
 					default:
 						break;//starts chain which launch fightGUI
 					}

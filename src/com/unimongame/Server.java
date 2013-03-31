@@ -240,7 +240,22 @@ public class Server implements Runnable {
 	}
 
 	public void winner(int winner) {
-		// TODO Auto-generated method stub
+		Message msg = new Message(MessageType.WINNER);
+		try {
+			outputStreams[winner].writeObject(msg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		Message msg2 = new Message(MessageType.LOSER);
+		try {
+			outputStreams[(winner+1)%2].writeObject(msg2);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	

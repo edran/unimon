@@ -2,6 +2,7 @@ package com.unimongame.GUI;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import com.unimongame.*;
 import com.unimongame.attack.Attack;
@@ -128,5 +129,15 @@ public class GameWindow extends JFrame {
 
 	public void unimonDied(String infoString) {
 		fightGUI.unimonDied(infoString);
+	}
+
+	public void loser() {
+		System.out.println("loser");
+		
+	}
+
+	public void winner() {
+		System.out.println("winner");
+		
 	}
 }
