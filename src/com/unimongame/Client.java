@@ -18,6 +18,7 @@ public class Client implements Runnable {
 	private ObjectOutputStream sOutput;
 	private ListenFromServer listener;
 	public boolean isConnected = false;
+	private int timesSendPlayerCalled;
 
 
 	Client(String server, int port, GameWindow window) {
@@ -28,6 +29,7 @@ public class Client implements Runnable {
 	
 	public void SetPlayer(Player p){
 		self = p;
+		sendPlayer();
 	}
 
 	public void run() {
@@ -66,12 +68,7 @@ public class Client implements Runnable {
 	
 	public void sendPlayer() {
 		
-		while(!gameWindow.isTeamPicked){
-			System.out.println("waiting");	//HERE BE DRAGON, DO NOT DELETE
-			for(int i = 0;i<50;i++){
-				
-			}
-		}
+		if(++timesSendPlayerCalled == 2){
 		
 		System.out.println("client - sendPlayer : waiting is over");
 		Message msg = new Message(MessageType.SENDING_PLAYERS);
@@ -89,6 +86,8 @@ public class Client implements Runnable {
 			e.printStackTrace();
 			System.out.println("send player failed : in client");
 		}
+		}
+		
 	}
 
 	public void doAttack(Player playerSelf, Player playerEnemy, int i) {
@@ -147,7 +146,6 @@ public void applyItem(Player playerSelf, int item) {
 						
 						break;
 					case CONNECTED_SEND_PLAYERS:
-						System.out.println("client - run() : CONNECTED_SEND_PLAYERS ");
 						sendPlayer();
 						break;
 					case SENDING_PLAYERS:

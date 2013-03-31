@@ -122,7 +122,6 @@ public class GameWindow extends JFrame {
 		setContentPane(wait);
 		wait.setVisible(true);
 		repaint();
-		isTeamPicked = true;
 		client.SetPlayer(p);
 	}
 }

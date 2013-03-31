@@ -31,7 +31,7 @@ public class Battle {
 		this.server = server;
 		players[0] = playerA;
 		players[1] = playerB;
-		//flipCoin();
+		flipCoin();
 	} 
 
 	
