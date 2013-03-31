@@ -65,9 +65,11 @@ public class Client implements Runnable {
 	}
 	
 	public void sendPlayer() {
+		boolean a;
 		while(!gameWindow.isTeamPicked){
-			System.out.println("waiting");
+			System.out.println("waiting");	//HERE BE DRAGON, DO NOT DELETE
 		}
+		
 		System.out.println("client - sendPlayer : waiting is over");
 		Message msg = new Message(MessageType.SENDING_PLAYERS);
 		
@@ -109,11 +111,13 @@ public class Client implements Runnable {
 		public void run() {
 			while (true) {
 				try {
-					Message msg = (Message) sInput.readObject();
+					Message msg = (Message) sInput.readObject(); //PROBLEM
+			
 					System.out.println("client - run : msg type = "+msg.getMessageType());
 					switch (msg.getMessageType()) {
 					case WAITING_FOR_CONNECTION:
 						gameWindow.setMessage("wait for an opponet to connect! ");
+						
 						break;
 					case CONNECTED_SEND_PLAYERS:
 						System.out.println("client - run() : CONNECTED_SEND_PLAYERS ");
@@ -133,9 +137,10 @@ public class Client implements Runnable {
 						gameWindow.waitOnPlayer();
 						break;
 					case UPDATE:
-						System.out.println("client calling update with turn message -"+msg.getTurnMessage());
-						System.out.println("client calling update with hp 0  = -"+msg.getPlayers()[0].getActiveUnimon().getHp());
-						System.out.println("client calling update with hp 1-"+msg.getPlayers()[1].getActiveUnimon().getHp());
+						System.out.println("names = "+msg.getPlayers()[0].getName());
+						System.out.println("names = "+msg.getPlayers()[1].getName());
+						System.out.println("client calling update with hp 0  = "+msg.getPlayers()[0].getActiveUnimon().getHp());
+						System.out.println("client calling update with hp 1 = "+msg.getPlayers()[1].getActiveUnimon().getHp());
 						updateWindow(msg.getPlayers()[0],msg.getPlayers()[1],msg.getTurnMessage());
 					default:
 						break;//starts chain which launch fightGUI

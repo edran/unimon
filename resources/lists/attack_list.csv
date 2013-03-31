@@ -1,0 +1,31 @@
+id,name,description,self_damage,self_status,target_damage,target_status
+01,Punch,Gives a punch,0,0,-50,0
+02,Recursion,Never stops,0,0,0,7
+03,Pizza,I'm HUNGRYYY!!,50,0,0,0
+04,TimeDistortion,Fifty infinite minutes,0,0,0,7
+05,Monads,Adds complexity and makes the unimon feeling like a boss,30,0,0,0
+06,FelineScratch,Throw a CATNULLEXCEPTION,0,0,-50,0
+07,CompileError,OOPs!,0,0,-35,0
+08,Coursework,Brings the unimon to depression,0,0,-50,0
+09,FunctionalParadigm,WHOOSH!,0,0,-60,0
+10,EvilSyntax,Brackets - brackets everywhere!,0,0,-10,7
+11,Versioncontrol,To see the past the present and the future!,50,0,0,0
+12,Lisp!,You ain't seen anything like this yet,20,0,-40,0
+13,Horror,It's soooo small,25,0,-25,0
+14,Jagerbomb,Druuuuuunk,0,0,-10,5
+15,LastMinCram,Redbull haze - it doesn't give you wings,50,7,0,0
+16,Logiclessness,When a cat meets some raimbow bread,0,0,-30,7
+17,Nesting,You gotta be good with your brackets!,0,0,-20,3
+18,Patrolling,Controlling your exercises day and night,30,0,-10,3
+19,Polymorphism,CHANGE!,50,0,0,3
+20,Pub,Mother of all bar fights,-10,7,-60,7
+21,Rambling,Blahblahblahblahblah,0,0,-20,7
+22,Regexplosion,Now you have got two problems,0,0,-50,3
+23,Salesman,Never-ending problem,0,3,-40,0
+24,Series,It's a serious convergence!,0,0,-70,0
+25,Shock,Ooooooh my dear!,0,0,-30,3
+26,Sneeze,Achoooo!,-20,0,-20,7
+27,SpotQuestioning,Mind is totally blank,0,0,-40,0
+28,TeachingReschedule,Deal with it,0,0,-45,0
+29,TreeDrawing,Be green with data as well!,40,0,0,0
+30,TutorialShift,The hidden surprise...,0,0,-10,7

@@ -53,7 +53,7 @@ public class Battle {
 	
 	public void selectUnimon(Player p , Unimon uni, boolean endTurn) {
 		p.setActiveUnimon(uni);
-		server.update(p.getName()+" changed his Unimon to : "+uni.getName());
+		server.update(players[0],players[1],p.getName()+" changed his Unimon to : "+uni.getName());
 		if(endTurn){
 			endTurn();
 		}else{
@@ -72,7 +72,7 @@ public class Battle {
 				Player target = players[targetNumber];
 				attacker.getActiveUnimon().attack(attackNum, target.getActiveUnimon());
 				System.out.println("battle - tagets hp: "+target.getActiveUnimon().getHp());
-				server.update(attacker.getActiveUnimon().getName()+" used "+attacker.getActiveUnimon().getAttacks().get(attackNum).getName()
+				server.update(players[0],players[1],attacker.getActiveUnimon().getName()+" used "+attacker.getActiveUnimon().getAttacks().get(attackNum).getName()
 						+"on "+target.getActiveUnimon().getName()
 						+ "his new hp is "+target.getActiveUnimon().getHp());
 				System.out.println("isTurnover = true");

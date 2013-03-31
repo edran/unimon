@@ -5,7 +5,10 @@ import com.unimongame.Unimon;
 public class LastMinCram extends Attack {
 
 	public LastMinCram() {
-		super("LastMinCram", "Redbull haze - it doesn't give you wings");
+		super("LastMinCram", 
+				"Redbull haze - " +
+				"it doesn't give" +
+				" you wings");
 	}
 
 	@Override

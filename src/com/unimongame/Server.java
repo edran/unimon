@@ -76,9 +76,11 @@ public class Server implements Runnable {
 		// for connection 0;
 
 		Message msg = new Message(MessageType.SENDING_PLAYERS);
+		//players[0].getActiveUnimon().modifyHp(-50);
 		msg.setPlayers(setupPlayerArray(0));
 		try {
 			outputStreams[0].writeObject(msg);
+			outputStreams[0].flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -87,6 +89,7 @@ public class Server implements Runnable {
 		msg.setPlayers(setupPlayerArray(1));
 		try {
 			outputStreams[1].writeObject(msg);
+			outputStreams[1].flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -165,18 +168,54 @@ public class Server implements Runnable {
 		}
 	}
 
-	public void update(String infoString) {
+	public void update(Player a, Player b,String infoString) {
+		/*
 		for(int i =0; i<2;i++){
 			Message msg = new Message(MessageType.UPDATE);
 			msg.setPlayers(setupPlayerArray(i));
 			System.out.println("server msg.getPlayers...getHp() = "+msg.getPlayers()[0].getActiveUnimon().getHp());
+			System.out.println("server msg.getPlayers...getHp() = "+msg.getPlayers()[1].getActiveUnimon().getHp());
 			msg.setTurnMessage(infoString);
 			try {
 				outputStreams[i].writeObject(msg);
+				System.out.println("after sending msg : "+msg.getPlayers()[0].getActiveUnimon().getHp());
+				System.out.println("after sending msg : "+msg.getPlayers()[1].getActiveUnimon().getHp());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		*/
+		a.setName("a");
+		b.setName("b");
+		Message msg = new Message(MessageType.UPDATE);
+		Player[] arr = {a,b};
+		msg.setPlayers(arr);
+		System.out.println("server msg.getPlayers...getHp() = "+msg.getPlayers()[0].getActiveUnimon().getHp());
+		System.out.println("server msg.getPlayers...getHp() = "+msg.getPlayers()[1].getActiveUnimon().getHp());
+		msg.setTurnMessage(infoString);
+		try {
+			outputStreams[0].reset();
+			outputStreams[0].writeObject(msg);
+			System.out.println("after sending msg : "+msg.getPlayers()[0].getActiveUnimon().getHp());
+			System.out.println("after sending msg : "+msg.getPlayers()[1].getActiveUnimon().getHp());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Player[] arr2 ={b,a};
+		msg.setPlayers(arr2);
+		System.out.println("server msg.getPlayers...getHp() = "+msg.getPlayers()[0].getActiveUnimon().getHp());
+		System.out.println("server msg.getPlayers...getHp() = "+msg.getPlayers()[1].getActiveUnimon().getHp());
+		msg.setTurnMessage(infoString);
+		try {
+			outputStreams[1].reset();
+			outputStreams[1].writeObject(msg);
+			System.out.println("after sending msg : "+msg.getPlayers()[0].getActiveUnimon().getHp());
+			System.out.println("after sending msg : "+msg.getPlayers()[1].getActiveUnimon().getHp());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		
