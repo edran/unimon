@@ -58,7 +58,7 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 		}
         while(e.hasMoreElements())
         {
-            NetworkInterface n=(NetworkInterface) e.nextElement();
+        	NetworkInterface n=(NetworkInterface) e.nextElement();
             Enumeration ee = n.getInetAddresses();
             while(ee.hasMoreElements())
             {

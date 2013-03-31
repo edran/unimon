@@ -21,6 +21,9 @@ public class Attack implements Serializable{
 	private int	selfStatus;
 	private int targetEffect;
 	private int	targetStatus;
+	private final static double CHANCE_OF_STATUS_CHANGE = 0.75;
+	private final static double TYPE_BONUS = 0.25;
+	private final static double DAMAGE_RANGE = 0.1;
 	
 	/*
 	 * NOTE WELL for selfStatus and targetStatus: 
@@ -62,11 +65,19 @@ public class Attack implements Serializable{
 		if(selfStatus == 5) attacker.hungover();
 		if(selfStatus == 7) attacker.confuse();
 		
-		target.modifyHp(targetEffect);
+		if (attacker.getType().getWeaknesses().contains(target.getType())) {
+		target.modifyHp((int) (targetEffect*(1-TYPE_BONUS)));
+		if(targetStatus == 3 && Math.random() > 1-CHANCE_OF_STATUS_CHANGE) target.distract();
+		if(targetStatus == 5 && Math.random() > 1-CHANCE_OF_STATUS_CHANGE) target.hungover();
+		if(targetStatus == 7 && Math.random() > 1-CHANCE_OF_STATUS_CHANGE) target.confuse();
+		}
+		
+		if (attacker.getType().getStrengths().contains(target.getType())) {
+		target.modifyHp((int) (targetEffect*(1+TYPE_BONUS)));
 		if(targetStatus == 3) target.distract();
 		if(targetStatus == 5) target.hungover();
 		if(targetStatus == 7) target.confuse();
-		
+		}
 		
 	}
 
