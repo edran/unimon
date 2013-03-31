@@ -19,7 +19,7 @@ TODO - Luke
 TODO - Nantas
 - Type class (?)
 - Differentiate testing method
-- Start (And finish) CG assignment
+- Start (And finish) CG assignment ??! (Of wourse...)
 
 
 TODO - ALL
