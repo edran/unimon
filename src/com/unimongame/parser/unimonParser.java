@@ -63,7 +63,7 @@ public class unimonParser {
 	public static void main(String[] args){ //Simply a test
 		String[][] data = getData();
 		for (int k = 0; k < data.length; k++){
-			System.out.println("id = " + data[k][0] + );
+			System.out.println("id = " + data[k][0]);
 		}
 		
 	}
