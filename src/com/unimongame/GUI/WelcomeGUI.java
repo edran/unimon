@@ -63,7 +63,7 @@ public class WelcomeGUI extends JPanel implements ActionListener {
             while(ee.hasMoreElements())
             {
                 InetAddress i = (InetAddress) ee.nextElement();
-                if (i instanceof Inet4Address) myIP.add(i.getHostAddress());
+                if (i instanceof Inet4Address && !i.isLoopbackAddress()) myIP.add(i.getHostAddress());
                 
             }
         }
@@ -136,7 +136,7 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 		hostPort.setEditable(true);
 		add(hostPort);
 
-		joinIP = new JTextField("", 15);
+		joinIP = new JTextField("localhost", 15);
 		joinIP.setSize(150, 30);
 		joinIP.setLocation(200, 340);
 		joinIP.setHorizontalAlignment(0);
