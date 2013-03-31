@@ -18,7 +18,7 @@ public class Client implements Runnable {
 	private ObjectOutputStream sOutput;
 	private ListenFromServer listener;
 	public boolean isConnected = false;
-	private int timesSendPlayerCalled;
+	private int timesSendPlayerCalled = 0;
 
 
 	Client(String server, int port, GameWindow window) {
