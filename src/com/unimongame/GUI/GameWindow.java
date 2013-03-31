@@ -87,6 +87,10 @@ public class GameWindow extends JFrame {
 	public void changeUnimon(int uni) {
 		client.selectUnimon(playerSelf, uni, true);
 	}
+	
+	public void applyItem(int item) {
+		//client.applyItem(playerSelf, item, true);
+	}
 
 	public void updateInfo(Player self, Player enemy, String infoString) {
 		fightGUI.updateInfo(self, enemy, infoString);

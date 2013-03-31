@@ -3,6 +3,8 @@ package com.unimongame;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import com.unimongame.item.Item;
+
 public class Player implements Serializable {
 	/**
 	 * 
@@ -11,8 +13,9 @@ public class Player implements Serializable {
 	private ArrayList<Unimon> unimonList;
 	private String name;
 	private Unimon activeUnimon;
-	private int startMoney = 200;
-	private int money = startMoney; //Let's start with this, shall we?
+	private int startMoney = 200; //Let's start with this, shall we?
+	private int money = startMoney;
+	private ArrayList<Item> items;
 	
 	//constructor
 	public Player(String name){
@@ -88,5 +91,17 @@ public class Player implements Serializable {
 	
 	public void restoreMoney() {
 		money = startMoney;
+	}
+	
+	public void addItem(Item item) {
+		items.add(item);
+	}
+	
+	public ArrayList<Item> getItems() {
+		return items;
+	}
+	
+	public void useItem(Item item) {
+		items.remove(items.indexOf(item));
 	}
 }

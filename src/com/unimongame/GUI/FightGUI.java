@@ -19,6 +19,7 @@ public class FightGUI extends JPanel {
 
 	private CombatPanel cbPanel;
 	private ChooseUnimonPanel chPanel;
+	private ItemPanel itPanel;
 	private JTextField textArea;
 	private JButton attack1, attack2, attack3, attack4, givingUp;
 	private JSeparator sep;
@@ -39,6 +40,7 @@ public class FightGUI extends JPanel {
 		this.enemy = enemy;
 		cbPanel = new CombatPanel(self, enemy, seed);
 		chPanel = new ChooseUnimonPanel(self, this);
+		itPanel = new ItemPanel(self, this);
 		attackMenu  = new AttackMenuPanel(this, self);
 		this.window = window;
 		// look and feel
@@ -73,6 +75,7 @@ public class FightGUI extends JPanel {
 
 	private void showCombatPanel() {
 		remove(chPanel);
+		remove(itPanel);
 		add(cbPanel);
 		cbPanel.setVisible(true);
 		System.out.println("adding cbPanel");
@@ -81,10 +84,21 @@ public class FightGUI extends JPanel {
 	
 	private void showChoosePanel(){
 		remove(cbPanel);
+		remove(itPanel);
 		chPanel.updateValues(self);
 		add(chPanel);
 		chPanel.setVisible(true);
 		System.out.println("adding chPanel");
+		repaint();
+	}
+	
+	private void showItemPanel(){
+		remove(cbPanel);
+		remove(chPanel);
+		itPanel.updateValues(self);
+		add(itPanel);
+		itPanel.setVisible(true);
+		System.out.println("adding itPanel");
 		repaint();
 	}
 
@@ -143,7 +157,7 @@ public class FightGUI extends JPanel {
 	}
 
 	public void showBagClicked() {
-		showCombatPanel();
+		showItemPanel();
 		chPanel.reset();
 		textArea.setText("Choose an Item to use!");
 		hideAttacksMenu();
@@ -162,6 +176,11 @@ public class FightGUI extends JPanel {
 		showCombatPanel();
 	}
 
+	public void itemSelected(int selected) {
+		window.applyItem(selected);
+		showCombatPanel();
+	}
+	
 	public void doAttack(int i) {
 		hideMenu();
 		hideAttacksMenu();

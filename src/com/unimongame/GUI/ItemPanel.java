@@ -78,14 +78,14 @@ public class ItemPanel extends JPanel implements ListSelectionListener,
 		this.add(button);
 
 		// sets the default selection
-		updateValues();
+		updateValues(p);
 	}
 
-	public void updateValues(){
+	public void updateValues(Player p){
 		System.out.println("updating values");
 		System.out.println("model size"+itemModel.size());
-		for(Unimon uni : p.getItems()){
-			itemModel.add(itemModel.getSize(), uni.getName());
+		for(Item item : p.getItems()){
+			itemModel.add(itemModel.getSize(), item.getName());
 		}
 		button.setVisible(true);
 		listItems.setSelectedIndex(0);
@@ -107,7 +107,7 @@ public class ItemPanel extends JPanel implements ListSelectionListener,
 				System.out.println("unimon list value change");
 				model.clear();
 				int selectedNumber = listItems.getSelectedIndex();
-				selected = p.getItems.get(selectedNumber);
+				selected = p.getItems().get(selectedNumber);
 				description.setText(selected.getDescription()); //Label for Unimon Description
 
 				} else{
@@ -119,7 +119,7 @@ public class ItemPanel extends JPanel implements ListSelectionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button) {
-			parent.itemSelected(selected);
+			parent.itemSelected(p.getItems().indexOf(selected));
 		}
 
 	}
