@@ -27,6 +27,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 		attack.setSize(100, 50);
 		attack.setBackground(Color.lightGray);
 		attack.setForeground(Color.darkGray);
+		attack.setVisible(true);
 		attack.addActionListener(this);
 		add(attack);
 
@@ -35,6 +36,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 		bag.setSize(100, 50);
 		bag.setBackground(Color.lightGray);
 		bag.setForeground(Color.darkGray);
+		bag.setVisible(true);
 		bag.addActionListener(this);
 		add(bag);
 
@@ -43,6 +45,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 		unimons.setSize(100, 50);
 		unimons.setBackground(Color.lightGray);
 		unimons.setForeground(Color.darkGray);
+		unimons.setVisible(true);
 		unimons.addActionListener(this);
 		add(unimons);
 		
@@ -52,6 +55,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 		abandon.setBackground(Color.lightGray);
 		abandon.setForeground(Color.darkGray);
 		abandon.addActionListener(this);
+		abandon.setVisible(true);
 		add(abandon);
 
 	}
