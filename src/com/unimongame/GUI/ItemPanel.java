@@ -84,93 +84,34 @@ public class ItemPanel extends JPanel implements ListSelectionListener,
 	public void updateValues(){
 		System.out.println("updating values");
 		System.out.println("model size"+itemModel.size());
-		for(Unimon uni :p.getAliveUnimon()){
+		for(Unimon uni : p.getItems()){
 			itemModel.add(itemModel.getSize(), uni.getName());
 		}
 		button.setVisible(true);
-		listUnimons.setSelectedIndex(0);
+		listItems.setSelectedIndex(0);
 
 	}
 	
 	public void reset() {
 		System.out.println("reset");
 		button.setVisible(false);
-		unimonModel.clear();
+		itemModel.clear();
 		model.clear();
 	}
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-		if (e.getValueIsAdjusting() == false && listUnimons.getSelectedIndex()>=0) {
+		if (e.getValueIsAdjusting() == false) {
 			System.out.println("unimon list value not changing");
-			if (e.getSource() == listUnimons) {
+			if (e.getSource() == listItems && listItems.getSelectedIndex()>=0) {
 				System.out.println("unimon list value change");
 				model.clear();
-				int selectedNumber = listUnimons.getSelectedIndex();
-				selected = p.getAliveUnimon().get(selectedNumber);
+				int selectedNumber = listItems.getSelectedIndex();
+				selected = p.getItems.get(selectedNumber);
 				description.setText(selected.getDescription()); //Label for Unimon Description
 
-				unimonAttacks = selected.getAttacks();
-
-				for (Attack attack : unimonAttacks) {
-
-					int pos = model.getSize();
-					model.add(pos, attack.getName());
-
-
-				}
-
-				//TODO: Lifebar doesn't change value
-				lifeBar.setValues(selected.getMaxHp(), selected.getHp());
-				lifeBar.setVisible(true);
-				hp.setText("MaxHp: " + selected.getMaxHp() + " HP");
-				hp.setVisible(true);
-				type.setText("type");
-				type.setVisible(true);
-
-			} else if (e.getSource() == listAttacks &&listAttacks.getSelectedIndex()>=0) {
-
-				int i = listAttacks.getSelectedIndex();
-
-				selectedAttack = unimonAttacks.get(i);
-				
-				/*Description Box thingie
-				 * 
-				 * - Description
-				 * - +/- HP to you
-				 * - make your unimon $status
-				 * - +/- HP to your opponent
-				 * - make your opponent $status 
-				 */
-				
-				String descr = selectedAttack.getDescription() + "\n";
-				String se = selectedAttack.getSelfEffect() + " to your unimon\n";
-				String ss = "";
-				System.out.println("ss = " + selectedAttack.getSelfStatus());
-				if(selectedAttack.getSelfStatus() == 0) ss = "Doesn't alter your status\n";
-				if(selectedAttack.getSelfStatus() == 3) ss = "Makes your unimon distracted\n";
-				if(selectedAttack.getSelfStatus() == 5) ss = "Makes your unimon hungover\n";
-				if(selectedAttack.getSelfStatus() == 7) ss = "Makes your unimon confused\n";
-				
-				String te = selectedAttack.getTargetEffect() + " to your opponent\n";
-				String ts = "";
-				System.out.println("ts = " + selectedAttack.getTargetStatus());
-				if(selectedAttack.getTargetStatus() == 0) ts = "Doesn't alter opponent's status\n";
-				if(selectedAttack.getTargetStatus() == 3) ts = "Makes your opponent distracted\n";
-				if(selectedAttack.getTargetStatus() == 5) ts = "Makes your opponent hungover\n";
-				if(selectedAttack.getTargetStatus() == 7) ts = "Makes your opponent confused\n";
-				
-				description.setText("# " + descr + 
-									"# " + se + 
-									"# " + ss +
-									"# " + te +
-									"# " + ts); // Item Description
-				System.out.println("selected Attack = "
-						+ selectedAttack.getName());
-			}
-			else{
+				} else{
 				System.out.println("source ="+e.getSource().toString());
-		
 			}
 		}
 	}
@@ -178,7 +119,7 @@ public class ItemPanel extends JPanel implements ListSelectionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button) {
-			parent.unimonSelected(selected);
+			parent.itemSelected(selected);
 		}
 
 	}
