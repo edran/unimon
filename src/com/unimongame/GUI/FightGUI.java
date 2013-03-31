@@ -65,6 +65,8 @@ public class FightGUI extends JPanel {
 		textArea.append("Get ready to battle!\n");
 		textArea.setEditable(false);
 		textArea.setSize(300, 100);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
 		textAreaScroll = new JScrollPane(textArea,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -77,6 +79,11 @@ public class FightGUI extends JPanel {
 		showCombatPanel();
 		showMenu();
 
+	}
+	
+	public void appendMessage(String msg) {
+		textArea.append(msg + "\n");
+		textArea.setCaretPosition(textArea.getDocument().getLength());
 	}
 
 	private void showCombatPanel() {
@@ -109,12 +116,12 @@ public class FightGUI extends JPanel {
 	}
 
 	public void waitOnPlayer() {
-		textArea.append("waiting for opponent to make a move");
+		appendMessage("\nWaiting for opponent to make a move...");
 		hideMenu();
 	}
 
 	public void turn() {
-		textArea.append("its your turn ! make a move..");
+		appendMessage("\nIt's your turn ! Make a move.");
 		showMenu();
 	}
 
@@ -151,21 +158,21 @@ public class FightGUI extends JPanel {
 	public void abandonClicked() {
 		showCombatPanel();
 		chPanel.reset();
-		textArea.append("Are you sure you want to leave?\n");
+		appendMessage("Are you sure you want to leave?");
 		hideAttacksMenu();
 	}
 
 	public void chooseUnimonClicked() {
 		chPanel.reset();
 		showChoosePanel();
-		textArea.append("Choose a Unimon\n");
+		appendMessage("Choose a Unimon.");
 		hideAttacksMenu();
 	}
 
 	public void showBagClicked() {
 		showItemPanel();
 		chPanel.reset();
-		textArea.append("Choose an Item to use!\n");
+		appendMessage("Choose an Item to use!");
 		hideAttacksMenu();
 	}
 
@@ -194,7 +201,7 @@ public class FightGUI extends JPanel {
 	}
 
 	public void unimonDied(String infoString) {
-		textArea.append(infoString+"uni died \n");
+		appendMessage(infoString);
 		hideMenu();
 		chooseUnimonClicked();
 		
