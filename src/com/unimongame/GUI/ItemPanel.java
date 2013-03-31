@@ -82,6 +82,8 @@ public class ItemPanel extends JPanel implements ListSelectionListener,
 	}
 
 	public void updateValues(Player p){
+		reset();
+		this.p = p;
 		System.out.println("updating values");
 		System.out.println("model size"+itemModel.size());
 		for(Item item : p.getItems()){
