@@ -1,5 +1,11 @@
 package com.unimongame.item;
-	public class Item {
+
+import java.io.Serializable;
+	public class Item implements Serializable{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 7645292187167814985L;
 		private int 	id;
 		private String name;
 		private String description;

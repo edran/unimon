@@ -21,6 +21,7 @@ public class Player implements Serializable {
 	public Player(String name){
 		this.name = name;
 		unimonList = new ArrayList<Unimon>();
+		items = new ArrayList<Item>();
 	}
 	
 	public String getName(){

@@ -68,6 +68,9 @@ public class Client implements Runnable {
 		
 		while(!gameWindow.isTeamPicked){
 			System.out.println("waiting");	//HERE BE DRAGON, DO NOT DELETE
+			for(int i = 0;i<50;i++){
+				
+			}
 		}
 		
 		System.out.println("client - sendPlayer : waiting is over");
