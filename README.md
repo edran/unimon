@@ -1,4 +1,4 @@
-![Alt text](https://raw.github.com/inf1op/unimon/master/Unimon%20Logo%20%28HQ%29.png "Optional title")
+![Alt text](https://raw.github.com/inf1op/unimon/master/resources/img/Unimon%20Logo%20(HQ).png "UNIMON!")
 ======
 A University based battling game.
 
