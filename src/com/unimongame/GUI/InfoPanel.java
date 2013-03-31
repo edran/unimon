@@ -68,7 +68,7 @@ public class InfoPanel extends JPanel{
         this.add(lifeBar);
         
         status = new JLabel();
-        status.setSize(120, 20);
+        status.setSize(110, 20);
         status.setLocation(10, 45);
         status.setHorizontalAlignment(JLabel.LEFT);
         this.add(status);
