@@ -93,7 +93,11 @@ public class Unimon implements Cloneable, Serializable{
 			hp = 0;
 			status = -1;
 		}
+		if (hp>maxHp) {
+			hp = maxHp;
+		}
 	}	
+	
 	
 	/*
 	 * Decreases the the health points of the unimon
