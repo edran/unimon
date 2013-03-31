@@ -11,13 +11,15 @@ A University based battling game.
 
 TODO - Basile
 - Finish GUI (Well, this is for everyone)
+- Items
 
 TODO - Luke
 - MOAR randomness!
 
 TODO - Nantas
 - Type class (?)
-- Fixing the IP.
+- Differentiate testing method
+- Start (And finish) CG assignment
 
 
 TODO - ALL
