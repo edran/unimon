@@ -16,22 +16,29 @@ import java.util.Collection;
 public class PickTeamPanel extends JPanel implements ListSelectionListener,
 		ActionListener {
 
-//	private DefaultListModel<String> model = new DefaultListModel<String>();
-//	private DefaultListModel<String> unimonModel = new DefaultListModel<String>();
-//	private DefaultListModel<String> teamModel = new DefaultListModel<String>();
-//	private DefaultListModel<String> itemsModel = new DefaultListModel<String>();
-//	private DefaultListModel<String> itemsSelectedModel = new DefaultListModel<String>();
-	
+	// private DefaultListModel<String> model = new DefaultListModel<String>();
+	// private DefaultListModel<String> unimonModel = new
+	// DefaultListModel<String>();
+	// private DefaultListModel<String> teamModel = new
+	// DefaultListModel<String>();
+	// private DefaultListModel<String> itemsModel = new
+	// DefaultListModel<String>();
+	// private DefaultListModel<String> itemsSelectedModel = new
+	// DefaultListModel<String>();
+
 	private DefaultListModel model = new DefaultListModel();
 	private DefaultListModel unimonModel = new DefaultListModel();
 	private DefaultListModel teamModel = new DefaultListModel();
 	private DefaultListModel itemsModel = new DefaultListModel();
 	private DefaultListModel itemsSelectedModel = new DefaultListModel();
-	
-	private JScrollPane listUnimonsArea, listTeamArea, listItemsArea, listSelectedItemsArea;
-	
-//	private JList<String> listAttacks, listUnimons, listItems, listTeam, listSelectedItems;
-	private JList listAttacks, listUnimons, listItems, listTeam, listSelectedItems;
+
+	private JScrollPane listUnimonsArea, listTeamArea, listItemsArea,
+			listSelectedItemsArea;
+
+	// private JList<String> listAttacks, listUnimons, listItems, listTeam,
+	// listSelectedItems;
+	private JList listAttacks, listUnimons, listItems, listTeam,
+			listSelectedItems;
 	private JTextArea description;
 	private LifeBar lifeBar;
 	private JLabel moneyLabel, hp, type;
@@ -46,49 +53,50 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 	private ArrayList<Item> itemsSelected = new ArrayList<Item>();
 	private Player p;
 	private GameWindow window;
-	
+
 	public PickTeamPanel(GameWindow window, Player p) {
 		setSize(500, 500);
 		setLocation(0, 0);
 		this.p = p;
 		this.window = window;
 		setLayout(null);
-		
+
 		Collection<Unimon> c1 = UnimonLoader.load().values();
-		for(Unimon uni : c1){
+		for (Unimon uni : c1) {
 			unimons.add(uni);
 		}
-		
+
 		Collection<Item> c2 = itemLoader.load().values();
-		for(Item item : c2){
+		for (Item item : c2) {
 			items.add(item);
 			System.out.println(item);
 		}
-		
-		//Unimon choosing list
+
+		// Unimon choosing list
 		JLabel uniLabel = new JLabel("Unimons:");
 		uniLabel.setSize(150, 20);
 		uniLabel.setLocation(20, 25);
 		add(uniLabel);
-//		listUnimons = new JList<String>(unimonModel);
+		// listUnimons = new JList<String>(unimonModel);
 		listUnimons = new JList(unimonModel);
 		listUnimons.setFixedCellHeight(20);
 		listUnimons.setFixedCellWidth(150);
 		listUnimons.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listUnimons.addListSelectionListener(this);
-		listUnimonsArea = new JScrollPane(listUnimons, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		listUnimonsArea = new JScrollPane(listUnimons,
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		listUnimonsArea.setBackground(Color.blue);
 		listUnimonsArea.setSize(150, 185);
 		listUnimonsArea.setLocation(20, 50);
 		add(listUnimonsArea);
 
-		//Attack choosing list
+		// Attack choosing list
 		JLabel attackLabel = new JLabel("Attacks:");
 		attackLabel.setSize(150, 20);
 		attackLabel.setLocation(330, 195);
 		add(attackLabel);
-//		listAttacks = new JList<String>(model);
+		// listAttacks = new JList<String>(model);
 		listAttacks = new JList(model);
 		listAttacks.setVisibleRowCount(4);
 		listAttacks.setFixedCellHeight(20);
@@ -98,50 +106,53 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 		listAttacks.setSize(150, 80);
 		listAttacks.setLocation(330, 220);
 		this.add(listAttacks);
-		
-		//Items choosing list
+
+		// Items choosing list
 		JLabel itemsLabel = new JLabel("Items:");
-		itemsLabel.setSize(150,20);
+		itemsLabel.setSize(150, 20);
 		itemsLabel.setLocation(20, 245);
 		add(itemsLabel);
-//		listItems = new JList<String>(itemsModel);
+		// listItems = new JList<String>(itemsModel);
 		listItems = new JList(itemsModel);
 		listItems.setFixedCellHeight(20);
 		listItems.setFixedCellWidth(150);
 		listItems.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listItems.addListSelectionListener(this);
-		listItemsArea = new JScrollPane(listItems, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		listItemsArea = new JScrollPane(listItems,
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		listItemsArea.setSize(150, 95);
 		listItemsArea.setLocation(20, 270);
 		add(listItemsArea);
 
-		//Team setup
+		// Team setup
 		JLabel teamLabel = new JLabel("Team and selected items:");
-		teamLabel.setSize(150,20);
-		teamLabel.setLocation(20,375);
+		teamLabel.setSize(150, 20);
+		teamLabel.setLocation(20, 375);
 		add(teamLabel);
-//		listTeam = new JList<String>(teamModel);
+		// listTeam = new JList<String>(teamModel);
 		listTeam = new JList(teamModel);
 		listTeam.setFixedCellHeight(20);
 		listTeam.setFixedCellWidth(150);
-		listTeamArea = new JScrollPane(listTeam, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		listTeamArea = new JScrollPane(listTeam,
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		listTeamArea.setSize(150, 95);
 		listTeamArea.setLocation(20, 400);
 		add(listTeamArea);
-	
-//		listSelectedItems = new JList<String>(itemsSelectedModel);
+
+		// listSelectedItems = new JList<String>(itemsSelectedModel);
 		listSelectedItems = new JList(itemsSelectedModel);
 		listSelectedItems.setFixedCellHeight(20);
 		listSelectedItems.setFixedCellWidth(150);
-		listSelectedItemsArea = new JScrollPane(listSelectedItems, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		listSelectedItemsArea = new JScrollPane(listSelectedItems,
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		listSelectedItemsArea.setSize(150, 95);
 		listSelectedItemsArea.setLocation(190, 400);
 		add(listSelectedItemsArea);
-		
-		//Descriptions
+
+		// Descriptions
 		JLabel desLabel = new JLabel("Description:");
 		desLabel.setSize(290, 20);
 		desLabel.setLocation(190, 25);
@@ -171,88 +182,94 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 		type.setLocation(190, 280);
 		type.setVisible(false);
 		this.add(type);
-		
-		//Money left
+
+		// Money left
 		moneyLabel = new JLabel("You have £" + p.getMoney() + " left.");
 		moneyLabel.setSize(200, 20);
 		moneyLabel.setLocation(190, 320);
 		this.add(moneyLabel);
-		
-		//Buttons
+
+		// Buttons
 		button = new JButton("Select Unimon");
 		button.setSize(120, 20);
 		button.setLocation(350, 365);
 		button.addActionListener(this);
 		this.add(button);
-		
+
 		button2 = new JButton("Select Item");
 		button2.setSize(120, 20);
 		button2.setLocation(210, 365);
 		button2.addActionListener(this);
 		this.add(button2);
-		
+
 		clear = new JButton("Clear");
 		clear.setSize(120, 20);
 		clear.setLocation(350, 420);
 		clear.addActionListener(this);
 		this.add(clear);
-		
+
 		done = new JButton("Done");
 		done.setSize(120, 20);
 		done.setLocation(350, 460);
 		done.addActionListener(this);
 		this.add(done);
-		
+
 		// sets the default selection
 		updateValues();
 	}
+
 	public String littleString(int x) {
-		
-		if (x<100) {
+
+		if (x < 100) {
 			return "   | ";
 		} else {
 			return " | ";
 		}
 	}
-	public void updateValues(){
-		
-		for(Unimon uni : unimons){
-			unimonModel.add(unimonModel.getSize(), "£" + uni.getCost() + littleString(uni.getCost()) + uni.getName());
+
+	public void updateValues() {
+
+		for (Unimon uni : unimons) {
+			unimonModel.add(unimonModel.getSize(), "$" + uni.getCost()
+					+ littleString(uni.getCost()) + uni.getName());
 		}
-		
-		for(Unimon uni : team) {
-			teamModel.add(teamModel.getSize(), (teamModel.getSize()+1) + ": " + uni.getName());
+
+		for (Unimon uni : team) {
+			teamModel.add(teamModel.getSize(), (teamModel.getSize() + 1) + ": "
+					+ uni.getName());
 		}
-		
-		for(Item item : items) {
-			itemsModel.add(itemsModel.getSize(), "£" + item.getCost() + littleString(item.getCost()) + item.getName());
+
+		for (Item item : items) {
+			itemsModel.add(itemsModel.getSize(), "$" + item.getCost()
+					+ littleString(item.getCost()) + item.getName());
 		}
-		
-		for(Item item : itemsSelected) {
-			itemsSelectedModel.add(itemsSelectedModel.getSize(), (itemsSelectedModel.getSize()+1) + ": " + item.getName());
+
+		for (Item item : itemsSelected) {
+			itemsSelectedModel.add(itemsSelectedModel.getSize(),
+					(itemsSelectedModel.getSize() + 1) + ": " + item.getName());
 		}
-		
+
 		button.setVisible(true);
 		button2.setVisible(true);
-		
-		moneyLabel.setText("You have £" + p.getMoney() + " left.");
+
+		moneyLabel.setText("You have $" + p.getMoney() + " left.");
 	}
-	
+
 	public void reset() {
 		button.setVisible(false);
 		unimonModel.clear();
 		model.clear();
 		teamModel.clear();
-		itemsModel.clear();	
+		itemsModel.clear();
 		itemsSelectedModel.clear();
 	}
-	
+
 	public void addToTeam(Unimon uni) {
 		team.add(team.size(), uni);
 		reset();
 		updateValues();
 	}
-	
+
 	public void addToItems(Item item) {
 		itemsSelected.add(itemsSelected.size(), item);
 		reset();
@@ -262,7 +279,8 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		if (!e.getValueIsAdjusting()) {
-			if (e.getSource() == listUnimons && listUnimons.getSelectedIndex()>=0) {
+			if (e.getSource() == listUnimons
+					&& listUnimons.getSelectedIndex() >= 0) {
 
 				int selectedNumber = listUnimons.getSelectedIndex();
 				selected = unimons.get(selectedNumber);
@@ -270,7 +288,7 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 				description.setText(selected.getDescription());
 
 				unimonAttacks = selected.getAttacks();
-				
+
 				model.clear();
 				for (Attack attack : unimonAttacks) {
 					model.add(model.getSize(), attack.getName());
@@ -283,55 +301,62 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 				type.setText("Type");
 				type.setVisible(true);
 
-			} else if (e.getSource() == listAttacks && listAttacks.getSelectedIndex()>=0) {
+			} else if (e.getSource() == listAttacks
+					&& listAttacks.getSelectedIndex() >= 0) {
 
 				int i = listAttacks.getSelectedIndex();
 
 				selectedAttack = unimonAttacks.get(i);
-				//description.setText(selectedAttack.getDescription());
-				
-				/*Description Box thingie
+				// description.setText(selectedAttack.getDescription());
+
+				/*
+				 * Description Box thingie
 				 * 
-				 * - Description
-				 * - +/- HP to you
-				 * - make your unimon $status
-				 * - +/- HP to your opponent
-				 * - make your opponent $status 
+				 * - Description - +/- HP to you - make your unimon $status -
+				 * +/- HP to your opponent - make your opponent $status
 				 */
-				
+
 				String descr = selectedAttack.getDescription() + "\n";
-				String se = selectedAttack.getSelfEffect() + " to your unimon\n";
+				String se = selectedAttack.getSelfEffect()
+						+ " to your unimon\n";
 				String ss = "";
 				System.out.println("ss = " + selectedAttack.getSelfStatus());
-				if(selectedAttack.getSelfStatus() == 0) ss = "Doesn't alter your status\n";
-				if(selectedAttack.getSelfStatus() == 3) ss = "Makes your unimon distracted\n";
-				if(selectedAttack.getSelfStatus() == 5) ss = "Makes your unimon hungover\n";
-				if(selectedAttack.getSelfStatus() == 7) ss = "Makes your unimon confused\n";
-				
-				String te = selectedAttack.getTargetEffect() + " to your opponent\n";
+				if (selectedAttack.getSelfStatus() == 0)
+					ss = "Doesn't alter your status\n";
+				if (selectedAttack.getSelfStatus() == 3)
+					ss = "Makes your unimon distracted\n";
+				if (selectedAttack.getSelfStatus() == 5)
+					ss = "Makes your unimon hungover\n";
+				if (selectedAttack.getSelfStatus() == 7)
+					ss = "Makes your unimon confused\n";
+
+				String te = selectedAttack.getTargetEffect()
+						+ " to your opponent\n";
 				String ts = "";
 				System.out.println("ts = " + selectedAttack.getTargetStatus());
-				if(selectedAttack.getTargetStatus() == 0) ts = "Doesn't alter opponent's status\n";
-				if(selectedAttack.getTargetStatus() == 3) ts = "Makes your opponent distracted\n";
-				if(selectedAttack.getTargetStatus() == 5) ts = "Makes your opponent hungover\n";
-				if(selectedAttack.getTargetStatus() == 7) ts = "Makes your opponent confused\n";
-				
-				description.setText("# " + descr + 
-									"# " + se + 
-									"# " + ss +
-									"# " + te +
-									"# " + ts); // Item Description
+				if (selectedAttack.getTargetStatus() == 0)
+					ts = "Doesn't alter opponent's status\n";
+				if (selectedAttack.getTargetStatus() == 3)
+					ts = "Makes your opponent distracted\n";
+				if (selectedAttack.getTargetStatus() == 5)
+					ts = "Makes your opponent hungover\n";
+				if (selectedAttack.getTargetStatus() == 7)
+					ts = "Makes your opponent confused\n";
+
+				description.setText("# " + descr + "# " + se + "# " + ss + "# "
+						+ te + "# " + ts); // Item Description
 				System.out.println("selected Attack = "
 						+ selectedAttack.getName());
-				
-			} else if (e.getSource() == listItems && listItems.getSelectedIndex()>=0) {
-				
+
+			} else if (e.getSource() == listItems
+					&& listItems.getSelectedIndex() >= 0) {
+
 				int j = listItems.getSelectedIndex();
 
 				selectedItem = items.get(j);
 				description.setText(selectedItem.getDescription());
 			} else {
-		
+
 			}
 		}
 	}
@@ -339,15 +364,15 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button) {
-			if (p.getMoney()-selected.getCost() >= 0) {
-			p.spendMoney(selected.getCost());
-			addToTeam(selected);
-			}			
-	
+			if (p.getMoney() - selected.getCost() >= 0) {
+				p.spendMoney(selected.getCost());
+				addToTeam(selected);
+			}
+
 		} else if (e.getSource() == button2) {
-			if(p.getMoney()-selectedItem.getCost() >= 0) {
-			p.spendMoney(selectedItem.getCost());
-			addToItems(selectedItem);
+			if (p.getMoney() - selectedItem.getCost() >= 0) {
+				p.spendMoney(selectedItem.getCost());
+				addToItems(selectedItem);
 			}
 
 		} else if (e.getSource() == clear) {
@@ -357,14 +382,14 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 			p.restoreMoney();
 			updateValues();
 		} else if (e.getSource() == done) {
-			
+
 			for (Unimon uni : team) {
 				p.addUnimon(uni);
 			}
 			p.setActiveUnimon(team.get(0));
 			System.out.println("done clicked");
 			window.teamPicked(p);
-			
+
 		}
 
 	}
