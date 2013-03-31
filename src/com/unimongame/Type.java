@@ -1,9 +1,14 @@
 package com.unimongame;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Type {
+public class Type implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3025756759293719509L;
 	private String name;
 	private ArrayList<Type> strength;
 	private ArrayList<Type> weakness;
