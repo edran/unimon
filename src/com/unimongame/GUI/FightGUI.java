@@ -121,8 +121,10 @@ public class FightGUI extends JPanel {
 	}
 
 	public void turn() {
-		appendMessage("\nIt's your turn ! Make a move.");
-		showMenu();
+		if(self.getActiveUnimon().isAlive()){
+			appendMessage("\nIt's your turn ! Make a move.");
+			showMenu();
+		}
 	}
 
 	public void updateInfo(Player self,Player enemy,String infoString) {
