@@ -43,8 +43,8 @@ public class GameWindow extends JFrame {
 		this.client = client;
 	}
 
-	public void setPlayers(Player self, Player enemy) {
-		fightGUI = new FightGUI(self, enemy, this);
+	public void setPlayers(Player self, Player enemy,int bgNum) {
+		fightGUI = new FightGUI(self, enemy, this,bgNum);
 		this.setTitle("Unimon Game: " + self.getName());
 		fightGUI.setVisible(false);
 		System.out.println("fightGui created");

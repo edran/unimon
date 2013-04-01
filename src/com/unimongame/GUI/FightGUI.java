@@ -34,9 +34,9 @@ public class FightGUI extends JPanel implements ActionListener {
 	private Player enemy;
 	private MenuPanel menu = new MenuPanel(this);
 	private AttackMenuPanel attackMenu;
-	private int seed = (int) (Math.random() * 1000);
+	
 
-	public FightGUI(Player self, Player enemy,GameWindow window) {
+	public FightGUI(Player self, Player enemy,GameWindow window,int background) {
 		// init variables
 		//System.out.println("self : "+self.getName());
 		assert(enemy != null);
@@ -44,7 +44,7 @@ public class FightGUI extends JPanel implements ActionListener {
 		System.out.println("enemy : "+enemy.getName());
 		this.self = self;
 		this.enemy = enemy;
-		cbPanel = new CombatPanel(self, enemy, seed);
+		cbPanel = new CombatPanel(self, enemy, background);
 		chPanel = new ChooseUnimonPanel(self, this);
 		itPanel = new ItemPanel(self, this);
 		attackMenu  = new AttackMenuPanel(this, self);

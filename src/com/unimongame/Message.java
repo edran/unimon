@@ -11,6 +11,7 @@ public class Message implements Serializable{
  private int attack;
  private int item;
  private String turnMessage;
+ private int backgroundNumber;
  private boolean endTurn = true;
  private Player[] players = new Player[2];
 // numbers are the position of unimon in players AliveUnimon list
@@ -77,6 +78,14 @@ public void setTurnMessage(String turnMessage){
 
 public String getTurnMessage(){
 	return turnMessage;
+}
+
+public int getBackgroundNumber() {
+	return backgroundNumber;
+}
+
+public void setBackgroundNumber(int backgroundNumber) {
+	this.backgroundNumber = backgroundNumber;
 }
 
 

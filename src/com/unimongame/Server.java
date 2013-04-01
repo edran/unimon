@@ -20,11 +20,14 @@ public class Server implements Runnable {
 	private int playersReceived = 0;
 	private ObjectOutputStream[] outputStreams = new ObjectOutputStream[2];
 	private ListenerFromClient[] listeners = new ListenerFromClient[2];
+	private int backgroundNumber;
+	private int seed = (int) (Math.random() * 1000);
 	private boolean endTurn = false;
 
 	public Server(int port) {
 		players[0] = null;
 		players[1] = null;
+		backgroundNumber = seed%4;
 		try {
 			serverSocket = new ServerSocket(port);
 		} catch (IOException e) {
@@ -79,6 +82,7 @@ public class Server implements Runnable {
 		Message msg = new Message(MessageType.SENDING_PLAYERS);
 		//players[0].getActiveUnimon().modifyHp(-50);
 		msg.setPlayers(setupPlayerArray(0));
+		msg.setBackgroundNumber(backgroundNumber);
 		try {
 			outputStreams[0].writeObject(msg);
 			outputStreams[0].flush();
@@ -88,6 +92,7 @@ public class Server implements Runnable {
 		}
 		msg = new Message(MessageType.SENDING_PLAYERS);
 		msg.setPlayers(setupPlayerArray(1));
+		msg.setBackgroundNumber(backgroundNumber);
 		try {
 			outputStreams[1].writeObject(msg);
 			outputStreams[1].flush();

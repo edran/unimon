@@ -61,10 +61,10 @@ public class Client implements Runnable {
 
 	}
 
-	public void setUpFightGUI(Player[] players){
+	public void setUpFightGUI(Player[] players,int backgroundNum){
 //		System.out.println("**************"+players[0].getName());
 //		System.out.println("**************"+players[1].getName());
-		gameWindow.setPlayers(players[0],players[1]);
+		gameWindow.setPlayers(players[0],players[1],backgroundNum);
 		gameWindow.showFightGUI();
 	}
 	
@@ -156,7 +156,7 @@ public void applyItem(Player playerSelf, int item) {
 //						System.out.println("client - run : msg "+msg.getTurnMessage());
 //						System.out.println("client - run : msg .getPlayers(0)"+msg.getPlayers()[0].getName());
 //						System.out.println("client - run : msg.getPlayers(0) "+msg.getPlayers()[1].getName());
-						setUpFightGUI(msg.getPlayers());
+						setUpFightGUI(msg.getPlayers(),msg.getBackgroundNumber());
 						break;
 					case DO_TURN:
 						gameWindow.turn();
