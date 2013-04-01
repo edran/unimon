@@ -63,8 +63,8 @@ public class Battle {
 		if (endTurn) {
 			endTurn();
 		} else {
-			turn(playerNum);
 			playerNum = (playerNum-1)%2;
+			turn(playerNum);
 		}
 	}
 
