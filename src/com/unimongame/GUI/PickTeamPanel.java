@@ -383,6 +383,7 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 			updateValues();
 		} else if (e.getSource() == done) {
 
+			if (team.size() > 0) {
 			for (Unimon uni : team) {
 				p.addUnimon((Unimon) uni.clone());
 			}
@@ -391,9 +392,10 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 			for(Item item : itemsSelected) {
 				p.addItem(item);
 			}
+			
 			System.out.println("done clicked");
 			window.teamPicked(p);
-
+			}
 		}
 
 	}

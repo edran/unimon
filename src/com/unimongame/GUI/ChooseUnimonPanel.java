@@ -120,11 +120,9 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 		reset();
 		this.p = player;
 		System.out.println("updating values");
-		for(Unimon uni :p.getAliveUnimon()){
-			if (uni != p.getActiveUnimon()) {
+		for(Unimon uni :p.getBenchUnimon()){
 			unimonModel.add(unimonModel.getSize(), uni.getName());
 			System.out.println("model size"+unimonModel.size());
-			}
 		}
 		button.setVisible(true);
 		listUnimons.setSelectedIndex(0);
@@ -146,13 +144,8 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 				System.out.println("unimon list value change");
 				model.clear();
 				int selectedNumber = listUnimons.getSelectedIndex();
-				
-				if (selectedNumber < p.getAliveUnimon().indexOf(p.getActiveUnimon())) {
-					selected = p.getAliveUnimon().get(selectedNumber);
-				} else {
-					selected = p.getAliveUnimon().get(selectedNumber + 1);
-				}
-				
+					selected = p.getBenchUnimon().get(selectedNumber);
+
 				description.setText(selected.getDescription()); //Label for Unimon Description
 
 				unimonAttacks = selected.getAttacks();
@@ -223,7 +216,7 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button) {
-			parent.unimonSelected(p.getAliveUnimon().indexOf(selected));
+			parent.unimonSelected(p.getBenchUnimon().indexOf(selected));
 		}
 
 	}
