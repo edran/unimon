@@ -18,7 +18,7 @@ public class EndGamePanel extends JPanel implements ActionListener{
 		setSize(500,500);
 		setLocation(0,23);
 		
-		if (winner = true) {
+		if (winner == true) {
 			endString = "<HTML><body><center><font size= 7><h1><strong>YOU ARE THE<br>WINNER!!!!!!</strong></h1></font><sub>well done :)</sub></center></body></HTML>";
 		} else {
 			endString = "<HTML><body><center><font size= 7><h1><strong>YOU ARE THE<br>WINN...</strong></h1></font><sub>...nah, you lost. Oh well :)</sub></center></body></HTML>";
