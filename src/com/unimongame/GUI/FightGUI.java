@@ -2,6 +2,8 @@ package com.unimongame.GUI;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -16,7 +18,7 @@ import com.unimongame.Player;
 import com.unimongame.Unimon;
 import com.unimongame.attack.Attack;
 
-public class FightGUI extends JPanel {
+public class FightGUI extends JPanel implements ActionListener {
 
 	// Declaring a few variables
 
@@ -25,7 +27,7 @@ public class FightGUI extends JPanel {
 	private ItemPanel itPanel;
 	private JTextArea textArea;
 	JScrollPane textAreaScroll;
-	private JButton attack1, attack2, attack3, attack4, givingUp;
+	private JButton nextUni;
 	private JSeparator sep;
 	private Player self;
 	private GameWindow window;
@@ -74,7 +76,13 @@ public class FightGUI extends JPanel {
 		textAreaScroll.setLocation(0, 400);
 		textAreaScroll.setVisible(true);
 		add(textAreaScroll);
-
+		
+		nextUni = new JButton("Next Unimon");
+		nextUni.setSize(160, 50);
+		nextUni.setLocation(320, 425);
+		nextUni.addActionListener(this);
+		nextUni.setVisible(false);
+		
 		// add
 		showCombatPanel();
 		showMenu();
@@ -204,8 +212,18 @@ public class FightGUI extends JPanel {
 
 	public void unimonDied(String infoString) {
 		appendMessage(infoString);
-		chooseUnimonClicked();
 		hideMenu();
+		add(nextUni);
+		nextUni.setVisible(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == nextUni) {
+			chooseUnimonClicked();
+			nextUni.setVisible(false);
+			remove(nextUni);
+		}
 		
 	}
 
