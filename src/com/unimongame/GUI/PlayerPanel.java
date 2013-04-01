@@ -53,12 +53,15 @@ public class PlayerPanel extends JPanel {
 	}
 	
 	public void updateStats(Player player) {
+		System.out.println("update stats");
 		this.player = player;
 		changeUnimon();
+		//setIcon();
 		infoPanel.updateInfo(player);
 	}
 
 	public void changeUnimon() {
+		System.out.println("change Unimon");
 		infoPanel.updateInfo(player);
 		imgPanel.updateImg(getImagePath());
 	}
@@ -68,7 +71,12 @@ public class PlayerPanel extends JPanel {
 	}
 
 	private void setIcon() {
+		System.out.println(getImagePath());
 		imgPanel = new ImagePanel(getImagePath());
+		imgPanel.setVisible(false);
+		imgPanel.setVisible(true);
+		imgPanel.repaint();
+		//repaint();
 	}
 
 }

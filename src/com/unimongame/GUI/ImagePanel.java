@@ -23,8 +23,9 @@ class ImagePanel extends JPanel {
 
   
   public void updateImg(String imgPath) {
-		this.img = new ImageIcon(img).getImage();
+		this.img = new ImageIcon(imgPath).getImage();
 		setup();
+		repaint();
 	}
 
   private void setup() {
