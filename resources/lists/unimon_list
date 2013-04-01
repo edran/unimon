@@ -4,3 +4,4 @@ id,name,type,hp,cost,description,attack,attack,attack,attack
 03,Nantas,Student,100,40,Made robots before it was cool,Robocalipse,Lisp,EditorWar,Stackoverflow
 04,Luke,Student,100,40,Has spent far to much time on this project and will now fail calc,Punch,Recursion,Jagerbomb,Monads
 05,Good Guy Greg,Student,150,60,Good Guy Greg that we all know and love,Rambling,Logiclessness,Salesman,SpotQuestioning
+06,Perditamon,Professor,200,50,Java Guru,CompileError,Stackoverflow,Polymorphism,SpotQuestioning
