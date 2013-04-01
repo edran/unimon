@@ -121,7 +121,9 @@ public class ItemPanel extends JPanel implements ListSelectionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button) {
+			if (selected != null) {
 			parent.itemSelected(p.getItems().indexOf(selected));
+			}
 		}
 
 	}

@@ -145,4 +145,8 @@ public class GameWindow extends JFrame {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void restart() {
+		
+	}
 }

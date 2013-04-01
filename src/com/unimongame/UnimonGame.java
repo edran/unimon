@@ -8,7 +8,8 @@ public class UnimonGame {
 	private Client client;
 	private Thread clientThread;
 	private GameWindow window;
-
+	
+	
 	public void run(){
 		window = new GameWindow(this);
 		
