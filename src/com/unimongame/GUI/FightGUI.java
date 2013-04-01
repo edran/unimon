@@ -194,9 +194,9 @@ public class FightGUI extends JPanel {
 	}
 
 	public void unimonDied(String infoString) {
-		textArea.append(infoString+"uni died \n");
-		hideMenu();
+		textArea.append(infoString);
 		chooseUnimonClicked();
+		hideMenu();
 		
 	}
 

@@ -55,7 +55,7 @@ public class Battle {
 		// System.out.println("switching from "+p.getActiveUnimon().getName()+" to "+p.getAliveUnimon().get(i).getName());
 		p.setActiveUnimon(p.getAliveUnimon().get(i));
 		server.update(players[0], players[1], p.getName()
-				+ " changed his Unimon to : " + p.getName() + "\n");
+				+ " changed his Unimon to : " + p.getActiveUnimon().getName());
 		if (endTurn) {
 			endTurn();
 		} else {
@@ -76,9 +76,7 @@ public class Battle {
 				+ attacker.getActiveUnimon().getAttacks().get(attackNum)
 						.getName()
 				+ "on "
-				+ target.getActiveUnimon().getName()
-				+ "his new hp is " + target.getActiveUnimon().getHp());
-		System.out.println("isTurnover = true");
+				+ target.getActiveUnimon().getName());
 		endTurn();
 	}
 
@@ -96,7 +94,7 @@ public class Battle {
 			} else {
 
 				infoString = players[0].getActiveUnimon().getName()
-						+ " is dead \n Select a new Unimon\n";
+						+ " is dead \n Select a new Unimon";
 				server.unimonDied(0, infoString);
 			}
 		}
@@ -107,7 +105,7 @@ public class Battle {
 			} else {
 
 				infoString = players[1].getActiveUnimon().getName()
-						+ " is dead \n Select a new Unimon\n";
+						+ " is dead \n Select a new Unimon";
 				server.unimonDied(1, infoString);
 			}
 		}

@@ -51,6 +51,8 @@ public class Client implements Runnable {
 		} catch (IOException eIO) {
 			System.out.println("Exception creating new Input/output Streams: "
 					+ eIO);
+		} catch(NullPointerException e){
+			gameWindow.setMessage("Sorry, host not available! Try Again!" );
 		}
 
 		listener = new ListenFromServer();
