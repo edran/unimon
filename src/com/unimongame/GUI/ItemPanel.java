@@ -110,7 +110,19 @@ public class ItemPanel extends JPanel implements ListSelectionListener,
 				model.clear();
 				int selectedNumber = listItems.getSelectedIndex();
 				selected = p.getItems().get(selectedNumber);
-				description.setText(selected.getDescription()); //Label for Unimon Description
+				
+				String descr = "# " + selected.getDescription() + "\n";
+				String eff = "# It restores health by " + selected.getEffect() + " HP.\n";
+				String stat = "";
+				if (selected.getStatus()==3) {
+					stat = "# It gets the unimon out of distraction.";
+				} else if (selected.getStatus()==5) {
+					stat = "# It sobers up your unimon.";
+				} else if (selected.getStatus()==7) {
+					stat = "# It snaps your unimon out of confusion.";
+				}
+				
+				description.setText(descr + eff + stat);
 
 				} else{
 				System.out.println("source ="+e.getSource().toString());

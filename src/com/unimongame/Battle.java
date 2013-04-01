@@ -54,6 +54,8 @@ public class Battle {
 
 	private void endTurn() {
 		playerNum = (playerNum + 1) % 2;
+		players[0].getActiveUnimon().endOfTurn();
+		players[1].getActiveUnimon().endOfTurn();
 		turn();
 	}
 

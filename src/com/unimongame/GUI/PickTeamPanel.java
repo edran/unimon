@@ -354,7 +354,19 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 				int j = listItems.getSelectedIndex();
 
 				selectedItem = items.get(j);
-				description.setText(selectedItem.getDescription());
+				
+				String descr = "# " + selectedItem.getDescription() + "\n";
+				String eff = "# It restores health by " + selectedItem.getEffect() + " HP.\n";
+				String stat = "";
+				if (selectedItem.getStatus()==3) {
+					stat = "# It gets the unimon out of distraction.";
+				} else if (selectedItem.getStatus()==5) {
+					stat = "# It sobers up your unimon.";
+				} else if (selectedItem.getStatus()==7) {
+					stat = "# It snaps your unimon out of confusion.";
+				}
+				
+				description.setText(descr + eff + stat);
 			} else {
 
 			}
