@@ -20,6 +20,7 @@ public class GameWindow extends JFrame {
 	private HelpGUI helpGUI = new HelpGUI(this);
 	private UnimonGame main;
 	public boolean isTeamPicked = false;
+	public boolean shouldEndTurn = true;
 
 	static {
 		JFrame.setDefaultLookAndFeelDecorated(true);
@@ -88,7 +89,8 @@ public class GameWindow extends JFrame {
 	}
 
 	public void changeUnimon(int uni) {
-		client.selectUnimon(playerSelf, uni, true);
+		client.selectUnimon(playerSelf, uni, shouldEndTurn);
+		shouldEndTurn = true;
 	}
 	
 	public void applyItem(int item) {
@@ -128,6 +130,7 @@ public class GameWindow extends JFrame {
 	}
 
 	public void unimonDied(String infoString) {
+		shouldEndTurn = false;
 		fightGUI.unimonDied(infoString);
 	}
 

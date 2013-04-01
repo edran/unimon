@@ -83,7 +83,7 @@ public class InfoPanel extends JPanel{
 		nameLabel.setText(currentUni.getName());
 		typeLabel.setText(currentUni.getType().getName());
 		numUnimonLabel.setText(player.numAlive()+"/"+player.getUnimon().size());
-		lifeBar.setValue(currentUni.getHp());
+		lifeBar.setValues(currentUni.getMaxHp(), currentUni.getHp());
 		lifeBar.repaint();
 		
 		statusShort = "";

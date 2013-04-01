@@ -124,8 +124,11 @@ public class Unimon implements Cloneable, Serializable{
 	 * Confuses the unimon between 1 and MAX_SLEEP_TURNS
 	 */
 	public void confuse(){
-		status *= 7;
-		turnsUntilNotConfused += rand.nextInt(MAX_CONFUSE_TURNS)+1;
+		if(status !=-1){
+			
+			status *= 7;
+			turnsUntilNotConfused += rand.nextInt(MAX_CONFUSE_TURNS)+1;
+		}
 	}
 
 	/*
@@ -133,8 +136,11 @@ public class Unimon implements Cloneable, Serializable{
 	 * Distract the unimon for between 1 and MAX_DISTRACT_TURNS
 	 */
 	public void distract(){
-		status *=3;
-		turnsUntilNotDistracted += rand.nextInt(MAX_DISTRACT_TURNS)+1;	
+		if(status !=-1){
+			
+			status *=3;
+			turnsUntilNotDistracted += rand.nextInt(MAX_DISTRACT_TURNS)+1;	
+		}
 	}
 
 
@@ -143,8 +149,11 @@ public class Unimon implements Cloneable, Serializable{
 	 * sleep 
 	 */
 	public void hungover(){
-		status *=5;
-		turnsUntilNotHungover += rand.nextInt(MAX_HUNGOVER_TURNS)+1;
+		if(status !=-1){
+			
+			status *=5;
+			turnsUntilNotHungover += rand.nextInt(MAX_HUNGOVER_TURNS)+1;
+		}
 	}
 
 	/*

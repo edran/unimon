@@ -138,6 +138,7 @@ public class FightGUI extends JPanel implements ActionListener {
 	public void updateInfo(Player self,Player enemy,String infoString) {
 		cbPanel.updateStats(self,enemy);
 		chPanel.updateValues(self);
+		attackMenu = new AttackMenuPanel(this,self);
 		textArea.append(infoString);
 		this.self = self;
 		this.enemy = enemy;

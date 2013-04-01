@@ -20,6 +20,7 @@ public class Server implements Runnable {
 	private int playersReceived = 0;
 	private ObjectOutputStream[] outputStreams = new ObjectOutputStream[2];
 	private ListenerFromClient[] listeners = new ListenerFromClient[2];
+	private boolean endTurn = false;
 
 	public Server(int port) {
 		players[0] = null;
@@ -142,7 +143,7 @@ public class Server implements Runnable {
 						setPlayers(msg.getPlayers()[0], clientNumber);
 						break;
 					case UNIMON_CHANGED:
-						System.out.println("battle changed");
+						System.out.println("Unimon changed - msg endturn = "+msg.getEndTurn());
 						battle.selectUnimon(players[clientNumber], msg.getSelectedUnimon(),msg.getEndTurn());
 						break;
 					default:

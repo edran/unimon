@@ -46,13 +46,15 @@ public class Battle {
 	 * returns 1 if someone wins 0 otherwise.
 	 */
 	private void turn() {
-		System.out.println("Battle - turn Start, player " + playerNum);
+		System.out.println("Battle - turn Start, player " + players[playerNum].getActiveUnimon().getName());
+		System.out.println("Game is finished = "+isFinished);
 		if (!isFinished) {
 			server.startTurn(playerNum);
 		}
 	}
 
 	private void endTurn() {
+		System.out.println("end turn playerNum = "+playerNum);
 		playerNum = (playerNum + 1) % 2;
 		players[0].getActiveUnimon().endOfTurn();
 		players[1].getActiveUnimon().endOfTurn();
@@ -64,9 +66,11 @@ public class Battle {
 		server.update(players[0], players[1], p.getName()
 				+ " changed his Unimon to : " + p.getActiveUnimon().getName());
 		if (endTurn) {
+			System.out.println("selecUnimon endTurn");
 			endTurn();
 		} else {
 			numDied--;
+			System.out.println("Battle selectUnimon --");
 		}
 	}
 
@@ -87,16 +91,24 @@ public class Battle {
 		numDied = checkForDeadUnimon();
 		System.out.println("num Died" + numDied);
 		while (numDied > 0) {
-			System.out.println("doAttack - num Died" + numDied);
+			doNothing();
+	
 		}
+		System.out.println("doAttack endTurn");
 		endTurn();
+	}
+	
+	private void doNothing(){
+		//dont ask!
+		System.out.println("magic");
 	}
 
 	private int checkForDeadUnimon() {
 		String infoString = new String();
 		numDied = 0;
 		if (!players[0].getActiveUnimon().isAlive()) {
-			if (players[0].getAliveUnimon().size() == 0) {
+			System.out.println("num alive player 0 -"+players[0].getAliveUnimon().size());
+			if (players[0].getBenchUnimon().size() == 0) {
 				server.winner(1);
 				isFinished = true;
 			} else {
@@ -107,7 +119,8 @@ public class Battle {
 			}
 		}
 		if (!players[1].getActiveUnimon().isAlive()) {
-			if (players[0].getAliveUnimon().size() == 0) {
+			System.out.println("num alive player 1 -"+players[1].getAliveUnimon().size());
+			if (players[0].getBenchUnimon().size() == 0) {
 				server.winner(0);
 				isFinished = true;
 			} else {
@@ -135,6 +148,7 @@ public class Battle {
 		// System.out.println("num Died"+numDied);
 		while (numDied > 0) {
 		}
+		System.out.println("useItem endTurn");
 		endTurn();
 	}
 

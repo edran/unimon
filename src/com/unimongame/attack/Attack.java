@@ -60,7 +60,7 @@ public class Attack implements Serializable{
 	
 	public void doAttack(Unimon attacker, Unimon target){
 		
-		if (attacker.getStatus() != 3 && attacker.getStatus() != 7) {
+		//if (attacker.getStatus() != 3 && attacker.getStatus() != 7) {
 		attacker.modifyHp((int) (selfEffect*(1-Math.random()*DAMAGE_RANGE)));
 		if(selfStatus == 3) attacker.distract();
 		if(selfStatus == 5) attacker.hungover();
@@ -82,36 +82,36 @@ public class Attack implements Serializable{
 		if(targetStatus == 5) target.hungover();
 		if(targetStatus == 7) target.confuse();
 		}
-		}
-		
-		if (attacker.getStatus() == 5) {
-			attacker.modifyHp((int) (targetEffect*(1-Math.random()*DAMAGE_RANGE)/2));
-		}
-		
-		if (attacker.getStatus() == 7) {
-			attacker.modifyHp((int) (selfEffect*(1-Math.random()*DAMAGE_RANGE)/2));
-			if(selfStatus == 3) attacker.distract();
-			if(selfStatus == 5) attacker.hungover();
-			if(selfStatus == 7) attacker.confuse();
-			
-			if (attacker.getType().getWeaknesses().contains(target.getType())) {
-			target.modifyHp((int) (targetEffect*(1-TYPE_BONUS)*(1-Math.random()*DAMAGE_RANGE)/2));
-			if(targetStatus == 3 && Math.random() > 1-CHANCE_OF_STATUS_CHANGE) target.distract();
-			if(targetStatus == 5 && Math.random() > 1-CHANCE_OF_STATUS_CHANGE) target.hungover();
-			if(targetStatus == 7 && Math.random() > 1-CHANCE_OF_STATUS_CHANGE) target.confuse();
-			} else if (attacker.getType().getStrengths().contains(target.getType())) {
-			target.modifyHp((int) (targetEffect*(1+TYPE_BONUS)*(1-Math.random()*DAMAGE_RANGE)/2));
-			if(targetStatus == 3) target.distract();
-			if(targetStatus == 5) target.hungover();
-			if(targetStatus == 7) target.confuse();
-			} else {
-			target.modifyHp((int) (targetEffect*(1-Math.random()*DAMAGE_RANGE)/2));
-			if(targetStatus == 3) target.distract();
-			if(targetStatus == 5) target.hungover();
-			if(targetStatus == 7) target.confuse();
-			}
-		}
-		
+//		}
+//		
+//		if (attacker.getStatus() == 5) {
+//			attacker.modifyHp((int) (targetEffect*(1-Math.random()*DAMAGE_RANGE)/2));
+//		}
+//		
+//		if (attacker.getStatus() == 7) {
+//			attacker.modifyHp((int) (selfEffect*(1-Math.random()*DAMAGE_RANGE)/2));
+//			if(selfStatus == 3) attacker.distract();
+//			if(selfStatus == 5) attacker.hungover();
+//			if(selfStatus == 7) attacker.confuse();
+//			
+//			if (attacker.getType().getWeaknesses().contains(target.getType())) {
+//			target.modifyHp((int) (targetEffect*(1-TYPE_BONUS)*(1-Math.random()*DAMAGE_RANGE)/2));
+//			if(targetStatus == 3 && Math.random() > 1-CHANCE_OF_STATUS_CHANGE) target.distract();
+//			if(targetStatus == 5 && Math.random() > 1-CHANCE_OF_STATUS_CHANGE) target.hungover();
+//			if(targetStatus == 7 && Math.random() > 1-CHANCE_OF_STATUS_CHANGE) target.confuse();
+//			} else if (attacker.getType().getStrengths().contains(target.getType())) {
+//			target.modifyHp((int) (targetEffect*(1+TYPE_BONUS)*(1-Math.random()*DAMAGE_RANGE)/2));
+//			if(targetStatus == 3) target.distract();
+//			if(targetStatus == 5) target.hungover();
+//			if(targetStatus == 7) target.confuse();
+//			} else {
+//			target.modifyHp((int) (targetEffect*(1-Math.random()*DAMAGE_RANGE)/2));
+//			if(targetStatus == 3) target.distract();
+//			if(targetStatus == 5) target.hungover();
+//			if(targetStatus == 7) target.confuse();
+//			}
+//		}
+//		
 		
 	}
 

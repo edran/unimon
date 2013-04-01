@@ -108,10 +108,9 @@ public class Client implements Runnable {
 	public void selectUnimon(Player playerSelf, int uni, boolean b) {
 		Message msg = new Message(MessageType.UNIMON_CHANGED);
 		msg.setSelectUnimon(uni);
-		if(!playerSelf.getActiveUnimon().isAlive()){
-			msg.setEndTurn(true);
-		}
-		//ystem.out.println("client do changing unimon- msg :"+msg.getSelectedUnimon());
+		msg.setEndTurn(b);
+		
+		System.out.println("client do changing unimon- msg :"+msg.getSelectedUnimon()+ "end turn = "+msg.getEndTurn());
 		try {
 			sOutput.writeObject(msg);
 			System.out.println("client - sending uni");

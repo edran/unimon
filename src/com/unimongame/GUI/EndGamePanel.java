@@ -30,7 +30,7 @@ public class EndGamePanel extends JPanel implements ActionListener{
 				add(unimon);
 
 		// Result message		
-				if (winner = true) {
+				if (winner == true) {
 					endString = "<HTML><body><center><font size= 7><h1><strong>YOU ARE THE<br>WINNER!!!!!!</strong></h1></font><sub>well done :)</sub></center></body></HTML>";
 				} else {
 					endString = "<HTML><body><center><font size= 7><h1><strong>YOU ARE THE<br>WINN...</strong></h1></font><sub>...nah, you lost. Oh well :)</sub></center></body></HTML>";
@@ -42,7 +42,7 @@ public class EndGamePanel extends JPanel implements ActionListener{
 		endGame.setLocation(50, 190);
 		add(endGame);
 
-		restart = new JButton("Restart");
+		restart = new JButton("Close");
 		restart.setSize(100, 30);
 		restart.setLocation(200, 435);
 		restart.addActionListener(this);
@@ -54,7 +54,7 @@ public class EndGamePanel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==restart){
-			window.restart();
+			System.exit(0);
 		}
 
 	}
