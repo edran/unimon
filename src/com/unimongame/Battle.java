@@ -78,10 +78,10 @@ public class Battle {
 				+ target.getActiveUnimon().getHp());
 		server.update(players[0], players[1], attacker.getActiveUnimon()
 				.getName()
-				+ " used <html><b>"
+				+ " used "
 				+ attacker.getActiveUnimon().getAttacks().get(attackNum)
 						.getName()
-				+ "</b></html> on "
+				+ " on "
 				+ target.getActiveUnimon().getName());
 		endTurn();
 	}
@@ -112,7 +112,7 @@ public class Battle {
 				infoString = players[1].getActiveUnimon().getName()
 						+ " is dead \n Select a new Unimon";
 				server.unimonDied(1, infoString);
-				playerNum--;
+			
 			}
 		}
 	}
