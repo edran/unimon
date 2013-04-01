@@ -29,6 +29,6 @@ id,name,description,self_damage,self_status,target_damage,target_status
 28,TeachingReschedule,Deal with it,0,0,-45,0
 29,TreeDrawing,Be green with data as well!,40,0,0,0
 30,TutorialShift,The hidden surprise...,0,0,-10,7
-31,Stackoverflow,So someone told me you understood pointers!,0,0,70,0
+31,Stackoverflow,So someone told me you understood pointers!,0,0,-70,0
 32,EditorWar,Emacs or Vim?,-30,7,-30,7
 33,Robocalipse,Not even Asimov would be able to stop Skynet now,0,0,-80,0
