@@ -120,7 +120,7 @@ public class Battle {
 		}
 		if (!players[1].getActiveUnimon().isAlive()) {
 			System.out.println("num alive player 1 -"+players[1].getAliveUnimon().size());
-			if (players[0].getBenchUnimon().size() == 0) {
+			if (players[1].getBenchUnimon().size() == 0) {
 				server.winner(0);
 				isFinished = true;
 			} else {
