@@ -90,10 +90,11 @@ public class WelcomeGUI extends JPanel implements ActionListener, FocusListener 
 		enterName.setLocation(100, 220);
 		add(enterName);
 
-		name = new JTextField("");
+		name = new JTextField("Anonymous");
 		name.setSize(240, 30);
 		name.setLocation(160, 220);
 		name.setHorizontalAlignment(SwingConstants.LEFT);
+		name.addFocusListener(this);
 		add(name);
 
 		// Buttons
@@ -136,6 +137,7 @@ public class WelcomeGUI extends JPanel implements ActionListener, FocusListener 
 		hostPort.setLocation(360, 300);
 		hostPort.setHorizontalAlignment(0);
 		hostPort.setEditable(true);
+		hostPort.addFocusListener(this);
 		add(hostPort);
 
 		joinIP = new JTextField("localhost", 15);
@@ -151,6 +153,7 @@ public class WelcomeGUI extends JPanel implements ActionListener, FocusListener 
 		joinPort.setLocation(360, 340);
 		joinPort.setHorizontalAlignment(0);
 		joinPort.setEditable(true);
+		joinPort.addFocusListener(this);
 		add(joinPort);
 
 		credits = new JLabel(
@@ -238,6 +241,12 @@ public class WelcomeGUI extends JPanel implements ActionListener, FocusListener 
 	public void focusGained(FocusEvent e) {
 		if(e.getSource()==joinIP && getJoinIP().equals("localhost")) {
 			joinIP.setText("");
+		} else if (e.getSource()==hostPort && getJoinPort() == 1234) {
+			hostPort.setText("");
+		} else if (e.getSource()==joinPort && getJoinPort() == 1234) {
+			joinPort.setText("");
+		} else if (e.getSource()==name && getUsername().equals("Anonymous")) {
+			name.setText("");
 		}
 		
 	}
