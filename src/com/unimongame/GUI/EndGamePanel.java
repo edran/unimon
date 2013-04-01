@@ -54,7 +54,8 @@ public class EndGamePanel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==restart){
-			window.showStartScreen();
+			//window.showStartScreen();
+			System.exit(0);
 		}
 
 	}
