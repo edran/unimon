@@ -66,6 +66,16 @@ public class Player implements Serializable {
 		}
 		return list;
 	}
+	
+	public ArrayList<Unimon> getBenchUnimon(){
+		ArrayList<Unimon> list = new ArrayList<Unimon>();
+		for(Unimon uni : unimonList){
+			if(uni.isAlive() && uni!=activeUnimon){
+				list.add(uni);
+			}
+		}
+		return list;
+	}
 
 	/*
 	 * returns the number of unimon left alive
