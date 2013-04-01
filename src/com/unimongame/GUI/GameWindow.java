@@ -132,12 +132,17 @@ public class GameWindow extends JFrame {
 	}
 
 	public void loser() {
-		System.out.println("loser");
+		setContentPane(new EndGamePanel(this, false));
 		
 	}
 
 	public void winner() {
-		System.out.println("winner");
+		setContentPane(new EndGamePanel(this, true));
+		
+	}
+
+	public void restart() {
+		// TODO Auto-generated method stub
 		
 	}
 }

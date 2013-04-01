@@ -387,7 +387,7 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 			for (Unimon uni : team) {
 				p.addUnimon((Unimon) uni.clone());
 			}
-			p.setActiveUnimon(team.get(0));
+			p.setActiveUnimon(p.getAliveUnimon().get(0));
 			
 			for(Item item : itemsSelected) {
 				p.addItem(item);

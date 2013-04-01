@@ -57,12 +57,13 @@ public class Battle {
 
 	public void selectUnimon(Player p, int i, boolean endTurn) {
 		// System.out.println("switching from "+p.getActiveUnimon().getName()+" to "+p.getAliveUnimon().get(i).getName());
-		p.setActiveUnimon(p.getAliveUnimon().get(i));
+		p.setActiveUnimon(p.getBenchUnimon().get(i));
 		server.update(players[0], players[1], p.getName()
 				+ " changed his Unimon to : " + p.getActiveUnimon().getName());
 		if (endTurn) {
 			endTurn();
 		} else {
+			System.out.println("playernum ="+playerNum);
 			playerNum = (playerNum-1)%2;
 			turn(playerNum);
 		}
