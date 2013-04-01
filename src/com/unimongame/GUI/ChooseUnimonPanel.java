@@ -216,7 +216,9 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button) {
+			if(selected != null) {
 			parent.unimonSelected(p.getBenchUnimon().indexOf(selected));
+			}
 		}
 
 	}

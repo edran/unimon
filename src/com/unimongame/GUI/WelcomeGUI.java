@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -15,7 +17,7 @@ import java.util.Enumeration;
 
 import javax.swing.*;
 
-public class WelcomeGUI extends JPanel implements ActionListener {
+public class WelcomeGUI extends JPanel implements ActionListener, FocusListener {
 
 	private ImagePanel unimon;
 	private JLabel welcome, credits, date;
@@ -141,6 +143,7 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 		joinIP.setLocation(200, 340);
 		joinIP.setHorizontalAlignment(0);
 		joinIP.setEditable(true);
+		joinIP.addFocusListener(this);
 		add(joinIP);
 
 		joinPort = new JTextField("1234", 5);
@@ -228,6 +231,20 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 	public void setMessage(String msg) {
 		welcome.setText(msg);
 		welcome.repaint();
+		
+	}
+
+	@Override
+	public void focusGained(FocusEvent e) {
+		if(e.getSource()==joinIP && getJoinIP().equals("localhost")) {
+			joinIP.setText("");
+		}
+		
+	}
+
+	@Override
+	public void focusLost(FocusEvent arg0) {
+		// TODO Auto-generated method stub
 		
 	}
 

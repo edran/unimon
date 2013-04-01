@@ -364,23 +364,29 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button) {
+			if (selected != null) {
 			if (p.getMoney() - selected.getCost() >= 0) {
 				p.spendMoney(selected.getCost());
 				addToTeam(selected);
 			}
+			}
 
 		} else if (e.getSource() == button2) {
+			if (selectedItem != null) {
 			if (p.getMoney() - selectedItem.getCost() >= 0) {
 				p.spendMoney(selectedItem.getCost());
 				addToItems(selectedItem);
 			}
+		}
 
 		} else if (e.getSource() == clear) {
+			if (team.size() > 0 || itemsSelected.size() > 0) {
 			reset();
 			team.clear();
 			itemsSelected.clear();
 			p.restoreMoney();
 			updateValues();
+			}
 		} else if (e.getSource() == done) {
 
 			if (team.size() > 0) {

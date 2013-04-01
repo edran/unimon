@@ -140,4 +140,8 @@ public class GameWindow extends JFrame {
 		System.out.println("winner");
 		
 	}
+	
+	public void restart() {
+		
+	}
 }
