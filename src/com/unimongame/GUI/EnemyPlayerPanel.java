@@ -6,7 +6,7 @@ import com.unimongame.Player;
 
 @SuppressWarnings("serial")
 public class EnemyPlayerPanel extends PlayerPanel {
-	public final static Point IMAGE_LOCATOIN = new Point(348, 0);
+	public final static Point IMAGE_LOCATOIN = new Point(300, 0);
 	public final static Point INFO_LOCATOIN = new Point(20,20);
 	private static final Point PANEL_LOCATION = new Point(0,0);
 

@@ -29,7 +29,7 @@ public class PlayerPanel extends JPanel {
 		
 		// add icon
 		setIcon();
-		imgPanel.setSize(152, 200);
+		imgPanel.setSize(200, 200);
 		imgPanel.setLocation(getIconLocation());
 		imgPanel.setBackground(BACKGROUND_COLOR);
 		imgPanel.setVisible(true);
@@ -64,10 +64,7 @@ public class PlayerPanel extends JPanel {
 	}
 
 	private String getImagePath() {
-//		System.out.println("player = "+player.getName());
-//		System.out.println("active unimon = "+player.getActiveUnimon().getName());
-//		System.out.println("path =="+"resources/img/unimon/" + player.getActiveUnimon().getName() + ".png");
-		return "resources/img/unimon/a.png";
+		return "resources/img/unimon/" + player.getActiveUnimon().getName() + ".png";
 	}
 
 	private void setIcon() {
