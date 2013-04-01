@@ -345,8 +345,8 @@ public class PickTeamPanel extends JPanel implements ListSelectionListener,
 
 				description.setText("# " + descr + "# " + se + "# " + ss + "# "
 						+ te + "# " + ts); // Item Description
-				System.out.println("selected Attack = "
-						+ selectedAttack.getName());
+//				System.out.println("selected Attack = "
+//						+ selectedAttack.getName());
 
 			} else if (e.getSource() == listItems
 					&& listItems.getSelectedIndex() >= 0) {

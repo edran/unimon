@@ -139,7 +139,7 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		if (e.getValueIsAdjusting() == false) {
-			System.out.println("unimon list value not changing");
+//			System.out.println("unimon list value not changing");
 			if (e.getSource() == listUnimons && listUnimons.getSelectedIndex()>=0) {
 				System.out.println("unimon list value change");
 				model.clear();
@@ -203,11 +203,11 @@ public class ChooseUnimonPanel extends JPanel implements ListSelectionListener,
 									"# " + ss +
 									"# " + te +
 									"# " + ts); // Item Description
-				System.out.println("selected Attack = "
-						+ selectedAttack.getName());
+//				System.out.println("selected Attack = "
+//						+ selectedAttack.getName());
 			}
 			else{
-				System.out.println("source ="+e.getSource().toString());
+//				System.out.println("source ="+e.getSource().toString());
 		
 			}
 		}

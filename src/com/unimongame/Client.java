@@ -43,11 +43,11 @@ public class Client implements Runnable {
 
 		/* Creating both Data Stream */
 		try {
-			System.out.println("client try before streams");
+//			System.out.println("client try before streams");
 			sInput = new ObjectInputStream(socket.getInputStream());
-			System.out.println("client try after InputStream");
+//			System.out.println("client try after InputStream");
 			sOutput = new ObjectOutputStream(socket.getOutputStream());
-			System.out.println("client - streams setup");
+//			System.out.println("client - streams setup");
 		} catch (IOException eIO) {
 			System.out.println("Exception creating new Input/output Streams: "
 					+ eIO);
@@ -62,8 +62,8 @@ public class Client implements Runnable {
 	}
 
 	public void setUpFightGUI(Player[] players){
-		System.out.println("**************"+players[0].getName());
-		System.out.println("**************"+players[1].getName());
+//		System.out.println("**************"+players[0].getName());
+//		System.out.println("**************"+players[1].getName());
 		gameWindow.setPlayers(players[0],players[1]);
 		gameWindow.showFightGUI();
 	}
@@ -72,14 +72,14 @@ public class Client implements Runnable {
 		
 		if(++timesSendPlayerCalled == 2){
 		
-		System.out.println("client - sendPlayer : waiting is over");
+//		System.out.println("client - sendPlayer : waiting is over");
 		Message msg = new Message(MessageType.SENDING_PLAYERS);
 		
 		Player[]players = new Player[2];
 		players[0] = self;
 		players[1] = null;
 		msg.setPlayers(players);
-		System.out.println("client sendPlayer method- message before send"+msg.getPlayers()[0].getActiveUnimon());
+//		System.out.println("client sendPlayer method- message before send"+msg.getPlayers()[0].getActiveUnimon());
 		try {
 			sOutput.writeObject(msg);
 			System.out.println("client - sendPlayer() : "+msg.getMessageType()+" Sent");
@@ -95,7 +95,7 @@ public class Client implements Runnable {
 	public void doAttack(Player playerSelf, Player playerEnemy, int i) {
 		Message msg = new Message(MessageType.ATTACK_SELECTED);
 		msg.setAttack(i);
-		System.out.println("client do attack- msg :"+msg.getAttack());
+//		System.out.println("client do attack- msg :"+msg.getAttack());
 		try {
 			sOutput.writeObject(msg);
 			System.out.println("client - sending attack");
@@ -125,7 +125,7 @@ public class Client implements Runnable {
 public void applyItem(Player playerSelf, int item) {
 	Message msg = new Message(MessageType.ITEM_USED);
 	msg.setItemUsedOn(item);
-	System.out.println("client use item unimon- msg :"+msg.getItem());
+//	System.out.println("client use item unimon- msg :"+msg.getItem());
 	try {
 		sOutput.writeObject(msg);
 		System.out.println("client - sending uni");
@@ -144,7 +144,7 @@ public void applyItem(Player playerSelf, int item) {
 				try {
 					Message msg = (Message) sInput.readObject(); //PROBLEM
 			
-					System.out.println("client - run : msg type = "+msg.getMessageType());
+//					System.out.println("client - run : msg type = "+msg.getMessageType());
 					switch (msg.getMessageType()) {
 					case WAITING_FOR_CONNECTION:
 						
@@ -153,10 +153,10 @@ public void applyItem(Player playerSelf, int item) {
 						sendPlayer();
 						break;
 					case SENDING_PLAYERS:
-						System.out.println("client - run : players recieved");
-						System.out.println("client - run : msg "+msg.getTurnMessage());
-						System.out.println("client - run : msg .getPlayers(0)"+msg.getPlayers()[0].getName());
-						System.out.println("client - run : msg.getPlayers(0) "+msg.getPlayers()[1].getName());
+//						System.out.println("client - run : players recieved");
+//						System.out.println("client - run : msg "+msg.getTurnMessage());
+//						System.out.println("client - run : msg .getPlayers(0)"+msg.getPlayers()[0].getName());
+//						System.out.println("client - run : msg.getPlayers(0) "+msg.getPlayers()[1].getName());
 						setUpFightGUI(msg.getPlayers());
 						break;
 					case DO_TURN:
@@ -166,10 +166,10 @@ public void applyItem(Player playerSelf, int item) {
 						gameWindow.waitOnPlayer();
 						break;
 					case UPDATE:
-						System.out.println("names = "+msg.getPlayers()[0].getName());
-						System.out.println("names = "+msg.getPlayers()[1].getName());
-						System.out.println("client calling update with hp 0  = "+msg.getPlayers()[0].getActiveUnimon().getHp());
-						System.out.println("client calling update with hp 1 = "+msg.getPlayers()[1].getActiveUnimon().getHp());
+//						System.out.println("names = "+msg.getPlayers()[0].getName());
+//						System.out.println("names = "+msg.getPlayers()[1].getName());
+//						System.out.println("client calling update with hp 0  = "+msg.getPlayers()[0].getActiveUnimon().getHp());
+//						System.out.println("client calling update with hp 1 = "+msg.getPlayers()[1].getActiveUnimon().getHp());
 						updateWindow(msg.getPlayers()[0],msg.getPlayers()[1],msg.getTurnMessage());
 					break;
 					case UNIMON_DIED:

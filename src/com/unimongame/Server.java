@@ -72,7 +72,7 @@ public class Server implements Runnable {
 	}
 
 	public void sendBothPlayers() {
-		System.out.println("server : sendBothPlayers()");
+//		System.out.println("server : sendBothPlayers()");
 		// for connection 0;
 
 		Message msg = new Message(MessageType.SENDING_PLAYERS);
@@ -110,7 +110,7 @@ public class Server implements Runnable {
 
 	public void doAttack(int attackNumber, int clientNumber){
 		battle.doAttack(clientNumber,(clientNumber+1)%2,attackNumber);
-		System.out.println("Server doAttack - target Hp"+players[(clientNumber+1)%2].getActiveUnimon().getHp());
+//		System.out.println("Server doAttack - target Hp"+players[(clientNumber+1)%2].getActiveUnimon().getHp());
 	}
 	
 	class ListenerFromClient extends Thread {
@@ -163,7 +163,7 @@ public class Server implements Runnable {
 
 	private void setPlayers(Player player, int num) {
 		players[num] = player;
-		System.out.println("setting" + player.getName());
+//		System.out.println("setting" + player.getName());
 		if (playersReceived++ == 1) {
 			System.out.println("players in setPlayers server"
 					+ players[0].getName() + "  " + players[1].getName());
@@ -219,7 +219,7 @@ public class Server implements Runnable {
 	}
 
 	public void startTurn(int playerNumber) {
-		System.out.println("server : startTurn()");
+//		System.out.println("server : startTurn()");
 		// for connection 0;
 
 		Message msg = new Message(MessageType.DO_TURN);

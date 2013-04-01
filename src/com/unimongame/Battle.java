@@ -23,19 +23,19 @@ public class Battle {
 
 	// private boolean isTurnOver = false;
 	private int playerNum = 0;
+	int numDied = 0;
 
 	public Battle(Player playerA, Player playerB, Server server) {
 		players = new Player[2];
 		this.server = server;
 		players[0] = playerA;
 		players[1] = playerB;
+
 		flipCoin();
 	}
 
 	public void start() {
-		
-			turn(playerNum);
-		
+		turn();
 	}
 
 	private void flipCoin() {
@@ -45,27 +45,26 @@ public class Battle {
 	/*
 	 * returns 1 if someone wins 0 otherwise.
 	 */
-	private void turn(int playerNumber) {
-		if(!isFinished){
-			server.startTurn(playerNumber);			
+	private void turn() {
+		System.out.println("Battle - turn Start, player " + playerNum);
+		if (!isFinished) {
+			server.startTurn(playerNum);
 		}
 	}
-	
-	public void turn(){
-		turn(playerNum);
+
+	private void endTurn() {
+		playerNum = (playerNum + 1) % 2;
+		turn();
 	}
 
 	public void selectUnimon(Player p, int i, boolean endTurn) {
-		// System.out.println("switching from "+p.getActiveUnimon().getName()+" to "+p.getAliveUnimon().get(i).getName());
 		p.setActiveUnimon(p.getBenchUnimon().get(i));
 		server.update(players[0], players[1], p.getName()
 				+ " changed his Unimon to : " + p.getActiveUnimon().getName());
 		if (endTurn) {
 			endTurn();
 		} else {
-			System.out.println("playernum ="+playerNum);
-			playerNum = (playerNum-1)%2;
-			turn(playerNum);
+			numDied--;
 		}
 	}
 
@@ -74,8 +73,8 @@ public class Battle {
 		Player attacker = players[attackerNumber];
 		Player target = players[targetNumber];
 		attacker.getActiveUnimon().attack(attackNum, target.getActiveUnimon());
-		System.out.println("battle - tagets hp: "
-				+ target.getActiveUnimon().getHp());
+		// System.out.println("battle - tagets hp: "
+		// + target.getActiveUnimon().getHp());
 		server.update(players[0], players[1], attacker.getActiveUnimon()
 				.getName()
 				+ " used "
@@ -83,21 +82,23 @@ public class Battle {
 						.getName()
 				+ " on "
 				+ target.getActiveUnimon().getName());
+		numDied = checkForDeadUnimon();
+		System.out.println("num Died" + numDied);
+		while (numDied > 0) {
+			System.out.println("doAttack - num Died" + numDied);
+		}
 		endTurn();
 	}
 
-	private void endTurn() {
-		checkForDeadUnimon();
-		turn((++playerNum) % 2);
-	}
-
-	private void checkForDeadUnimon() {
+	private int checkForDeadUnimon() {
 		String infoString = new String();
+		numDied = 0;
 		if (!players[0].getActiveUnimon().isAlive()) {
 			if (players[0].getAliveUnimon().size() == 0) {
 				server.winner(1);
 				isFinished = true;
 			} else {
+				numDied++;
 				infoString = players[0].getActiveUnimon().getName()
 						+ " is dead \n Select a new Unimon";
 				server.unimonDied(0, infoString);
@@ -108,13 +109,14 @@ public class Battle {
 				server.winner(0);
 				isFinished = true;
 			} else {
-
+				numDied++;
 				infoString = players[1].getActiveUnimon().getName()
 						+ " is dead \n Select a new Unimon";
 				server.unimonDied(1, infoString);
-			
+
 			}
 		}
+		return numDied;
 	}
 
 	/*
@@ -127,6 +129,10 @@ public class Battle {
 				+ selectedItem.getName();
 		players[clientNumber].useItem(selectedItem);
 		server.update(players[0], players[1], infoString);
+		numDied = checkForDeadUnimon();
+		// System.out.println("num Died"+numDied);
+		while (numDied > 0) {
+		}
 		endTurn();
 	}
 
