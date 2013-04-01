@@ -95,11 +95,11 @@ public class WelcomeGUI extends JPanel implements ActionListener {
 		add(name);
 
 		// Buttons
-		local = new JButton("Play on one computer");
-		local.setSize(300, 30);
-		local.setLocation(100, 260);
-		local.addActionListener(this);
-		add(local);
+//		local = new JButton("Play on one computer");
+//		local.setSize(300, 30);
+//		local.setLocation(100, 260);
+//		local.addActionListener(this);
+//		add(local);
 
 		host = new JButton("Host");
 		host.setSize(90, 30);
