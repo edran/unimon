@@ -50,6 +50,10 @@ public class Battle {
 			server.startTurn(playerNumber);			
 		}
 	}
+	
+	public void turn(){
+		turn(playerNum);
+	}
 
 	public void selectUnimon(Player p, int i, boolean endTurn) {
 		// System.out.println("switching from "+p.getActiveUnimon().getName()+" to "+p.getAliveUnimon().get(i).getName());
@@ -60,6 +64,7 @@ public class Battle {
 			endTurn();
 		} else {
 			turn(playerNum);
+			playerNum = (playerNum-1)%2;
 		}
 	}
 
@@ -72,10 +77,10 @@ public class Battle {
 				+ target.getActiveUnimon().getHp());
 		server.update(players[0], players[1], attacker.getActiveUnimon()
 				.getName()
-				+ " used "
+				+ " used <html><b>"
 				+ attacker.getActiveUnimon().getAttacks().get(attackNum)
 						.getName()
-				+ "on "
+				+ "</b></html> on "
 				+ target.getActiveUnimon().getName());
 		endTurn();
 	}
@@ -92,7 +97,6 @@ public class Battle {
 				server.winner(1);
 				isFinished = true;
 			} else {
-
 				infoString = players[0].getActiveUnimon().getName()
 						+ " is dead \n Select a new Unimon";
 				server.unimonDied(0, infoString);
@@ -107,6 +111,7 @@ public class Battle {
 				infoString = players[1].getActiveUnimon().getName()
 						+ " is dead \n Select a new Unimon";
 				server.unimonDied(1, infoString);
+				playerNum--;
 			}
 		}
 	}
